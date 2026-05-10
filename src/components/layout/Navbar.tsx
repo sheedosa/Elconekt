@@ -43,6 +43,7 @@ export const Navbar = () => {
           </Link>
         </motion.div>
 
+        {/* Desktop nav */}
         <div className="hidden md:flex items-center">
           <div className="flex items-center gap-10">
             {navItems.map((item, i) => {
@@ -72,20 +73,21 @@ export const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.5 }}
             onClick={toggleLanguage}
-            className="flex items-center gap-2 text-[10px] rtl:text-sm rtl:font-bold uppercase tracking-[0.2em] rtl:tracking-normal font-medium text-white/40 hover:text-white/80 rtl:text-white/80 rtl:hover:text-white transition-colors"
+            className="flex items-center gap-2 text-white/40 hover:text-white/80 rtl:text-white/80 rtl:hover:text-white transition-colors"
           >
             <Globe size={14} />
-            <span className="font-arabic-display">{t('nav.language')}</span>
+            <span className="font-arabic-display normal-case tracking-normal text-sm">{t('nav.language')}</span>
           </motion.button>
         </div>
 
+        {/* Mobile top bar */}
         <div className="md:hidden flex items-center gap-4">
           <button 
             onClick={toggleLanguage}
-            className="text-white/40 hover:text-white/80 transition-colors p-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em]"
+            className="text-white/40 hover:text-white/80 transition-colors p-2 flex items-center gap-1"
           >
             <Globe size={16} />
-            <span className="sr-only">{t('nav.language')}</span>
+            <span className="font-arabic-display normal-case tracking-normal text-sm">{t('nav.language')}</span>
           </button>
           <button 
             onClick={() => setIsOpen(true)}
@@ -131,10 +133,10 @@ export const Navbar = () => {
                   toggleLanguage();
                   setIsOpen(false);
                 }}
-                className="text-xl mt-8 font-mono uppercase tracking-[0.3em] text-white/40 hover:text-white transition-colors flex items-center justify-center gap-3"
+                className="mt-8 text-white/40 hover:text-white transition-colors flex items-center justify-center gap-3"
               >
                 <Globe size={20} />
-                <span className="font-arabic-display">{t('nav.language')}</span>
+                <span className="font-arabic-display normal-case tracking-normal text-xl">{t('nav.language')}</span>
               </button>
             </div>
           </motion.div>
