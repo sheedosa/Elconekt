@@ -3,7 +3,7 @@
 @theme {
   --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-display: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-arabic: "Lalezar", "Inter", sans-serif;
+  --font-arabic: "Kufam", "Inter", sans-serif;
   
   --color-black: #000000;
   --color-white: #FFFFFF;
@@ -42,7 +42,7 @@
   html[dir="rtl"] button,
   html[dir="rtl"] input,
   html[dir="rtl"] textarea {
-    font-family: "Lalezar", sans-serif !important;
+    font-family: "Kufam", sans-serif !important;
   }
 
   html[dir="rtl"] .tracking-tighter,
