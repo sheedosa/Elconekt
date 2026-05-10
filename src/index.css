@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-display: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Tajawal", "Inter", sans-serif;
+  --font-display: "Kufam", "Inter", sans-serif;
   --font-arabic: "Kufam", "Inter", sans-serif;
   
   --color-black: #000000;
@@ -24,8 +24,14 @@
 
   body {
     @apply bg-black text-white selection:bg-white selection:text-black;
+    font-family: "Tajawal", sans-serif;
     font-variant-ligatures: none;
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* Global headings — Kufam for both English & Arabic */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Kufam", sans-serif;
   }
 
   /* Arabic typography — Kufam for headings & nav */
