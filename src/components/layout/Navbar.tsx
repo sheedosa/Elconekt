@@ -75,7 +75,7 @@ export const Navbar = () => {
             className="flex items-center gap-2 text-[10px] rtl:text-sm rtl:font-bold uppercase tracking-[0.2em] rtl:tracking-normal font-medium text-white/40 hover:text-white/80 rtl:text-white/80 rtl:hover:text-white transition-colors"
           >
             <Globe size={14} />
-            <span>{t('nav.language')}</span>
+            <span className="font-arabic-display">{t('nav.language')}</span>
           </motion.button>
         </div>
 
@@ -134,7 +134,7 @@ export const Navbar = () => {
                 className="text-xl mt-8 font-mono uppercase tracking-[0.3em] text-white/40 hover:text-white transition-colors flex items-center justify-center gap-3"
               >
                 <Globe size={20} />
-                {t('nav.language')}
+                <span className="font-arabic-display">{t('nav.language')}</span>
               </button>
             </div>
           </motion.div>

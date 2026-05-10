@@ -99,6 +99,11 @@
     text-transform: uppercase;
   }
 
+  /* Always-on Arabic display font — for Arabic text shown in LTR context (e.g. language toggle) */
+  .font-arabic-display {
+    font-family: "Kufam", sans-serif !important;
+  }
+
   .text-tagline {
     font-size: 14px;
     line-height: 1.6;
