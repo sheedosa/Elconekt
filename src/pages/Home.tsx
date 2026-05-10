@@ -10,14 +10,11 @@ const Hero = () => {
     <section className="relative min-h-screen w-full overflow-hidden flex items-center justify-center p-6 md:p-10 bg-[#050505]">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/50 z-10" />
-        <video
-          src="/hero-video.mp4"
-          className="w-full h-full object-cover transform rtl:-scale-x-100"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
+        <SmoothImage 
+          src="/images/hero-bg.jpg" 
+          alt="Cinematic background" 
+          className="w-full h-full object-cover"
+          fetchPriority="high"
         />
       </div>
       <div className="relative z-20 text-center max-w-4xl pt-24 sm:pt-20 px-4">
