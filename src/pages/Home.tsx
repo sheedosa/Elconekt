@@ -11,7 +11,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/50 z-10" />
         <SmoothImage 
-          src="/images/hero-bg.jpg" 
+          src="/Fennec backround.jpg" 
           alt="Cinematic background" 
           className="w-full h-full object-cover"
           fetchPriority="high"
