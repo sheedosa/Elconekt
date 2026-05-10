@@ -22,19 +22,30 @@ const Portfolio = () => {
       <p className="text-white/60 mb-16 max-w-2xl text-lg font-light leading-relaxed">
         {t('portfolio.desc')}
       </p>
-      
-      <div className="relative">
-        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none">
-          <div className="bg-black/60 backdrop-blur-md border border-white/10 p-8 text-center rounded-sm">
-            <h3 className="text-xl md:text-2xl font-bold uppercase tracking-widest text-white mb-2">{t('portfolio.incoming')}</h3>
-            <p className="text-white/50 font-mono text-xs uppercase tracking-widest">{t('portfolio.updating')}</p>
-          </div>
-        </div>
 
+      {/* Transmission Incoming — always visible, sits above the grid on mobile */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="flex items-center justify-center mb-10 md:mb-0"
+      >
+        <div className="bg-black/80 backdrop-blur-md border border-white/10 px-8 py-6 text-center rounded-sm w-full max-w-sm md:max-w-md md:absolute md:inset-x-0 md:top-1/2 md:-translate-y-1/2 md:mx-auto md:z-20">
+          <h3 className="text-lg md:text-2xl font-bold uppercase tracking-widest text-white mb-2">
+            {t('portfolio.incoming')}
+          </h3>
+          <p className="text-white/50 font-mono text-xs uppercase tracking-widest">
+            {t('portfolio.updating')}
+          </p>
+        </div>
+      </motion.div>
+
+      {/* Blurred project grid */}
+      <div className="relative md:block">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-16 opacity-30 blur-sm pointer-events-none select-none">
           {projects.map((p, i) => (
-            <motion.div 
-              key={`portfolio-${i}`} 
+            <motion.div
+              key={`portfolio-${i}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -52,20 +63,18 @@ const Portfolio = () => {
                 </span>
               </div>
 
-              <div className="relative overflow-hidden aspect-video mb-5 cursor-pointer">
-                <div className="block">
-                  <SmoothImage 
-                    src={p.thumbnail} 
-                    alt={p.title} 
-                    loading="lazy"
-                    decoding="async"
-                    referrerPolicy="no-referrer" 
-                    className="w-full h-full object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100">
-                    <Play size={20} fill="white" className="text-white ml-0.5" />
-                  </div>
+              <div className="relative overflow-hidden aspect-video mb-5">
+                <SmoothImage
+                  src={p.thumbnail}
+                  alt={p.title}
+                  loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover grayscale"
+                />
+                <div className="absolute inset-0 bg-black/20" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                  <Play size={20} fill="white" className="text-white ml-0.5" />
                 </div>
               </div>
 
