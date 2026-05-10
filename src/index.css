@@ -28,21 +28,31 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Arabic typography overrides */
-  html[dir="rtl"] body,
+  /* Arabic typography — Kufam for headings & nav */
   html[dir="rtl"] h1,
   html[dir="rtl"] h2,
   html[dir="rtl"] h3,
   html[dir="rtl"] h4,
   html[dir="rtl"] h5,
   html[dir="rtl"] h6,
-  html[dir="rtl"] p,
-  html[dir="rtl"] span,
   html[dir="rtl"] a,
   html[dir="rtl"] button,
-  html[dir="rtl"] input,
-  html[dir="rtl"] textarea {
+  html[dir="rtl"] nav {
     font-family: "Kufam", sans-serif !important;
+  }
+
+  /* Arabic typography — Tajawal for body text & small elements */
+  html[dir="rtl"] body,
+  html[dir="rtl"] p,
+  html[dir="rtl"] span,
+  html[dir="rtl"] small,
+  html[dir="rtl"] label,
+  html[dir="rtl"] input,
+  html[dir="rtl"] textarea,
+  html[dir="rtl"] li,
+  html[dir="rtl"] td,
+  html[dir="rtl"] th {
+    font-family: "Tajawal", sans-serif !important;
   }
 
   html[dir="rtl"] .tracking-tighter,
