@@ -4,49 +4,154 @@ import { useTranslation } from "react-i18next";
 import { SmoothImage } from "../components/ui/SmoothImage";
 import { MetadataLabel } from "../components/ui/MetadataLabel";
 
+const Viewfinder = () => {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.dir() === 'rtl';
+
+  return (
+    <div className="absolute inset-0 z-30 pointer-events-none p-6 md:p-12 flex flex-col justify-between overflow-hidden">
+      {/* Corner Brackets */}
+      <div className="absolute top-10 left-10 w-8 h-8 border-t-2 border-l-2 border-white/30" />
+      <div className="absolute top-10 right-10 w-8 h-8 border-t-2 border-r-2 border-white/30" />
+      <div className="absolute bottom-10 left-10 w-8 h-8 border-b-2 border-l-2 border-white/30" />
+      <div className="absolute bottom-10 right-10 w-8 h-8 border-b-2 border-r-2 border-white/30" />
+
+      {/* Top HUD */}
+      <div className="flex justify-between items-start font-mono text-[10px] tracking-widest text-white/40 uppercase">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-red-600 animate-pulse shadow-[0_0_8px_rgba(220,38,38,0.8)]" />
+            <span className="text-white/80 font-bold">{t('home.onset.roll')}</span>
+          </div>
+          <p>4K RAW / 24 FPS</p>
+        </div>
+        <div className="text-center hidden sm:block">
+          <p className="text-white/60 mb-1">CENTER FOCUS</p>
+          <div className="flex gap-2 justify-center">
+            <span className="px-1 border border-white/20">ISO 400</span>
+            <span className="px-1 border border-white/20">5600K</span>
+          </div>
+        </div>
+        <div className="text-right">
+          <p>CH1 <span className="text-green-500">|||||||||</span></p>
+          <p>CH2 <span className="text-green-500">|||||||</span></p>
+        </div>
+      </div>
+
+      {/* Center Focus Crosshair */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center opacity-20">
+        <div className="w-full h-px bg-white" />
+        <div className="h-full w-px bg-white absolute" />
+      </div>
+
+      {/* Bottom HUD */}
+      <div className="flex justify-between items-end font-mono text-[10px] tracking-widest text-white/40 uppercase">
+        <div className="space-y-1">
+          <p className="text-white/60 font-bold">TC 00:14:23:08</p>
+          <p>LUT: FENNEC_LOG_01</p>
+        </div>
+        <div className="text-right space-y-1">
+          <p>BAT 84%</p>
+          <p>SSD 1.2TB REM</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Hero = () => {
   const { t } = useTranslation();
   return (
     <section className="relative min-h-screen w-full overflow-hidden flex items-center justify-center p-6 md:p-10 bg-[#050505]">
+      {/* Background Image with Slow Zoom */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/50 z-10" />
-        <SmoothImage 
-          src="/Fennec-background.jpg" 
-          alt="Cinematic background" 
-          className="w-full h-full object-cover"
-          fetchPriority="high"
-        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/60 z-10" />
+        <motion.div
+          animate={{ scale: [1, 1.05] }}
+          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+          className="w-full h-full"
+        >
+          <SmoothImage 
+            src="/Fennec-background.jpg" 
+            alt="Cinematic background" 
+            className="w-full h-full object-cover grayscale-[20%] contrast-[1.1]"
+            fetchPriority="high"
+          />
+        </motion.div>
+        {/* Subtle Film Grain */}
+        <div className="absolute inset-0 z-20 film-grain pointer-events-none opacity-[0.08]" />
       </div>
-      <div className="relative z-20 text-center max-w-4xl pt-24 sm:pt-20 px-4">
+
+      <Viewfinder />
+
+      <div className="relative z-40 text-center max-w-4xl pt-24 sm:pt-20 px-4">
+        <motion.div
+          initial={{ opacity: 0, letterSpacing: "0.5em" }}
+          animate={{ opacity: 1, letterSpacing: "0.15em" }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          className="text-white/50 text-[10px] sm:text-xs font-mono uppercase mb-4 tracking-[0.5em] rtl:tracking-normal"
+        >
+          {t('home.trust.tag')}
+        </motion.div>
+        
         <motion.h1 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tighter leading-tight mb-6 sm:mb-8 text-white drop-shadow-2xl"
+          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tighter leading-tight mb-8 text-white"
         >
           {t('home.hero_quote')}
         </motion.h1>
+
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: "80px" }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="h-px bg-white/30 mx-auto mb-8"
+        />
+
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-base sm:text-lg md:text-xl rtl:md:text-2xl rtl:font-medium mx-auto max-w-2xl font-light tracking-wide rtl:tracking-normal text-white/90 rtl:text-white mb-8 sm:mb-12 drop-shadow-lg"
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="text-base sm:text-lg md:text-xl rtl:font-medium mx-auto max-w-2xl font-light tracking-wide rtl:tracking-normal text-white/70 mb-12"
         >
           {t('home.hero_sub')}
         </motion.p>
+
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link 
             to="/portfolio"
-            className="inline-block px-6 py-3 sm:px-10 sm:py-4 text-xs sm:text-base border border-white text-white uppercase font-bold tracking-[0.2em] sm:tracking-[0.3em] hover:bg-white hover:text-black transition-all"
+            className="group relative inline-flex items-center justify-center px-10 py-4 overflow-hidden border border-white/20 transition-all hover:border-white"
           >
-            {t('home.see_work')}
+            <div className="absolute inset-0 w-0 bg-white transition-all duration-300 ease-out group-hover:w-full" />
+            <span className="relative text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-white group-hover:text-black transition-colors duration-300">
+              {t('home.see_work')}
+            </span>
+          </Link>
+          <Link 
+            to="/contact"
+            className="inline-flex items-center justify-center px-10 py-4 text-xs sm:text-sm uppercase font-bold tracking-[0.3em] text-white/60 hover:text-white transition-all"
+          >
+            {t('nav.contact')}
           </Link>
         </motion.div>
       </div>
+
+      {/* Bottom Scroll Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-4"
+      >
+        <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent" />
+      </motion.div>
     </section>
   );
 };
