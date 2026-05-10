@@ -151,9 +151,9 @@ const QuoteSection = () => {
 const OnSetGrid = () => {
   const { t } = useTranslation();
   const projects = [
-    { title: t('home.onset.p1_title'), thumbnail: "/images/still-01.jpg", roll: "A04", scene: "12", take: "01" },
-    { title: t('home.onset.p2_title'), thumbnail: "/images/still-02.jpg", roll: "B02", scene: "45", take: "03" },
-    { title: t('home.onset.p3_title'), thumbnail: "/images/still-03.jpg", roll: "A12", scene: "08", take: "05" },
+    { title: t('home.onset.p1_title'), thumbnail: "/images/car2.jpg", roll: "A04", scene: "12", take: "01" },
+    { title: t('home.onset.p2_title'), thumbnail: "/images/field1.jpg", roll: "B02", scene: "45", take: "03" },
+    { title: t('home.onset.p3_title'), thumbnail: "/images/woman3.jpg", roll: "A12", scene: "08", take: "05" },
   ];
   return (
     <section className="bg-black py-20 md:py-32 px-6 border-b border-gray-900">

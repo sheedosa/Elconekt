@@ -33,7 +33,7 @@ const AboutSection = () => {
           className="relative aspect-[4/5] overflow-hidden"
         >
           <SmoothImage 
-            src="/images/about-bg.jpg" 
+            src="/images/about-new.jpg" 
             alt="Fennec Production Set" 
             loading="lazy"
             decoding="async"
