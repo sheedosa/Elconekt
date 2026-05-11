@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Play } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { SmoothImage } from "../components/ui/SmoothImage";
@@ -23,13 +22,8 @@ const Portfolio = () => {
         {t('portfolio.desc')}
       </p>
 
-      {/* Transmission Incoming — always visible, sits above the grid on mobile */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="flex items-center justify-center mb-10 md:mb-0"
-      >
+      {/* Transmission Incoming */}
+      <div className="flex items-center justify-center mb-10 md:mb-0">
         <div className="bg-black/80 backdrop-blur-md border border-white/10 px-8 py-6 text-center rounded-sm w-full max-w-sm md:max-w-md md:absolute md:inset-x-0 md:top-1/2 md:-translate-y-1/2 md:mx-auto md:z-20">
           <h3 className="text-lg md:text-2xl font-bold uppercase tracking-widest text-white mb-2">
             {t('portfolio.incoming')}
@@ -38,18 +32,14 @@ const Portfolio = () => {
             {t('portfolio.updating')}
           </p>
         </div>
-      </motion.div>
+      </div>
 
       {/* Blurred project grid */}
       <div className="relative md:block">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-16 opacity-30 blur-sm pointer-events-none select-none">
           {projects.map((p, i) => (
-            <motion.div
+            <div
               key={`portfolio-${i}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.1 }}
               className="group"
             >
               <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-widest text-white/40 mb-3 border-b border-white/10 pb-2">
@@ -82,7 +72,7 @@ const Portfolio = () => {
                 <h4 className="text-sm font-bold uppercase tracking-wider">{p.title}</h4>
                 <p className="text-[10px] text-white/50 uppercase tracking-widest font-mono">{p.type}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

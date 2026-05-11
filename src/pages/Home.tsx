@@ -22,26 +22,17 @@ const Hero = () => {
       </div>
 
       <div className="relative z-40 text-center max-w-4xl pt-24 sm:pt-20 px-4">
-        <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        <h1 
           className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tighter leading-tight mb-8 text-white"
         >
           {t('home.hero_quote')}
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        </h1>
+        <p 
           className="text-base sm:text-lg md:text-xl mx-auto max-w-2xl font-light tracking-wide text-white/70 mb-12"
         >
           {t('home.hero_sub')}
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
+        </p>
+        <div
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link 
@@ -59,7 +50,7 @@ const Hero = () => {
           >
             {t('nav.contact')}
           </Link>
-        </motion.div>
+        </div>
       </div>
 
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40">

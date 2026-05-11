@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MetadataLabel } from "../components/ui/MetadataLabel";
@@ -18,13 +17,7 @@ const ServicesSection = () => {
 
   return (
     <section className="py-24 md:py-40 px-6 md:px-10 border-b border-gray-900 bg-black">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-        className="max-w-5xl mx-auto"
-      >
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-20 md:mb-28">
           <MetadataLabel text={t('approach.tag')} />
@@ -38,24 +31,13 @@ const ServicesSection = () => {
         <div className="relative">
           {/* Vertical connecting line */}
           <div className="absolute left-[3.25rem] top-0 bottom-0 hidden md:block">
-            <motion.div
-              initial={{ scaleY: 0 }}
-              whileInView={{ scaleY: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              style={{ originY: 0 }}
-              className="w-px h-full bg-gradient-to-b from-white/30 via-white/10 to-transparent"
-            />
+            <div className="w-px h-full bg-gradient-to-b from-white/30 via-white/10 to-transparent" />
           </div>
 
           <div className="flex flex-col">
             {steps.map((step, i) => (
-              <motion.div
+              <div
                 key={`step-${i}`}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ delay: i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => setActiveStep(activeStep === i ? null : i)}
                 className={`group relative flex items-start gap-0 md:gap-10 py-10 md:py-12 border-b border-white/5 last:border-0 cursor-pointer ${activeStep === i ? 'is-active' : ''}`}
               >
@@ -90,11 +72,11 @@ const ServicesSection = () => {
                     <path d="M4 10h12M10 4l6 6-6 6"/>
                   </svg>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
