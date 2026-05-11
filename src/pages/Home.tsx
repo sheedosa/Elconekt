@@ -219,7 +219,7 @@ const QuoteSection = () => {
   return (
     <section className="py-24 md:py-40 px-6 border-b border-gray-900 bg-black">
       <div className="max-w-5xl mx-auto text-center flex flex-col items-center">
-        <MetadataLabel text="CORE_PHILOSOPHY" />
+        <MetadataLabel text={t('home.core_philosophy')} />
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
