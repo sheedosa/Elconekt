@@ -14,14 +14,6 @@
 }
 
 @layer base {
-  * {
-    cursor: crosshair;
-  }
-  
-  a, button, input, textarea, [role="button"] {
-    cursor: pointer;
-  }
-
   body {
     @apply bg-black text-white selection:bg-white selection:text-black;
     font-family: "Tajawal", sans-serif;
