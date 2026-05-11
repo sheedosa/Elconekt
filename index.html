@@ -42,10 +42,12 @@
     <link rel="preload" as="image" href="./images/hero-bg.jpg" fetchpriority="high" />
     <!-- Preload logo for LCP -->
     <link rel="preload" as="image" href="./images/logo.png" />
+    <script>
+      localStorage.setItem('i18nextLng', 'en');
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
