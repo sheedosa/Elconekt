@@ -11,7 +11,7 @@ i18n
       en: { translation: enTranslation },
       ar: { translation: arTranslation }
     },
-    lng: 'en', // default language
+    lng: 'ar', // default language
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false // React already escapes values
