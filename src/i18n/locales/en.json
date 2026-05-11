@@ -3,23 +3,23 @@
     "home": "Home",
     "portfolio": "Portfolio",
     "about": "About",
-    "approach": "Our Approach",
+    "approach": "Methodology",
     "contact": "Contact",
     "language": "العربية"
   },
   "home": {
     "hero_quote": "Precision in Every Frame.",
-    "hero_sub": "A Libyan film production company working in commercials, documentaries, and brand films.",
+    "hero_sub": "Libyan stories, told with international craft. Specialized in commercials, documentaries, and brand films.",
     "see_work": "See the work",
     "quote": "\"We don't just point a camera, we find the pulse of the narrative.\"",
     "trust": {
       "tag": "PRODUCTION_LOG",
-      "title": "Trust is earned.",
+      "title": "Collaborating with Visionaries.",
       "desc": "Collaborating with visionary brands and institutions to tell stories that matter."
     },
     "onset": {
       "tag": "BEHIND_THE_LENS",
-      "title": "On Set.",
+      "title": "The Production Log.",
       "roll": "ROLL",
       "sc": "SC",
       "tk": "TK",
@@ -29,15 +29,15 @@
     },
     "about": {
       "tag": "ORIGIN_STORY",
-      "title": "We make films that stay with people.",
+      "title": "Cinematic Discipline. Narrative Depth.",
       "desc": "Fennec Productions was founded in Benghazi in 2025. We combine cinematic craft with clear, considered communication.",
       "btn": "Read Our Story"
     }
   },
   "portfolio": {
     "tag": "REEL_2026_COMING_SOON",
-    "title": "Selected Works",
-    "desc": "Our reel is currently being updated with recent projects. We approach every project with cinematic discipline, and look forward to sharing our latest stories soon.",
+    "title": "The Archive.",
+    "desc": "Refining the 2026 Showreel. A selection of projects that define our approach and cinematic standards.",
     "incoming": "Transmission Incoming",
     "updating": "Reel currently being updated",
     "roll": "Roll",
@@ -63,8 +63,8 @@
     "title": "About Fennec",
     "subtitle": "We make films that stay with people.",
     "p1": "Fennec Productions was founded in Benghazi in 2025. We work in commercials, corporate films, documentaries, and digital storytelling, combining cinematic craft with clear, considered communication.",
-    "p2": "What sets our work apart is what comes before the camera. We invest in research and narrative structure first, so that every visual choice serves the story, and every story serves the brief.",
-    "p3": "Our standards are simple. Build on research. Keep the narrative clear. Respect deadlines and confidentiality. Treat visual language as a tool, never decoration.",
+    "p2": "Narrative integrity, established before the first frame. We invest in research and structure so that every visual choice serves the story.",
+    "p3": "A Discipline of Research and Craft. We maintain clarity, respect deadlines, and treat visual language as a strategic tool.",
     "p4": "Libyan stories, told with international craft.",
     "team_tag": "CAST_&_CREW",
     "team_title": "The Team",
@@ -88,8 +88,8 @@
     }
   },
   "approach": {
-    "tag": "FILMING_WORKFLOW",
-    "title": "Our Process",
+    "tag": "PRODUCTION_PIPELINE",
+    "title": "Methodology",
     "desc": "Six stages take a project from a first conversation to a finished film. Each one matters.",
     "stages": {
       "s1": "Stage 1.",
@@ -114,7 +114,7 @@
   },
   "contact": {
     "tag": "DIRECT_COMM",
-    "title": "Get in touch.",
+    "title": "Initiate a Project.",
     "desc": "Let's bring your vision to life.",
     "form": {
       "name": "NAME",
