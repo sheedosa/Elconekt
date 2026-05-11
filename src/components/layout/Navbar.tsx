@@ -12,11 +12,7 @@ export const Navbar = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Scroll listener removed as navbar is no longer sticky
   }, []);
 
   const navItems = [
@@ -30,28 +26,20 @@ export const Navbar = () => {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          scrolled 
-            ? "py-4 bg-black/70 backdrop-blur-md border-b border-white/5" 
-            : "py-2 bg-transparent"
-        }`}
+        className="absolute top-0 left-0 w-full z-50 transition-all duration-500 py-2 bg-transparent"
       >
       <div className="max-w-7xl mx-auto px-4 md:px-10 flex justify-between items-center">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className={`flex items-center transition-all duration-300 ${scrolled ? "mt-0" : "-mt-4 md:-mt-8"}`}
+          className="flex items-center transition-all duration-300 -mt-4 md:-mt-8"
         >
           <Link to="/">
             <SmoothImage 
               src="/images/logo.png" 
               alt="Fennec Productions" 
-              className={`transition-all duration-500 object-contain brightness-0 invert opacity-90 hover:opacity-100 ${
-                scrolled 
-                  ? "h-24 sm:h-28 md:h-32" 
-                  : "h-36 sm:h-44 md:h-52 xl:h-64"
-              }`}
+              className="transition-all duration-500 object-contain brightness-0 invert opacity-90 hover:opacity-100 h-36 sm:h-44 md:h-52 xl:h-64"
               referrerPolicy="no-referrer"
               fetchPriority="high"
               decoding="async"
