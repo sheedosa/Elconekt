@@ -52,8 +52,8 @@ export const Navbar = () => {
               alt="Fennec Productions" 
               className={`transition-all duration-500 object-contain brightness-0 invert opacity-90 hover:opacity-100 ${
                 scrolled 
-                  ? "h-16 sm:h-20 md:h-24" 
-                  : "h-28 sm:h-32 md:h-40 xl:h-48"
+                  ? "h-20 sm:h-24 md:h-28" 
+                  : "h-36 sm:h-44 md:h-52 xl:h-64"
               }`}
               referrerPolicy="no-referrer"
               fetchPriority="high"
