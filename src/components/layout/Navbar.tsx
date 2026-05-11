@@ -93,7 +93,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.5 }}
             onClick={toggleLanguage}
-            className="flex items-center gap-2 text-white/40 hover:text-white/80 rtl:text-white/80 rtl:hover:text-white transition-colors"
+            className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
           >
             <Globe size={14} />
             <span className="font-arabic-display normal-case tracking-normal text-sm">{t('nav.language')}</span>
@@ -104,7 +104,7 @@ export const Navbar = () => {
         <div className="md:hidden flex items-center gap-4">
           <button 
             onClick={toggleLanguage}
-            className="text-white/40 hover:text-white/80 transition-colors p-2 flex items-center gap-1"
+            className="text-white hover:text-gray-300 transition-colors p-2 flex items-center gap-1"
           >
             <Globe size={16} />
             <span className="font-arabic-display normal-case tracking-normal text-sm">{t('nav.language')}</span>
@@ -154,7 +154,7 @@ export const Navbar = () => {
                   toggleLanguage();
                   setIsOpen(false);
                 }}
-                className="mt-8 text-white/40 hover:text-white transition-colors flex items-center justify-center gap-3"
+                className="mt-8 text-white hover:text-gray-300 transition-colors flex items-center justify-center gap-3"
               >
                 <Globe size={24} />
                 <span className="font-arabic-display normal-case tracking-normal text-2xl">{t('nav.language')}</span>
