@@ -27,7 +27,7 @@ const ContactSection = () => {
     <section className="min-h-screen flex flex-col lg:flex-row bg-black">
       {/* Left Column - Content */}
       <div className="w-full lg:w-1/2 px-6 sm:px-12 md:px-20 py-32 md:py-40 flex flex-col justify-center">
-        <div className="max-w-xl w-full mx-auto lg:mx-0 rtl:lg:mr-auto rtl:lg:ml-0">
+        <div className="max-w-xl w-full mx-auto lg:mx-0">
           <MetadataLabel text={t('contact.tag')} />
           
           <div className="mb-16">
@@ -39,13 +39,13 @@ const ContactSection = () => {
             {/* Form */}
             <form className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="text" placeholder={t('contact.form.name')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none rtl:font-sans rtl:text-sm" />
-                <input type="email" placeholder={t('contact.form.email')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none rtl:font-sans rtl:text-sm" />
+                <input type="text" placeholder={t('contact.form.name')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none" />
+                <input type="email" placeholder={t('contact.form.email')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none" />
               </div>
-              <input type="text" placeholder={t('contact.form.subject')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none rtl:font-sans rtl:text-sm" />
-              <textarea placeholder={t('contact.form.details')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest h-32 focus:border-white/30 transition-colors focus:outline-none resize-none rtl:font-sans rtl:text-sm" />
+              <input type="text" placeholder={t('contact.form.subject')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none" />
+              <textarea placeholder={t('contact.form.details')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest h-32 focus:border-white/30 transition-colors focus:outline-none resize-none" />
               <button className="w-full py-4 bg-white text-black font-bold uppercase tracking-[0.3em] hover:bg-white/90 transition-colors flex items-center justify-center gap-2 group text-[10px] sm:text-xs cursor-pointer">
-                {t('contact.form.btn')} <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 rtl:group-hover:-translate-x-1 transition-transform rtl:-scale-x-100" />
+                {t('contact.form.btn')} <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
             </form>
 

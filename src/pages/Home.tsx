@@ -6,73 +6,6 @@ import { MetadataLabel } from "../components/ui/MetadataLabel";
 
 import { useEffect, useRef } from "react";
 
-const HeroOverlay = () => {
-  const { t } = useTranslation();
-  const timeRef = useRef<HTMLSpanElement>(null);
-  
-  useEffect(() => {
-    let animationFrameId: number;
-    const updateTime = () => {
-      if (timeRef.current) {
-        const now = new Date();
-        const frames = Math.floor((now.getMilliseconds() / 1000) * 24).toString().padStart(2, '0');
-        const timeString = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}:${frames}`;
-        timeRef.current.textContent = `TC ${timeString}`;
-      }
-      animationFrameId = requestAnimationFrame(updateTime);
-    };
-    animationFrameId = requestAnimationFrame(updateTime);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
-
-  return (
-    <div className="absolute inset-0 z-30 pointer-events-none p-6 md:p-12 flex flex-col justify-between overflow-hidden">
-      {/* Corner Brackets */}
-      <div className="absolute top-10 left-10 w-8 h-8 border-t border-l border-white/20" />
-      <div className="absolute top-10 right-10 w-8 h-8 border-t border-r border-white/20" />
-      <div className="absolute bottom-10 left-10 w-8 h-8 border-b border-l border-white/20" />
-      <div className="absolute bottom-10 right-10 w-8 h-8 border-b border-r border-white/20" />
-
-      {/* Top HUD */}
-      <div className="flex justify-between items-start font-mono text-[9px] tracking-widest text-white/40 uppercase">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
-            <span className="text-white/60 font-bold">REC</span>
-          </div>
-          <p>4K RAW / 24 FPS</p>
-        </div>
-        <div className="text-right space-y-1">
-          <div className="flex items-center gap-2 justify-end">
-             <div className="w-5 h-2.5 border border-white/30 p-[1px]">
-               <div className="w-3/4 h-full bg-white/40" />
-             </div>
-             <span>87%</span>
-          </div>
-          <p>ISO 400</p>
-        </div>
-      </div>
-
-      {/* Center Crosshair */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 opacity-20">
-        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white" />
-        <div className="absolute top-0 left-1/2 w-[1px] h-full bg-white" />
-      </div>
-
-      {/* Bottom HUD */}
-      <div className="flex justify-between items-end font-mono text-[9px] tracking-widest text-white/40 uppercase">
-        <div className="space-y-1">
-          <span ref={timeRef}>TC 00:00:00:00</span>
-          <p>LUT: FENNEC_LOG</p>
-        </div>
-        <div className="text-right">
-          <p>SSD 1.2TB REM</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const Hero = () => {
   const { t } = useTranslation();
   return (
@@ -88,8 +21,6 @@ const Hero = () => {
         <div className="absolute inset-0 z-20 film-grain pointer-events-none opacity-[0.05]" />
       </div>
 
-      <HeroOverlay />
-
       <div className="relative z-40 text-center max-w-4xl pt-24 sm:pt-20 px-4">
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
@@ -103,7 +34,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-base sm:text-lg md:text-xl rtl:font-medium mx-auto max-w-2xl font-light tracking-wide rtl:tracking-normal text-white/70 mb-12"
+          className="text-base sm:text-lg md:text-xl mx-auto max-w-2xl font-light tracking-wide text-white/70 mb-12"
         >
           {t('home.hero_sub')}
         </motion.p>
@@ -156,7 +87,7 @@ const ClientsGrid = () => {
   const duplicatedLogos = [...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos];
   return (
     <section className="py-16 md:py-32 border-b border-gray-900 overflow-hidden bg-[#050505]">
-      <div className="max-w-7xl mx-auto px-6 mb-12 md:mb-20 text-center md:text-left rtl:md:text-right">
+      <div className="max-w-7xl mx-auto px-6 mb-12 md:mb-20 text-center md:text-left">
         <MetadataLabel text={t('home.trust.tag')} />
         <h2 className="text-3xl sm:text-5xl font-bold mb-4 tracking-tighter text-white">{t('home.trust.title')}</h2>
         <p className="text-white text-sm sm:text-lg max-w-2xl font-light">{t('home.trust.desc')}</p>
@@ -225,7 +156,7 @@ const QuoteSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] mt-8 rtl:leading-[1.4]"
+          className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] mt-8"
         >
           {t('home.quote')}
         </motion.h2>
@@ -244,7 +175,7 @@ const OnSetGrid = () => {
   return (
     <section className="bg-black py-20 md:py-32 px-6 border-b border-gray-900">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-12 md:mb-20 text-center md:text-left rtl:md:text-right">
+        <div className="mb-12 md:mb-20 text-center md:text-left">
           <MetadataLabel text={t('home.onset.tag')} />
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tighter text-white">{t('home.onset.title')}</h2>
         </div>

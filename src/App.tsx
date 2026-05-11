@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { FilmGrain } from "./components/layout/FilmGrain";
+import { CinematicOverlay } from "./components/layout/CinematicOverlay";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { ScrollToTop } from "./components/utils/ScrollToTop";
@@ -23,6 +24,7 @@ export default function App() {
     <div className="bg-black text-white font-sans min-h-screen relative overflow-x-hidden flex flex-col">
       <ScrollToTop />
       <FilmGrain />
+      <CinematicOverlay />
       <Navbar />
       
       <main className="relative z-10 flex-grow">

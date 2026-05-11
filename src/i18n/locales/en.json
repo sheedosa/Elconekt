@@ -3,9 +3,8 @@
     "home": "Home",
     "portfolio": "Portfolio",
     "about": "About",
-    "approach": "Methodology",
-    "contact": "Contact",
-    "language": "العربية"
+    "approach": "Our Process",
+    "contact": "Contact"
   },
   "home": {
     "hero_quote": "Precision in Every Frame.",
@@ -90,7 +89,7 @@
   },
   "approach": {
     "tag": "PRODUCTION_PIPELINE",
-    "title": "Methodology",
+    "title": "Our Process",
     "desc": "Six stages take a project from a first conversation to a finished film. Each one matters.",
     "stages": {
       "s1": "Stage 1.",

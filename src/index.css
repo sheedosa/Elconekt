@@ -1,9 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Tajawal", "Inter", sans-serif;
-  --font-display: "Kufam", "Inter", sans-serif;
-  --font-arabic: "Kufam", "Inter", sans-serif;
+  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   
   --color-black: #000000;
   --color-white: #FFFFFF;
@@ -16,51 +15,12 @@
 @layer base {
   body {
     @apply bg-black text-white selection:bg-white selection:text-black;
-    font-family: "Tajawal", sans-serif;
     font-variant-ligatures: none;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Global headings — Kufam for both English & Arabic */
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Kufam", sans-serif;
-  }
-
-  /* Arabic typography — Kufam for headings & nav */
-  html[dir="rtl"] h1,
-  html[dir="rtl"] h2,
-  html[dir="rtl"] h3,
-  html[dir="rtl"] h4,
-  html[dir="rtl"] h5,
-  html[dir="rtl"] h6,
-  html[dir="rtl"] a,
-  html[dir="rtl"] button,
-  html[dir="rtl"] nav {
-    font-family: "Kufam", sans-serif !important;
-  }
-
-  /* Arabic typography — Tajawal for body text & small elements */
-  html[dir="rtl"] body,
-  html[dir="rtl"] p,
-  html[dir="rtl"] span,
-  html[dir="rtl"] small,
-  html[dir="rtl"] label,
-  html[dir="rtl"] input,
-  html[dir="rtl"] textarea,
-  html[dir="rtl"] li,
-  html[dir="rtl"] td,
-  html[dir="rtl"] th {
-    font-family: "Tajawal", sans-serif !important;
-  }
-
-  html[dir="rtl"] .tracking-tighter,
-  html[dir="rtl"] .tracking-tight,
-  html[dir="rtl"] .tracking-wide,
-  html[dir="rtl"] .tracking-wider,
-  html[dir="rtl"] .tracking-widest,
-  html[dir="rtl"] .tracking-\[0\.2em\],
-  html[dir="rtl"] .tracking-\[0\.3em\] {
-    letter-spacing: normal !important;
+    @apply uppercase tracking-tighter font-bold;
   }
 
   h1, h2, h3 {
@@ -95,11 +55,6 @@
     font-size: 9px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-  }
-
-  /* Always-on Arabic display font — for Arabic text shown in LTR context (e.g. language toggle) */
-  .font-arabic-display {
-    font-family: "Kufam", sans-serif !important;
   }
 
   .text-tagline {

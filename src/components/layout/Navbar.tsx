@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { SmoothImage } from "../ui/SmoothImage";
 
@@ -9,7 +9,7 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,10 +18,6 @@ export const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const toggleLanguage = () => {
-    i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en');
-  };
 
   const navItems = [
     { label: t('nav.home'), path: '/' },
@@ -77,7 +73,7 @@ export const Navbar = () => {
                 >
                   <Link
                     to={item.path}
-                    className={`text-[10px] rtl:text-sm rtl:font-bold uppercase tracking-[0.2em] rtl:tracking-normal transition-colors ${isActive ? 'text-white' : 'text-white/40 hover:text-white/80 rtl:text-white/80 rtl:hover:text-white'}`}
+                    className={`text-xs uppercase tracking-[0.2em] transition-colors ${isActive ? 'text-white' : 'text-white/60 hover:text-white'}`}
                   >
                     {item.label}
                   </Link>
@@ -85,30 +81,10 @@ export const Navbar = () => {
               );
             })}
           </div>
-          
-          <div className="w-px h-4 bg-white/20 mx-10"></div>
-          
-          <motion.button
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.5 }}
-            onClick={toggleLanguage}
-            className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
-          >
-            <Globe size={14} />
-            <span className="font-arabic-display normal-case tracking-normal text-sm">{t('nav.language')}</span>
-          </motion.button>
         </div>
 
-        {/* Mobile top bar */}
-        <div className="md:hidden flex items-center gap-4">
-          <button 
-            onClick={toggleLanguage}
-            className="text-white hover:text-gray-300 transition-colors p-2 flex items-center gap-1"
-          >
-            <Globe size={16} />
-            <span className="font-arabic-display normal-case tracking-normal text-sm">{t('nav.language')}</span>
-          </button>
+        {/* Mobile menu button */}
+        <div className="md:hidden flex items-center">
           <button 
             onClick={() => setIsOpen(true)}
             className="text-white p-2"
@@ -130,7 +106,7 @@ export const Navbar = () => {
           >
             <button 
               onClick={() => setIsOpen(false)}
-              className="absolute top-8 right-8 rtl:left-8 rtl:right-auto text-white/50 hover:text-white p-2 transition-colors z-[70]"
+              className="absolute top-8 right-8 text-white/50 hover:text-white p-2 transition-colors z-[70]"
             >
               <X size={32} />
             </button>
@@ -148,17 +124,6 @@ export const Navbar = () => {
                   </Link>
                 );
               })}
-              
-              <button
-                onClick={() => {
-                  toggleLanguage();
-                  setIsOpen(false);
-                }}
-                className="mt-8 text-white hover:text-gray-300 transition-colors flex items-center justify-center gap-3"
-              >
-                <Globe size={24} />
-                <span className="font-arabic-display normal-case tracking-normal text-2xl">{t('nav.language')}</span>
-              </button>
             </div>
           </motion.div>
         )}
