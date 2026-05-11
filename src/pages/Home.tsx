@@ -144,7 +144,6 @@ const clientLogos = [
   "/images/client-2.png",
   "/images/client-3.png",
   "/images/client-4.png",
-  "/images/client-5.png",
   "/images/client-6.png",
   "/images/client-7.png",
   "/images/client-8.png",
