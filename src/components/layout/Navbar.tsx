@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Globe } from "lucide-react";
@@ -7,8 +7,17 @@ import { SmoothImage } from "../ui/SmoothImage";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleLanguage = () => {
     i18n.changeLanguage(i18n.language === 'en' ? 'ar' : 'en');
@@ -23,7 +32,13 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="absolute top-0 left-0 w-full z-50 py-2 sm:py-3 md:py-4">
+    <nav 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled 
+          ? "py-2 bg-black/40 backdrop-blur-md border-b border-white/5" 
+          : "py-4 md:py-6 bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 md:px-10 flex justify-between items-center">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -35,7 +50,11 @@ export const Navbar = () => {
             <SmoothImage 
               src="/images/logo.png" 
               alt="Fennec Productions" 
-              className="h-28 sm:h-32 md:h-40 xl:h-48 w-auto object-contain brightness-0 invert opacity-90 transition-opacity hover:opacity-100"
+              className={`transition-all duration-500 object-contain brightness-0 invert opacity-90 hover:opacity-100 ${
+                scrolled 
+                  ? "h-16 sm:h-20 md:h-24" 
+                  : "h-28 sm:h-32 md:h-40 xl:h-48"
+              }`}
               referrerPolicy="no-referrer"
               fetchPriority="high"
               decoding="async"
