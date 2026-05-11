@@ -53,11 +53,11 @@ export const Footer = () => {
             <div className="space-y-6 text-white/90 text-sm font-light">
               <div className="space-y-2">
                 <p className="text-[9px] font-mono uppercase text-white/40 tracking-widest">{t('contact.details.email')}</p>
-                <a href="mailto:hello@fennecproductions.com" className="hover:text-white transition-colors text-white">hello@fennecproductions.com</a>
+                <a href="mailto:team@fennecprods.ly" className="hover:text-white transition-colors text-white">team@fennecprods.ly</a>
               </div>
               <div className="space-y-2">
                 <p className="text-[9px] font-mono uppercase text-white/40 tracking-widest">{t('contact.details.phone')}</p>
-                <a href="tel:+218900000000" className="hover:text-white transition-colors text-white" dir="ltr">+218 (0) 90 000 0000</a>
+                <a href="tel:+218912637667" className="hover:text-white transition-colors text-white" dir="ltr">+218 91 263 7667</a>
               </div>
               <div className="space-y-2">
                 <p className="text-[9px] font-mono uppercase text-white/40 tracking-widest">{t('contact.details.location')}</p>
