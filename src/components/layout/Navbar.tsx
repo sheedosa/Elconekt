@@ -116,9 +116,10 @@ export const Navbar = () => {
             <Menu size={20} />
           </button>
         </div>
-      </nav>
+      </div>
+    </nav>
 
-      <AnimatePresence>
+    <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, x: "100%" }}
