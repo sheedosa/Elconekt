@@ -35,7 +35,7 @@ export const Navbar = () => {
     <nav 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? "py-0 bg-black/40 backdrop-blur-md border-b border-white/5" 
+          ? "py-3 bg-black/60 backdrop-blur-md border-b border-white/5" 
           : "py-0 bg-transparent"
       }`}
     >
@@ -44,7 +44,7 @@ export const Navbar = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center -mt-4 md:-mt-8"
+          className={`flex items-center transition-all duration-500 ${scrolled ? "mt-0" : "-mt-4 md:-mt-8"}`}
         >
           <Link to="/">
             <SmoothImage 
@@ -52,7 +52,7 @@ export const Navbar = () => {
               alt="Fennec Productions" 
               className={`transition-all duration-500 object-contain brightness-0 invert opacity-90 hover:opacity-100 ${
                 scrolled 
-                  ? "h-20 sm:h-24 md:h-28" 
+                  ? "h-14 sm:h-16 md:h-20" 
                   : "h-36 sm:h-44 md:h-52 xl:h-64"
               }`}
               referrerPolicy="no-referrer"
