@@ -1,9 +1,12 @@
 import { motion } from "motion/react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MetadataLabel } from "../components/ui/MetadataLabel";
 
 const ServicesSection = () => {
   const { t } = useTranslation();
+  const [activeStep, setActiveStep] = useState<number | null>(null);
+
   const steps = [
     { title: t('approach.stages.s1_title'), desc: t('approach.stages.s1_desc') },
     { title: t('approach.stages.s2_title'), desc: t('approach.stages.s2_desc') },
@@ -53,29 +56,36 @@ const ServicesSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ delay: i * 0.12, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative flex items-start gap-0 md:gap-10 py-10 md:py-12 border-b border-white/5 last:border-0"
+                onClick={() => setActiveStep(activeStep === i ? null : i)}
+                className={`group relative flex items-start gap-0 md:gap-10 py-10 md:py-12 border-b border-white/5 last:border-0 cursor-pointer ${activeStep === i ? 'is-active' : ''}`}
               >
                 {/* Step number + dot */}
                 <div className="flex-shrink-0 flex flex-col items-center gap-3 w-24">
-                  <div className="hidden md:flex w-3 h-3 rounded-full border border-white/30 bg-black group-hover:border-white group-hover:bg-white transition-all duration-300 mt-1 relative z-10" />
-                  <span className="font-mono text-[10px] text-white/20 group-hover:text-white/60 transition-colors tracking-widest">
+                  <div className={`hidden md:flex w-3 h-3 rounded-full border border-white/30 bg-black transition-all duration-300 mt-1 relative z-10 ${activeStep === i ? 'border-white bg-white' : 'group-hover:border-white group-hover:bg-white'}`} />
+                  <span className={`font-mono text-[10px] transition-colors tracking-widest ${activeStep === i ? 'text-white/60' : 'text-white/20 group-hover:text-white/60'}`}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 pl-2">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tighter text-white/70 group-hover:text-white transition-colors duration-300">
+                  <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold tracking-tighter transition-colors duration-300 ${activeStep === i ? 'text-white' : 'text-white/70 group-hover:text-white'}`}>
                     {step.title}
                   </h3>
-                  {/* Description reveals on hover */}
-                  <p className="text-sm text-white/40 font-light leading-relaxed max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mt-3 transition-all duration-500 ease-in-out">
+                  {/* Description reveals on hover or click */}
+                  <div 
+                    className={`text-sm text-white/40 font-light leading-relaxed overflow-hidden transition-all duration-500 ease-in-out ${
+                      activeStep === i 
+                      ? 'max-h-40 opacity-100 mt-3' 
+                      : 'max-h-0 opacity-0 md:group-hover:max-h-40 md:group-hover:opacity-100 md:group-hover:mt-3'
+                    }`}
+                  >
                     {step.desc}
-                  </p>
+                  </div>
                 </div>
 
                 {/* Arrow */}
-                <div className="flex-shrink-0 self-center opacity-0 group-hover:opacity-40 transition-opacity duration-300 ml-4">
+                <div className={`flex-shrink-0 self-center transition-all duration-300 ml-4 ${activeStep === i ? 'opacity-100 rotate-90' : 'opacity-0 md:group-hover:opacity-40'}`}>
                   <svg width="20" height="20" viewBox="0 0 20 20" className="text-white" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <path d="M4 10h12M10 4l6 6-6 6"/>
                   </svg>
