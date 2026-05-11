@@ -4,33 +4,106 @@ import { useTranslation } from "react-i18next";
 import { SmoothImage } from "../components/ui/SmoothImage";
 import { MetadataLabel } from "../components/ui/MetadataLabel";
 
+import { useEffect, useRef } from "react";
+
+const HeroOverlay = () => {
+  const { t } = useTranslation();
+  const timeRef = useRef<HTMLSpanElement>(null);
+  
+  useEffect(() => {
+    let animationFrameId: number;
+    const updateTime = () => {
+      if (timeRef.current) {
+        const now = new Date();
+        const frames = Math.floor((now.getMilliseconds() / 1000) * 24).toString().padStart(2, '0');
+        const timeString = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}:${frames}`;
+        timeRef.current.textContent = `TC ${timeString}`;
+      }
+      animationFrameId = requestAnimationFrame(updateTime);
+    };
+    animationFrameId = requestAnimationFrame(updateTime);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 z-30 pointer-events-none p-6 md:p-12 flex flex-col justify-between overflow-hidden">
+      {/* Corner Brackets */}
+      <div className="absolute top-10 left-10 w-8 h-8 border-t border-l border-white/20" />
+      <div className="absolute top-10 right-10 w-8 h-8 border-t border-r border-white/20" />
+      <div className="absolute bottom-10 left-10 w-8 h-8 border-b border-l border-white/20" />
+      <div className="absolute bottom-10 right-10 w-8 h-8 border-b border-r border-white/20" />
+
+      {/* Top HUD */}
+      <div className="flex justify-between items-start font-mono text-[9px] tracking-widest text-white/40 uppercase">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+            <span className="text-white/60 font-bold">REC</span>
+          </div>
+          <p>4K RAW / 24 FPS</p>
+        </div>
+        <div className="text-right space-y-1">
+          <div className="flex items-center gap-2 justify-end">
+             <div className="w-5 h-2.5 border border-white/30 p-[1px]">
+               <div className="w-3/4 h-full bg-white/40" />
+             </div>
+             <span>87%</span>
+          </div>
+          <p>ISO 400</p>
+        </div>
+      </div>
+
+      {/* Center Crosshair */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 opacity-20">
+        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white" />
+        <div className="absolute top-0 left-1/2 w-[1px] h-full bg-white" />
+      </div>
+
+      {/* Bottom HUD */}
+      <div className="flex justify-between items-end font-mono text-[9px] tracking-widest text-white/40 uppercase">
+        <div className="space-y-1">
+          <span ref={timeRef}>TC 00:00:00:00</span>
+          <p>LUT: FENNEC_LOG</p>
+        </div>
+        <div className="text-right">
+          <p>SSD 1.2TB REM</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Hero = () => {
   const { t } = useTranslation();
   return (
     <section className="relative min-h-screen w-full overflow-hidden flex items-center justify-center p-6 md:p-10 bg-[#050505]">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/50 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50 z-10" />
         <SmoothImage 
           src="/Fennec-background.jpg" 
           alt="Cinematic background" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover grayscale-[20%] contrast-[1.05]"
           fetchPriority="high"
         />
+        <div className="absolute inset-0 z-20 film-grain pointer-events-none opacity-[0.05]" />
       </div>
-      <div className="relative z-20 text-center max-w-4xl pt-24 sm:pt-20 px-4">
+
+      <HeroOverlay />
+
+      <div className="relative z-40 text-center max-w-4xl pt-24 sm:pt-20 px-4">
         <motion.h1 
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tighter leading-tight mb-6 sm:mb-8 text-white drop-shadow-2xl"
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tighter leading-tight mb-8 text-white"
         >
           {t('home.hero_quote')}
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-base sm:text-lg md:text-xl rtl:md:text-2xl rtl:font-medium mx-auto max-w-2xl font-light tracking-wide rtl:tracking-normal text-white/90 rtl:text-white mb-8 sm:mb-12 drop-shadow-lg"
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="text-base sm:text-lg md:text-xl rtl:font-medium mx-auto max-w-2xl font-light tracking-wide rtl:tracking-normal text-white/70 mb-12"
         >
           {t('home.hero_sub')}
         </motion.p>
@@ -38,14 +111,28 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link 
             to="/portfolio"
-            className="inline-block px-6 py-3 sm:px-10 sm:py-4 text-xs sm:text-base border border-white text-white uppercase font-bold tracking-[0.2em] sm:tracking-[0.3em] hover:bg-white hover:text-black transition-all"
+            className="group relative inline-flex items-center justify-center px-10 py-4 overflow-hidden border border-white/20 transition-all hover:border-white"
           >
-            {t('home.see_work')}
+            <div className="absolute inset-0 w-0 bg-white transition-all duration-300 ease-out group-hover:w-full" />
+            <span className="relative text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-white group-hover:text-black transition-colors duration-300">
+              {t('home.see_work')}
+            </span>
+          </Link>
+          <Link 
+            to="/contact"
+            className="inline-flex items-center justify-center px-10 py-4 text-xs sm:text-sm uppercase font-bold tracking-[0.3em] text-white/60 hover:text-white transition-all"
+          >
+            {t('nav.contact')}
           </Link>
         </motion.div>
+      </div>
+
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40">
+        <div className="w-px h-12 bg-gradient-to-b from-white/30 to-transparent" />
       </div>
     </section>
   );

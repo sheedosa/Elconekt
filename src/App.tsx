@@ -15,7 +15,6 @@ export default function App() {
   return (
     <div className="bg-black text-white font-sans min-h-screen relative overflow-x-hidden flex flex-col">
       <FilmGrain />
-      <CinematicOverlay />
       <Navbar />
       
       <main className="relative z-10 flex-grow">
