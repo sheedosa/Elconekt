@@ -35,7 +35,7 @@ export const Navbar = () => {
     <nav 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? "py-3 bg-black/60 backdrop-blur-md border-b border-white/5" 
+          ? "py-2 bg-black/60 backdrop-blur-md border-b border-white/5" 
           : "py-0 bg-transparent"
       }`}
     >
@@ -50,11 +50,7 @@ export const Navbar = () => {
             <SmoothImage 
               src="/images/logo.png" 
               alt="Fennec Productions" 
-              className={`transition-all duration-500 object-contain brightness-0 invert opacity-90 hover:opacity-100 ${
-                scrolled 
-                  ? "h-14 sm:h-16 md:h-20" 
-                  : "h-36 sm:h-44 md:h-52 xl:h-64"
-              }`}
+              className="transition-all duration-500 object-contain brightness-0 invert opacity-90 hover:opacity-100 h-36 sm:h-44 md:h-52 xl:h-64"
               referrerPolicy="no-referrer"
               fetchPriority="high"
               decoding="async"
