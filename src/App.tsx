@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { FilmGrain } from "./components/layout/FilmGrain";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
+import { ScrollToTop } from "./components/utils/ScrollToTop";
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -20,6 +21,7 @@ const LoadingScreen = () => (
 export default function App() {
   return (
     <div className="bg-black text-white font-sans min-h-screen relative overflow-x-hidden flex flex-col">
+      <ScrollToTop />
       <FilmGrain />
       <Navbar />
       
