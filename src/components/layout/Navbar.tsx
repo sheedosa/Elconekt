@@ -32,13 +32,14 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled 
-          ? "py-4 bg-black/70 backdrop-blur-md border-b border-white/5" 
-          : "py-2 bg-transparent"
-      }`}
-    >
+    <>
+      <nav 
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+          scrolled 
+            ? "py-4 bg-black/70 backdrop-blur-md border-b border-white/5" 
+            : "py-2 bg-transparent"
+        }`}
+      >
       <div className="max-w-7xl mx-auto px-4 md:px-10 flex justify-between items-center">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -115,7 +116,7 @@ export const Navbar = () => {
             <Menu size={20} />
           </button>
         </div>
-      </div>
+      </nav>
 
       <AnimatePresence>
         {isOpen && (
@@ -124,15 +125,15 @@ export const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-black/95 backdrop-blur-md z-[60] flex flex-col justify-center items-center"
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-[60] flex flex-col justify-center items-center h-[100dvh]"
           >
             <button 
               onClick={() => setIsOpen(false)}
-              className="absolute top-8 right-8 rtl:left-8 rtl:right-auto text-white/50 p-2"
+              className="absolute top-8 right-8 rtl:left-8 rtl:right-auto text-white/50 hover:text-white p-2 transition-colors z-[70]"
             >
-              <X size={24} />
+              <X size={32} />
             </button>
-            <div className="flex flex-col space-y-8 text-center">
+            <div className="flex flex-col space-y-8 text-center mt-10">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.path;
                 return (
@@ -140,7 +141,7 @@ export const Navbar = () => {
                     key={item.label}
                     to={item.path}
                     onClick={() => setIsOpen(false)}
-                    className={`text-4xl font-bold uppercase tracking-tighter transition-colors ${isActive ? 'text-white' : 'text-white/40 hover:text-white/80'}`}
+                    className={`text-4xl font-bold uppercase tracking-tighter transition-colors ${isActive ? 'text-white' : 'text-white/40 hover:text-white'}`}
                   >
                     {item.label}
                   </Link>
@@ -154,13 +155,13 @@ export const Navbar = () => {
                 }}
                 className="mt-8 text-white/40 hover:text-white transition-colors flex items-center justify-center gap-3"
               >
-                <Globe size={20} />
-                <span className="font-arabic-display normal-case tracking-normal text-xl">{t('nav.language')}</span>
+                <Globe size={24} />
+                <span className="font-arabic-display normal-case tracking-normal text-2xl">{t('nav.language')}</span>
               </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
