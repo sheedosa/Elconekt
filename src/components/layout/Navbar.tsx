@@ -33,24 +33,24 @@ export const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 overflow-visible ${
         scrolled 
-          ? "py-2 bg-black/60 backdrop-blur-md border-b border-white/5" 
-          : "py-0 bg-transparent"
+          ? "h-14 md:h-16 bg-black/60 backdrop-blur-md border-b border-white/5" 
+          : "h-20 md:h-24 bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-10 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 md:px-10 flex justify-between items-center h-full">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className={`flex items-center transition-all duration-500 ${scrolled ? "mt-0" : "-mt-4 md:-mt-8"}`}
+          className={`flex items-center transition-all duration-500 ${scrolled ? "mt-4" : "-mt-4 md:-mt-8"}`}
         >
           <Link to="/">
             <SmoothImage 
               src="/images/logo.png" 
               alt="Fennec Productions" 
-              className="transition-all duration-500 object-contain brightness-0 invert opacity-90 hover:opacity-100 h-36 sm:h-44 md:h-52 xl:h-64"
+              className="transition-all duration-500 object-contain brightness-0 invert opacity-90 hover:opacity-100 h-32 sm:h-40 md:h-48 xl:h-56"
               referrerPolicy="no-referrer"
               fetchPriority="high"
               decoding="async"
