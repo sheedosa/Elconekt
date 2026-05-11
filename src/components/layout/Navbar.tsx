@@ -44,7 +44,7 @@ export const Navbar = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center"
+          className="flex items-center -mt-4 md:-mt-8"
         >
           <Link to="/">
             <SmoothImage 
