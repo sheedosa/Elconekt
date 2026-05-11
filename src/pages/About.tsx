@@ -47,71 +47,10 @@ const AboutSection = () => {
   );
 };
 
-const TeamSection = () => {
-  const { t } = useTranslation();
-  const team = [
-    { department: t('about_page.depts.leadership'), role: t('about_page.roles.founder') },
-    { department: t('about_page.depts.creative'), role: t('about_page.roles.director') },
-    { department: t('about_page.depts.camera'), role: t('about_page.roles.dop') },
-    { department: t('about_page.depts.lighting'), role: t('about_page.roles.gaffer') },
-    { department: t('about_page.depts.post'), role: t('about_page.roles.motion') },
-    { department: t('about_page.depts.operations'), role: t('about_page.roles.admin') }
-  ];
-
-  return (
-    <section className="py-24 md:py-32 border-y border-white/5 bg-black">
-      <div className="max-w-3xl mx-auto px-6">
-        <div className="text-center mb-16 sm:mb-24">
-          <MetadataLabel text={t('about_page.team_tag')} />
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tighter mb-6">{t('about_page.team_title')}</h2>
-          <p className="text-white/60 mx-auto max-w-xl text-base font-light leading-relaxed">
-            {t('about_page.team_desc')}
-          </p>
-        </div>
-
-        <div className="flex flex-col space-y-12 sm:space-y-16">
-          {team.map((member, i) => (
-            <motion.div 
-              key={`team-${i}`}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.1, duration: 0.8 }}
-              className="flex flex-col sm:flex-row items-center justify-center sm:justify-between text-center sm:text-left group cursor-default"
-            >
-              {/* Image Frame */}
-              <div className="mb-4 sm:mb-0 sm:mr-8 rtl:sm:ml-8 rtl:sm:mr-0">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-white/20 bg-gradient-to-tr from-white/5 to-white/10 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:border-white/50 group-hover:scale-105 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)]">
-                  <div className="text-[8px] sm:text-[10px] font-mono text-white/30 uppercase tracking-tighter">{t('about_page.frame')}</div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center sm:items-baseline flex-grow justify-center sm:justify-start">
-                <div className="sm:w-1/3 sm:text-right sm:pr-8 rtl:sm:text-left rtl:sm:pl-8 rtl:sm:pr-0 mb-1 sm:mb-0">
-                  <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-white">
-                    {member.department}
-                  </span>
-                </div>
-                <div className="hidden sm:block w-px h-8 bg-white/20 group-hover:bg-white/50 transition-colors mx-4"></div>
-                <div className="sm:w-2/3 sm:pl-8 rtl:sm:pr-8 rtl:sm:pl-0">
-                  <span className="text-xl sm:text-3xl font-medium tracking-tight text-white group-hover:text-white transition-colors">
-                    {member.role}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
 export default function About() {
   return (
     <div className="pt-20">
       <AboutSection />
-      <TeamSection />
     </div>
   );
 }
