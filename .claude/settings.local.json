@@ -25,7 +25,17 @@
       "mcp__Claude_Preview__preview_start",
       "Bash(curl -s http://localhost:3000)",
       "Bash(curl -sI http://localhost:3001)",
-      "Bash(git reset *)"
+      "Bash(git reset *)",
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(tar xzf *)",
+      "Bash(mkdir -p /tmp/elconekt_bundle)",
+      "Read(//tmp/**)",
+      "Bash(git remote *)",
+      "Bash(rm -f .env.example README.md docs/*)",
+      "Bash(rm -rf .github .vscode)",
+      "Bash(find /tmp -maxdepth 2 -name \"*.png\" -newer /Users/rasheedamer/Documents/.claude/worktrees/vigorous-lederberg-1bfc0f/package.json 2>/dev/null | head -5; find /Users/rasheedamer -maxdepth 3 -name \"upload*\" -o -name \"image*\" 2>/dev/null | grep -i png | head -5)",
+      "Bash(cp \"/Users/rasheedamer/Desktop/New Elconekt Logo/NEW_ELCONEKT_LOGO-removebg-preview.png\" /Users/rasheedamer/Documents/.claude/worktrees/vigorous-lederberg-1bfc0f/public/elconekt-logo.png)",
+      "Bash(gh api *)"
     ]
   }
 }
