@@ -30,6 +30,16 @@
     <meta property="twitter:description" content="AI-powered digital solutions, intelligent systems, and enterprise cybersecurity — engineered in the UK." />
   </head>
   <body>
+    <!-- SPA redirect handler for GitHub Pages 404.html -->
+    <script>
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
