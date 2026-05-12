@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { MetadataLabel } from "../components/ui/MetadataLabel";
 import { SmoothImage } from "../components/ui/SmoothImage";
 
-const WEB3FORMS_KEY = "YOUR_ACCESS_KEY_HERE";
+const WEB3FORMS_KEY = "03f33a25-9062-4606-bba2-4401ec6ca53f";
 
 const ContactSection = () => {
   const { t } = useTranslation();
