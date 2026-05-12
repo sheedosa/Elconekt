@@ -17,9 +17,6 @@ export default function Elconekt() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const connectionsRef = useRef<SVGGElement>(null);
-  const pulsesRef = useRef<SVGGElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Hero canvas animation
@@ -205,87 +202,6 @@ export default function Elconekt() {
     return () => io.disconnect();
   }, []);
 
-  // AI Core: position nodes + draw SVG connections with pulses (responsive)
-  useEffect(() => {
-    const stage = stageRef.current;
-    const connG = connectionsRef.current;
-    const pulseG = pulsesRef.current;
-    if (!stage || !connG || !pulseG) return;
-
-    const anims: number[] = [];
-
-    function layout() {
-      while (connG.firstChild) connG.removeChild(connG.firstChild);
-      while (pulseG.firstChild) pulseG.removeChild(pulseG.firstChild);
-      anims.forEach((id) => cancelAnimationFrame(id));
-      anims.length = 0;
-
-      const stageRect = stage.getBoundingClientRect();
-      const stageW = stageRect.width;
-      const scale = stageW / 720;
-      const radius = 280 * scale;
-      const innerR = 88 * scale;
-      const cx = 360, cy = 360;
-
-      const nodes = stage.querySelectorAll<HTMLElement>(".ai-core__node");
-      const points: { x: number; y: number }[] = [];
-
-      nodes.forEach((n, i) => {
-        const angle = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
-        const x = Math.cos(angle) * radius;
-        const y = Math.sin(angle) * radius;
-        n.style.setProperty("--tx", `calc(-50% + ${x}px)`);
-        n.style.setProperty("--ty", `calc(-50% + ${y}px)`);
-        n.style.transform = `translate(var(--tx), var(--ty))`;
-        n.style.animationDelay = `${i * 0.4}s`;
-        const svgX = cx + (x / scale);
-        const svgY = cy + (y / scale);
-        points.push({ x: svgX, y: svgY });
-      });
-
-      const svgInnerR = innerR / scale;
-      points.forEach((p, i) => {
-        const dx = p.x - cx, dy = p.y - cy;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const sx = cx + (dx / dist) * svgInnerR;
-        const sy = cy + (dy / dist) * svgInnerR;
-
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("x1", String(sx));
-        line.setAttribute("y1", String(sy));
-        line.setAttribute("x2", String(p.x));
-        line.setAttribute("y2", String(p.y));
-        line.setAttribute("class", "conn");
-        connG.appendChild(line);
-
-        const pulse = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        pulse.setAttribute("r", String(Math.max(2.5, 4 * scale)));
-        pulse.setAttribute("class", "pulse");
-        pulseG.appendChild(pulse);
-
-        const dur = 2400 + i * 220;
-        const offset = i * 400;
-        function animate(t: number) {
-          const p2 = ((t + offset) % dur) / dur;
-          pulse.setAttribute("cx", String(sx + (p.x - sx) * p2));
-          pulse.setAttribute("cy", String(sy + (p.y - sy) * p2));
-          pulse.setAttribute("opacity", String(Math.sin(p2 * Math.PI)));
-          anims[i] = requestAnimationFrame(animate);
-        }
-        anims[i] = requestAnimationFrame(animate);
-      });
-    }
-
-    layout();
-    window.addEventListener("resize", layout);
-
-    return () => {
-      window.removeEventListener("resize", layout);
-      anims.forEach((id) => cancelAnimationFrame(id));
-      while (connG.firstChild) connG.removeChild(connG.firstChild);
-      while (pulseG.firstChild) pulseG.removeChild(pulseG.firstChild);
-    };
-  }, []);
 
 
   const scrollTo = useCallback((id: string) => {
@@ -552,7 +468,7 @@ export default function Elconekt() {
       </section>
 
       {/* AI CORE */}
-      <section className="section section--tight">
+      <section className="section" id="elc-ai">
         <div className="container">
           <div className="section__header reveal">
             <div>
@@ -566,70 +482,22 @@ export default function Elconekt() {
               AI is embedded across everything we deliver. From customer-facing apps to back-of-house operations and the security perimeter around them.
             </p>
           </div>
-        </div>
 
-        <div className="ai-core reveal">
-          <div className="ai-core__bg" />
-          <div className="ai-core__sweep" />
-          <div className="ai-core__telemetry ai-core__telemetry--tl">
-            <span className="pulse-dot" />
-            <span>System · <span className="v">Online</span></span>
-          </div>
-          <div className="ai-core__telemetry ai-core__telemetry--tr"><span>Model v2026.1</span></div>
-          <div className="ai-core__telemetry ai-core__telemetry--bl"><span>Latency · <span className="v">24ms</span></span></div>
-          <div className="ai-core__telemetry ai-core__telemetry--br"><span>Lat 51.5074°N · Lon 0.1278°W</span></div>
-          <div className="ai-core__ring ai-core__ring--1" />
-          <div className="ai-core__ring ai-core__ring--2" />
-          <svg className="ai-core__ticks" viewBox="0 0 540 540" fill="none">
-            <g stroke="rgba(7,27,70,0.18)" strokeWidth="1">
-              <line x1="270" y1="0" x2="270" y2="10" />
-              <line x1="270" y1="540" x2="270" y2="530" />
-              <line x1="0" y1="270" x2="10" y2="270" />
-              <line x1="540" y1="270" x2="530" y2="270" />
-            </g>
-            <g stroke="rgba(7,27,70,0.10)" strokeWidth="1">
-              <line x1="60" y1="135" x2="68" y2="140" />
-              <line x1="480" y1="135" x2="472" y2="140" />
-              <line x1="60" y1="405" x2="68" y2="400" />
-              <line x1="480" y1="405" x2="472" y2="400" />
-            </g>
-          </svg>
-
-          <div className="ai-core__stage" ref={stageRef}>
-            <svg className="ai-core__svg" viewBox="0 0 720 720" preserveAspectRatio="none">
-              <defs>
-                <radialGradient id="pulseGrad" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#1E63FF" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#1E63FF" stopOpacity="0" />
-                </radialGradient>
-              </defs>
-              <g ref={connectionsRef} />
-              <g ref={pulsesRef} />
-            </svg>
-
-            <div className="ai-core__center">
-              <div className="ai-core__center-inner">
-                <div className="ai-core__center-glyph">AI</div>
-                <div className="ai-core__center-meta">Core · v2026.1</div>
-              </div>
-            </div>
-
+          <div className="ai-grid reveal-stagger">
             {[
-              { icon: <><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" strokeWidth="1.2" /><path d="M5 7l1.5 1.5L9 5.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></>, label: "AI Apps", sub: "Production · 12" },
-              { icon: <><path d="M2 7a5 5 0 0 1 5-5M12 7a5 5 0 0 1-5 5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /><path d="M7 2l-1.5 1.5L7 5M7 12l1.5-1.5L7 9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></>, label: "Automation", sub: "Workflows · Live" },
-              { icon: <path d="M2 12 V4 M2 12 H12 M4 10 V8 M7 10 V5 M10 10 V7" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />, label: "Analytics", sub: "24/7 · streaming" },
-              { icon: <><circle cx="7" cy="7" r="2.5" stroke="currentColor" strokeWidth="1.3" /><circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.3" /><path d="M7 1.5v2M7 10.5v2M1.5 7h2M10.5 7h2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /></>, label: "Surveillance", sub: "Real-time · CV" },
-              { icon: <><path d="M7 1.5 L12 4 V8 C12 10.5 9.5 12 7 12.5 C4.5 12 2 10.5 2 8 V4 Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /><path d="M5 7l1.5 1.5L9 6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></>, label: "Cyber Defence", sub: "SOC · 24/7" },
-              { icon: <><circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.3" /><path d="M7 4 V7 L9 8.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /></>, label: "Operations", sub: "Managed · 99.9%" },
-            ].map((node, i) => (
-              <div className="ai-core__node" key={i}>
-                <span className="ai-core__node-icon">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">{node.icon}</svg>
-                </span>
-                <span className="ai-core__node-text">
-                  <span className="ai-core__node-label">{node.label}</span>
-                  <span className="ai-core__node-sub">{node.sub}</span>
-                </span>
+              { icon: <><rect x="2" y="2" width="12" height="12" rx="2.5" stroke="currentColor" strokeWidth="1.3" /><path d="M5.5 8l1.5 1.5L10 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></>, title: "AI-powered apps", desc: "Custom applications with machine learning and natural language built in from the start." },
+              { icon: <><path d="M2.5 8a5.5 5.5 0 0 1 5.5-5.5M13.5 8a5.5 5.5 0 0 1-5.5 5.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /><path d="M8 2.5L6.5 4 8 5.5M8 13.5l1.5-1.5L8 10.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></>, title: "Automation", desc: "Workflow automation that removes manual steps and connects your systems end to end." },
+              { icon: <path d="M2 14V4M2 14h12M4.5 12V9M7.5 12V6M10.5 12V8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />, title: "Analytics", desc: "Real-time data pipelines and dashboards that surface what matters and drive decisions." },
+              { icon: <><circle cx="8" cy="8" r="3" stroke="currentColor" strokeWidth="1.3" /><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.3" /><path d="M8 2v2M8 14v-2M2 8h2M14 8h-2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /></>, title: "Computer vision", desc: "Surveillance, quality inspection, and visual recognition systems deployed at the edge." },
+              { icon: <><path d="M8 1.5L13.5 4.5V9.5C13.5 12 11 14 8 14.5 5 14 2.5 12 2.5 9.5V4.5Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /><path d="M5.5 8l2 2L11 6.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></>, title: "Cyber defence", desc: "AI-driven threat detection, anomaly monitoring, and automated incident response." },
+              { icon: <><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.3" /><path d="M8 4.5V8l2.5 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" /></>, title: "Managed operations", desc: "Continuous monitoring, optimisation, and support powered by intelligent tooling." },
+            ].map((item, i) => (
+              <div className="ai-grid__card" key={i}>
+                <div className="ai-grid__icon">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">{item.icon}</svg>
+                </div>
+                <h4 className="ai-grid__title">{item.title}</h4>
+                <p className="ai-grid__desc">{item.desc}</p>
               </div>
             ))}
           </div>
