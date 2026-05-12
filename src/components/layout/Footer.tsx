@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { Instagram, Linkedin, Facebook } from "lucide-react";
 import { SmoothImage } from "../ui/SmoothImage";
 
 export const Footer = () => {
@@ -65,6 +66,20 @@ export const Footer = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Social Icons */}
+        <div className="flex gap-6 mb-12">
+          {[
+            { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/" },
+            { icon: Linkedin, label: "LinkedIn", href: "#" },
+            { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/people/Fennec-Productions/61582344225077/" }
+          ].map((social, i) => (
+            <a key={`footer-social-${i}`} href={social.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group cursor-pointer">
+              <social.icon size={16} className="text-white/50 group-hover:text-white transition-colors" />
+              <span className="font-mono text-[9px] uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">{social.label}</span>
+            </a>
+          ))}
         </div>
 
         {/* Bottom Row */}

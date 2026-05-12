@@ -69,11 +69,11 @@ const ContactSection = () => {
             {/* Socials */}
             <div className="flex gap-8 pt-4">
               {[
-                { icon: Instagram, label: "Instagram" },
-                { icon: Linkedin, label: "LinkedIn" },
-                { icon: Facebook, label: "Facebook" }
+                { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/" },
+                { icon: Linkedin, label: "LinkedIn", href: "#" },
+                { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/people/Fennec-Productions/61582344225077/" }
               ].map((social, i) => (
-                <a key={`social-${i}`} href="#" className="flex items-center gap-2 group cursor-pointer">
+                <a key={`social-${i}`} href={social.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group cursor-pointer">
                   <social.icon size={18} className="text-white group-hover:text-white/70 transition-colors" />
                   <span className="font-mono text-[9px] uppercase tracking-widest text-white group-hover:text-white/70 transition-colors hidden sm:inline">{social.label}</span>
                 </a>
