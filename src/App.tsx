@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { FilmGrain } from "./components/layout/FilmGrain";
 import { CinematicOverlay } from "./components/layout/CinematicOverlay";
@@ -6,10 +7,10 @@ import { Footer } from "./components/layout/Footer";
 import { ScrollToTop } from "./components/utils/ScrollToTop";
 
 import Home from "./pages/Home";
-import Works from "./pages/Works";
-import About from "./pages/About";
-import Approach from "./pages/Approach";
-import Contact from "./pages/Contact";
+const Works = lazy(() => import("./pages/Works"));
+const About = lazy(() => import("./pages/About"));
+const Approach = lazy(() => import("./pages/Approach"));
+const Contact = lazy(() => import("./pages/Contact"));
 
 export default function App() {
   return (
@@ -20,13 +21,15 @@ export default function App() {
       <Navbar />
       
       <main className="relative z-10 flex-grow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/portfolio" element={<Works />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/approach" element={<Approach />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/portfolio" element={<Works />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/approach" element={<Approach />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </Suspense>
       </main>
 
       <Footer />

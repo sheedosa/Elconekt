@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git sparse-checkout *)",
+      "Bash(git checkout *)",
+      "Bash(git ls-tree *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "WebFetch(domain:sheedosa.github.io)",
+      "WebFetch(domain:fennecprods.ly)",
+      "Bash(curl -sL https://fennecprods.ly/)",
+      "Bash(curl -s \"https://api.github.com/repos/sheedosa/FENNEC-PRODUCTIONS-/actions/runs?per_page=3\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); [print\\(f'{r[\\\\\"id\\\\\"]} | {r[\\\\\"status\\\\\"]} | {r[\\\\\"conclusion\\\\\"]} | {r[\\\\\"created_at\\\\\"]} | {r[\\\\\"name\\\\\"]}'\\) for r in d.get\\('workflow_runs',[]\\)]\")",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(curl -s \"https://api.github.com/repos/sheedosa/FENNEC-PRODUCTIONS-/actions/runs?per_page=5\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); [print\\(f'{r[\\\\\"status\\\\\"]:12} | {str\\(r.get\\(\\\\\"conclusion\\\\\",\\\\\"\\\\\"\\)\\):8} | {r[\\\\\"created_at\\\\\"]} | {r[\\\\\"name\\\\\"]}'\\) for r in d.get\\('workflow_runs',[]\\)]\")",
+      "Bash(curl -sL -H \"Cache-Control: no-cache\" -H \"Pragma: no-cache\" \"https://fennecprods.ly/?nocache=$\\(date +%s\\)\")",
+      "Bash(curl -sI \"https://fennecprods.ly/\")",
+      "Bash(curl -sL \"https://fennecprods.ly/\")",
+      "Bash(curl -sI \"https://fennecprods.ly/assets/index-G-HqZnbE.js\")",
+      "Bash(curl -sI \"https://fennecprods.ly/assets/index-DZzx7PWa.css\")",
+      "Bash(mkdir -p /Users/rasheedamer/Documents/.claude)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -sI http://localhost:3001)",
+      "Bash(git reset *)"
+    ]
+  }
+}

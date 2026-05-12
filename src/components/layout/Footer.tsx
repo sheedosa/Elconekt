@@ -21,9 +21,11 @@ export const Footer = () => {
           {/* Brand Column */}
           <div className="md:col-span-5 flex flex-col items-start">
             <Link to="/" className="mb-8">
-              <SmoothImage 
-                src="/images/logo.png" 
-                alt="Fennec Productions" 
+              <SmoothImage
+                src="/images/logo.png"
+                alt="Fennec Productions"
+                loading="lazy"
+                decoding="async"
                 className="h-24 w-auto object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
               />
             </Link>

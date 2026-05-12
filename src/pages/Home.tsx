@@ -92,9 +92,10 @@ const ClientsGrid = () => {
         <div className="w-fit flex animate-scroll whitespace-nowrap items-center">
           {duplicatedLogos.map((id, i) => (
             <div key={`client-${i}`} className="w-40 sm:w-48 md:w-56 px-8 flex-shrink-0 flex items-center justify-center group">
-              <SmoothImage 
+              <SmoothImage
                 src={id}
                 alt={`Client Logo ${i}`}
+                loading="lazy"
                 decoding="async"
                 className="w-full h-auto max-h-16 md:max-h-20 object-contain transition-all duration-500 grayscale invert mix-blend-screen opacity-40 group-hover:opacity-100 group-hover:scale-105"
                 referrerPolicy="no-referrer"
@@ -187,9 +188,9 @@ const OnSetGrid = () => {
                 <span>{t('home.onset.tk')} {p.take}</span>
               </div>
               <div className="overflow-hidden bg-gray-900 aspect-video relative">
-                <SmoothImage 
-                  src={p.thumbnail} 
-                  alt={p.title} 
+                <SmoothImage
+                  src={p.thumbnail}
+                  alt={p.title}
                   loading="lazy"
                   decoding="async"
                   className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
