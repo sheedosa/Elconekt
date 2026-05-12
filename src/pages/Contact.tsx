@@ -73,21 +73,31 @@ const ContactSection = () => {
               </div>
               <input type="text" name="subject_line" required placeholder={t('contact.form.subject')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none" />
               <textarea name="message" required placeholder={t('contact.form.details')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest h-32 focus:border-white/30 transition-colors focus:outline-none resize-none" />
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                className="w-full py-4 bg-white text-black font-bold uppercase tracking-[0.3em] hover:bg-white/90 transition-colors flex items-center justify-center gap-2 group text-[10px] sm:text-xs cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {status === "sending" ? (
-                  <><Loader2 size={18} className="animate-spin" /> Sending...</>
-                ) : status === "success" ? (
-                  <><CheckCircle size={18} /> Message Sent</>
-                ) : (
-                  <>{t('contact.form.btn')} <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>
-                )}
-              </button>
-              {status === "error" && (
-                <p className="text-red-400 font-mono text-xs text-center">Something went wrong. Please try again or email us directly.</p>
+              {status === "success" ? (
+                <div className="border border-white/10 p-8 text-center space-y-3">
+                  <CheckCircle size={32} className="mx-auto text-white/80" />
+                  <p className="text-white font-bold uppercase tracking-[0.2em] text-sm">Transmission Received</p>
+                  <p className="text-white/50 font-mono text-xs leading-relaxed">
+                    Thank you for reaching out. The Fennec team has received your message and will be in touch with you shortly.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="w-full py-4 bg-white text-black font-bold uppercase tracking-[0.3em] hover:bg-white/90 transition-colors flex items-center justify-center gap-2 group text-[10px] sm:text-xs cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {status === "sending" ? (
+                      <><Loader2 size={18} className="animate-spin" /> Sending...</>
+                    ) : (
+                      <>{t('contact.form.btn')} <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>
+                    )}
+                  </button>
+                  {status === "error" && (
+                    <p className="text-red-400 font-mono text-xs text-center">Something went wrong. Please try again or email us directly.</p>
+                  )}
+                </>
               )}
             </form>
 
