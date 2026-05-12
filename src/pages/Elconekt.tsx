@@ -324,18 +324,9 @@ export default function Elconekt() {
       <header className="hero" id="elc-top">
         <canvas className="hero__canvas" ref={canvasRef} />
         <div className="hero__grad" />
-        <div className="hero__topbar">
-          <div><span className="dot" /><span>System Online · v2026.1</span></div>
-          <div>
-            <span>EST. UK · 2022</span>
-            <span>·</span>
-            <span>24 / 7 Operations</span>
-          </div>
-        </div>
         <div className="container hero__inner">
           <div className="hero__meta">
             <span className="eyebrow">Intelligent Systems Integrator</span>
-            <span className="eyebrow" style={{ opacity: 0.7 }}>[ 01 / Hero ]</span>
           </div>
           <h1 className="hero__title">
             <span className="word"><span>Engineering</span></span>{" "}
@@ -378,13 +369,37 @@ export default function Elconekt() {
               <p>That's why we combine full stack development, intelligent systems, and cybersecurity under one roof, delivering integrated solutions designed for long-term growth.</p>
             </div>
           </div>
-          <div className="stats reveal-stagger">
-            <div className="stat"><div className="stat__value">Engineering-led</div><div className="stat__label">Senior expertise. Real accountability.</div></div>
-            <div className="stat"><div className="stat__value"><span className="ai">AI</span>-enabled</div><div className="stat__label">Intelligence embedded across every solution.</div></div>
-            <div className="stat"><div className="stat__value">Security-first</div><div className="stat__label">Protection built in from day one.</div></div>
-            <div className="stat"><div className="stat__value">Vendor-neutral</div><div className="stat__label">Technology chosen around your needs.</div></div>
-            <div className="stat"><div className="stat__value">End-to-end</div><div className="stat__label">From strategy through long-term support.</div></div>
-            <div className="stat"><div className="stat__value">Global delivery</div><div className="stat__label">Built to international standards.</div></div>
+          <div className="principles reveal-stagger">
+            <div className="principle">
+              <span className="principle__num">01</span>
+              <h4 className="principle__title">Engineering-led</h4>
+              <p className="principle__desc">Senior expertise. Real accountability.</p>
+            </div>
+            <div className="principle">
+              <span className="principle__num">02</span>
+              <h4 className="principle__title"><span className="ai">AI</span>-enabled</h4>
+              <p className="principle__desc">Intelligence embedded across every solution.</p>
+            </div>
+            <div className="principle">
+              <span className="principle__num">03</span>
+              <h4 className="principle__title">Security-first</h4>
+              <p className="principle__desc">Protection built in from day one.</p>
+            </div>
+            <div className="principle">
+              <span className="principle__num">04</span>
+              <h4 className="principle__title">Vendor-neutral</h4>
+              <p className="principle__desc">Technology chosen around your needs.</p>
+            </div>
+            <div className="principle">
+              <span className="principle__num">05</span>
+              <h4 className="principle__title">End-to-end</h4>
+              <p className="principle__desc">From strategy through long-term support.</p>
+            </div>
+            <div className="principle">
+              <span className="principle__num">06</span>
+              <h4 className="principle__title">Global delivery</h4>
+              <p className="principle__desc">Built to international standards.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -408,7 +423,7 @@ export default function Elconekt() {
               <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 03 — What we do ]</span>
               <h2 className="section__title" style={{ marginTop: 20 }}>
                 Build.<br />Transform.<br />
-                <em style={{ fontFamily: "'JetBrains Mono',ui-monospace,monospace", fontStyle: "italic", color: "var(--blue)", fontWeight: 500, fontSize: "0.78em", letterSpacing: "-0.03em" }}>Protect.</em>
+                <span className="accent">Protect.</span>
               </h2>
             </div>
             <p className="section__lead">
@@ -558,7 +573,7 @@ export default function Elconekt() {
             <div>
               <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 04 — The AI thread ]</span>
               <h2 className="section__title" style={{ marginTop: 20 }}>
-                <em style={{ fontFamily: "'JetBrains Mono',ui-monospace,monospace", fontStyle: "italic", color: "var(--blue)", fontWeight: 500, fontSize: "0.78em", letterSpacing: "-0.03em" }}>AI</em><br />
+                <span className="accent">AI</span><br />
                 across everything<br />we deliver.
               </h2>
             </div>
