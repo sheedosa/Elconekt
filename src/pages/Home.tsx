@@ -11,42 +11,40 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen w-full overflow-hidden flex items-center justify-center p-6 md:p-10 bg-[#050505]">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50 z-10" />
-        <SmoothImage 
-          src="/Fennec-background.jpg" 
-          alt="Cinematic background" 
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/30 z-10" />
+        <SmoothImage
+          src="/Fennec-background.jpg"
+          alt="Cinematic background"
           className="w-full h-full object-cover grayscale-[20%] contrast-[1.05]"
           fetchPriority="high"
         />
         <div className="absolute inset-0 z-20 film-grain pointer-events-none opacity-[0.05]" />
       </div>
 
-      <div className="relative z-40 text-center max-w-4xl pt-24 sm:pt-20 px-4">
-        <h1 
-          className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tighter leading-tight mb-8 text-white"
+      <div className="relative z-40 text-left max-w-xl pt-24 sm:pt-20 px-4 self-end mb-24 ml-6 md:ml-16">
+        <h1
+          className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter leading-tight mb-6 text-white"
         >
           {t('home.hero_quote')}
         </h1>
-        <p 
-          className="text-base sm:text-lg md:text-xl mx-auto max-w-2xl font-light tracking-wide text-white/70 mb-12"
+        <p
+          className="text-sm sm:text-base font-light tracking-wide text-white/70 mb-10 max-w-sm"
         >
           {t('home.hero_sub')}
         </p>
-        <div
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <Link 
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Link
             to="/portfolio"
-            className="group relative inline-flex items-center justify-center px-10 py-4 overflow-hidden border border-white/20 transition-all hover:border-white"
+            className="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden border border-white/20 transition-all hover:border-white"
           >
             <div className="absolute inset-0 w-0 bg-white transition-all duration-300 ease-out group-hover:w-full" />
-            <span className="relative text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-white group-hover:text-black transition-colors duration-300">
+            <span className="relative text-xs font-bold uppercase tracking-[0.3em] text-white group-hover:text-black transition-colors duration-300">
               {t('home.see_work')}
             </span>
           </Link>
-          <Link 
+          <Link
             to="/contact"
-            className="inline-flex items-center justify-center px-10 py-4 text-xs sm:text-sm uppercase font-bold tracking-[0.3em] text-white/60 hover:text-white transition-all"
+            className="inline-flex items-center justify-center px-8 py-3 text-xs uppercase font-bold tracking-[0.3em] text-white/60 hover:text-white transition-all"
           >
             {t('nav.contact')}
           </Link>
