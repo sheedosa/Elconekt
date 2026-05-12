@@ -69,8 +69,8 @@ const ContactSection = () => {
             {/* Socials */}
             <div className="flex gap-8 pt-4">
               {[
-                { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/" },
-                { icon: Linkedin, label: "LinkedIn", href: "#" },
+                { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/fennecprods?igsh=dDM2Nno3Nm0wcnJi" },
+                { icon: Linkedin, label: "LinkedIn", href: "https://ly.linkedin.com/in/munther-elsaddig" },
                 { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/people/Fennec-Productions/61582344225077/" }
               ].map((social, i) => (
                 <a key={`social-${i}`} href={social.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group cursor-pointer">
