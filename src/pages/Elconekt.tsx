@@ -436,19 +436,27 @@ export default function Elconekt() {
             <article className="service-card">
               <div className="service-card__num">01 / Full Stack Development</div>
               <div className="service-card__viz">
-                <div className="viz-stack">
-                  <div className="viz-stack__window">
-                    <div className="viz-stack__chrome">
-                      <div className="viz-stack__chrome-dots"><span /><span /><span /></div>
-                      <div className="viz-stack__chrome-title">~/elconekt/app.tsx</div>
+                <div className="viz-layers">
+                  <div className="viz-layers__stack">
+                    <div className="viz-layers__row">
+                      <div className="viz-layers__bar viz-layers__bar--front">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 3h12v10H2z" stroke="currentColor" strokeWidth="1.2" /><path d="M2 6h12" stroke="currentColor" strokeWidth="1.2" /><circle cx="4.5" cy="4.5" r="0.8" fill="currentColor" /><circle cx="6.5" cy="4.5" r="0.8" fill="currentColor" /></svg>
+                        <span>Interface</span>
+                      </div>
+                      <div className="viz-layers__flow"><span /><span /><span /></div>
                     </div>
-                    <div className="viz-stack__lines">
-                      <div className="viz-stack__line"><span className="tok k" style={{ width: 24 }} /><span className="tok n" style={{ width: 42 }} /><span className="tok p" style={{ width: 8 }} /></div>
-                      <div className="viz-stack__line"><span className="tok k" style={{ width: 18 }} /><span className="tok n" style={{ width: 30 }} /><span className="tok s" style={{ width: 54 }} /></div>
-                      <div className="viz-stack__line"><span className="tok n" style={{ width: 36 }} /><span className="tok d" style={{ width: 22 }} /><span className="tok s" style={{ width: 40 }} /></div>
-                      <div className="viz-stack__line"><span className="tok k" style={{ width: 14 }} /><span className="tok n" style={{ width: 28 }} /><span className="tok p" style={{ width: 6 }} /><span className="tok d" style={{ width: 30 }} /></div>
-                      <div className="viz-stack__line"><span className="tok p" style={{ width: 10 }} /></div>
-                      <div className="viz-stack__line"><span className="tok k" style={{ width: 20 }} /><span className="tok n" style={{ width: 46 }} /><span className="tok-caret" /></div>
+                    <div className="viz-layers__row">
+                      <div className="viz-layers__bar viz-layers__bar--api">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l-2 4 2 4M12 4l2 4-2 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /><path d="M9 3L7 13" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /></svg>
+                        <span>Logic</span>
+                      </div>
+                      <div className="viz-layers__flow"><span /><span /><span /></div>
+                    </div>
+                    <div className="viz-layers__row">
+                      <div className="viz-layers__bar viz-layers__bar--data">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="4" rx="5.5" ry="2.2" stroke="currentColor" strokeWidth="1.2" /><path d="M2.5 4v8c0 1.2 2.5 2.2 5.5 2.2s5.5-1 5.5-2.2V4" stroke="currentColor" strokeWidth="1.2" /><path d="M2.5 8c0 1.2 2.5 2.2 5.5 2.2s5.5-1 5.5-2.2" stroke="currentColor" strokeWidth="1.2" /></svg>
+                        <span>Data</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -465,41 +473,43 @@ export default function Elconekt() {
             <article className="service-card">
               <div className="service-card__num">02 / AI Solutions &amp; Intelligent Systems</div>
               <div className="service-card__viz">
-                <div className="viz-orbit">
-                  <div className="viz-orbit__hud">Neural · Online</div>
-                  <div className="viz-orbit__field">
-                    <svg className="viz-orbit__svg" viewBox="0 0 220 180" fill="none">
-                      <defs>
-                        <path id="p1" d="M110 90 L110 25" />
-                        <path id="p2" d="M110 90 L191 58" />
-                        <path id="p3" d="M110 90 L191 122" />
-                        <path id="p4" d="M110 90 L110 155" />
-                        <path id="p5" d="M110 90 L29 122" />
-                        <path id="p6" d="M110 90 L29 58" />
-                      </defs>
-                      <g stroke="rgba(7,27,70,0.16)" strokeWidth="1" strokeDasharray="2 4" fill="none">
-                        <use href="#p1" /><use href="#p2" /><use href="#p3" />
-                        <use href="#p4" /><use href="#p5" /><use href="#p6" />
-                      </g>
-                      <g stroke="rgba(30,99,255,0.18)" strokeWidth="1" fill="none">
-                        <polygon points="110,25 191,58 191,122 110,155 29,122 29,58" strokeDasharray="3 4" />
-                      </g>
-                      <circle className="viz-orbit__pulse" r="3" style={{ offsetPath: "path('M110 90 L110 25')" }} />
-                      <circle className="viz-orbit__pulse" r="3" style={{ offsetPath: "path('M110 90 L191 58')" }} />
-                      <circle className="viz-orbit__pulse" r="3" style={{ offsetPath: "path('M110 90 L191 122')" }} />
-                      <circle className="viz-orbit__pulse" r="3" style={{ offsetPath: "path('M110 90 L29 122')" }} />
-                      <circle className="viz-orbit__pulse" r="3" style={{ offsetPath: "path('M110 90 L29 58')" }} />
-                    </svg>
-                    <div className="viz-orbit__hex viz-orbit__hex--inner" />
-                    <div className="viz-orbit__core"><span>AI</span></div>
-                    <div className="viz-orbit__node viz-orbit__node--1" />
-                    <div className="viz-orbit__node accent viz-orbit__node--2" />
-                    <div className="viz-orbit__node viz-orbit__node--3" />
-                    <div className="viz-orbit__node viz-orbit__node--4" />
-                    <div className="viz-orbit__node accent viz-orbit__node--5" />
-                    <div className="viz-orbit__node viz-orbit__node--6" />
-                  </div>
-                  <div className="viz-orbit__meta">7 nodes · live</div>
+                <div className="viz-network">
+                  <svg className="viz-network__svg" viewBox="0 0 240 160" fill="none">
+                    {/* Connections */}
+                    <g className="viz-network__edges" stroke="var(--line)" strokeWidth="1">
+                      <line x1="120" y1="80" x2="60" y2="36" />
+                      <line x1="120" y1="80" x2="180" y2="36" />
+                      <line x1="120" y1="80" x2="42" y2="100" />
+                      <line x1="120" y1="80" x2="198" y2="100" />
+                      <line x1="120" y1="80" x2="80" y2="140" />
+                      <line x1="120" y1="80" x2="160" y2="140" />
+                      <line x1="60" y1="36" x2="180" y2="36" className="viz-network__edge--faint" />
+                      <line x1="42" y1="100" x2="80" y2="140" className="viz-network__edge--faint" />
+                      <line x1="198" y1="100" x2="160" y2="140" className="viz-network__edge--faint" />
+                    </g>
+                    {/* Animated data dots traveling along edges */}
+                    <circle className="viz-network__dot" r="2.5">
+                      <animateMotion dur="3s" repeatCount="indefinite" path="M120,80 L60,36" />
+                    </circle>
+                    <circle className="viz-network__dot" r="2.5">
+                      <animateMotion dur="3.4s" repeatCount="indefinite" path="M120,80 L198,100" begin="0.6s" />
+                    </circle>
+                    <circle className="viz-network__dot" r="2.5">
+                      <animateMotion dur="2.8s" repeatCount="indefinite" path="M120,80 L160,140" begin="1.2s" />
+                    </circle>
+                    {/* Outer nodes */}
+                    <circle cx="60" cy="36" r="6" className="viz-network__node" />
+                    <circle cx="180" cy="36" r="6" className="viz-network__node" />
+                    <circle cx="42" cy="100" r="6" className="viz-network__node" />
+                    <circle cx="198" cy="100" r="6" className="viz-network__node" />
+                    <circle cx="80" cy="140" r="6" className="viz-network__node" />
+                    <circle cx="160" cy="140" r="6" className="viz-network__node" />
+                    {/* Centre node */}
+                    <circle cx="120" cy="80" r="14" className="viz-network__hub" />
+                    <circle cx="120" cy="80" r="14" className="viz-network__hub-ring" />
+                    <circle cx="120" cy="80" r="22" className="viz-network__hub-glow" />
+                    <text x="120" y="84" textAnchor="middle" className="viz-network__hub-label">AI</text>
+                  </svg>
                 </div>
               </div>
               <h3 className="service-card__title">AI Solutions &amp; Intelligent Systems</h3>
@@ -514,45 +524,20 @@ export default function Elconekt() {
             <article className="service-card">
               <div className="service-card__num">03 / Cybersecurity &amp; Digital Resilience</div>
               <div className="service-card__viz">
-                <div className="viz-shield">
-                  <span className="viz-shield__corner viz-shield__corner--tl" />
-                  <span className="viz-shield__corner viz-shield__corner--tr" />
-                  <span className="viz-shield__corner viz-shield__corner--bl" />
-                  <span className="viz-shield__corner viz-shield__corner--br" />
-                  <div className="viz-shield__hud">Monitoring · 24/7</div>
-                  <div className="viz-shield__field">
-                    <svg className="viz-shield__svg" viewBox="0 0 200 180" fill="none">
-                      <defs>
-                        <linearGradient id="shg" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#1E63FF" stopOpacity="0.22" />
-                          <stop offset="100%" stopColor="#1E63FF" stopOpacity="0" />
-                        </linearGradient>
-                        <linearGradient id="sho" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#071B46" stopOpacity="0.6" />
-                          <stop offset="100%" stopColor="#1E63FF" stopOpacity="0.5" />
-                        </linearGradient>
-                      </defs>
-                      <path d="M100 20 L162 42 V96 C162 132 134 158 100 168 C66 158 38 132 38 96 V42 Z" fill="url(#shg)" stroke="url(#sho)" strokeWidth="1.4" strokeLinejoin="round" />
-                      <path d="M100 36 L148 53 V93 C148 122 128 144 100 152 C72 144 52 122 52 93 V53 Z" fill="none" stroke="#1E63FF" strokeOpacity="0.55" strokeWidth="1" strokeDasharray="3 3" strokeLinejoin="round" />
-                      <g stroke="rgba(7,27,70,0.15)" strokeWidth="0.8">
-                        <line x1="100" y1="42" x2="100" y2="50" />
-                        <line x1="100" y1="144" x2="100" y2="152" />
-                        <line x1="54" y1="96" x2="62" y2="96" />
-                        <line x1="138" y1="96" x2="146" y2="96" />
-                      </g>
-                      <circle cx="100" cy="96" r="16" fill="#071B46" />
-                      <circle cx="100" cy="96" r="16" fill="none" stroke="#1E63FF" strokeOpacity="0.5" strokeWidth="1" />
-                      <path d="M93 96 l5 5 l10 -11" stroke="#1E63FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                    </svg>
-                    <div className="viz-shield__scan" />
-                    <div className="viz-shield__pulse" />
-                    <div className="viz-shield__pulse viz-shield__pulse--2" />
-                    <div className="viz-shield__pulse viz-shield__pulse--3" />
-                    <span className="viz-shield__threat viz-shield__threat--1" />
-                    <span className="viz-shield__threat viz-shield__threat--2" />
-                    <span className="viz-shield__threat viz-shield__threat--3" />
+                <div className="viz-lock">
+                  <div className="viz-lock__rings">
+                    <div className="viz-lock__ring viz-lock__ring--1" />
+                    <div className="viz-lock__ring viz-lock__ring--2" />
+                    <div className="viz-lock__ring viz-lock__ring--3" />
                   </div>
-                  <div className="viz-shield__meta">3 threats · blocked</div>
+                  <svg className="viz-lock__icon" viewBox="0 0 64 72" fill="none">
+                    <rect x="8" y="30" width="48" height="36" rx="6" fill="var(--navy)" />
+                    <rect x="8" y="30" width="48" height="36" rx="6" stroke="var(--blue)" strokeWidth="1.2" strokeOpacity="0.4" />
+                    <path d="M18 30V22a14 14 0 1 1 28 0v8" stroke="var(--navy)" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+                    <path d="M18 30V22a14 14 0 1 1 28 0v8" stroke="var(--blue)" strokeWidth="1.2" strokeOpacity="0.5" strokeLinecap="round" fill="none" />
+                    <circle cx="32" cy="46" r="4" fill="var(--blue)" />
+                    <path d="M32 50v6" stroke="var(--blue)" strokeWidth="2.5" strokeLinecap="round" />
+                  </svg>
                 </div>
               </div>
               <h3 className="service-card__title">Cybersecurity &amp; Digital Resilience</h3>
