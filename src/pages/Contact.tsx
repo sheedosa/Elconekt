@@ -1,10 +1,14 @@
-import { Instagram, Linkedin, Facebook, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { Instagram, Linkedin, Facebook, ArrowUpRight, CheckCircle, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { MetadataLabel } from "../components/ui/MetadataLabel";
 import { SmoothImage } from "../components/ui/SmoothImage";
 
+const WEB3FORMS_KEY = "YOUR_ACCESS_KEY_HERE";
+
 const ContactSection = () => {
   const { t } = useTranslation();
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const contactDetails = [
     { 
       label: t('contact.details.phone'), 
@@ -37,16 +41,54 @@ const ContactSection = () => {
 
           <div className="space-y-12">
             {/* Form */}
-            <form className="space-y-4">
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setStatus("sending");
+                const form = e.currentTarget;
+                const data = new FormData(form);
+                data.append("access_key", WEB3FORMS_KEY);
+                try {
+                  const res = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: data,
+                  });
+                  if (res.ok) {
+                    setStatus("success");
+                    form.reset();
+                  } else {
+                    setStatus("error");
+                  }
+                } catch {
+                  setStatus("error");
+                }
+              }}
+              className="space-y-4"
+            >
+              <input type="hidden" name="subject" value="New inquiry from fennecprods.ly" />
+              <input type="hidden" name="from_name" value="Fennec Productions Website" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input type="text" placeholder={t('contact.form.name')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none" />
-                <input type="email" placeholder={t('contact.form.email')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none" />
+                <input type="text" name="name" required placeholder={t('contact.form.name')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none" />
+                <input type="email" name="email" required placeholder={t('contact.form.email')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none" />
               </div>
-              <input type="text" placeholder={t('contact.form.subject')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none" />
-              <textarea placeholder={t('contact.form.details')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest h-32 focus:border-white/30 transition-colors focus:outline-none resize-none" />
-              <button className="w-full py-4 bg-white text-black font-bold uppercase tracking-[0.3em] hover:bg-white/90 transition-colors flex items-center justify-center gap-2 group text-[10px] sm:text-xs cursor-pointer">
-                {t('contact.form.btn')} <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <input type="text" name="subject_line" required placeholder={t('contact.form.subject')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest focus:border-white/30 transition-colors focus:outline-none" />
+              <textarea name="message" required placeholder={t('contact.form.details')} className="w-full bg-white/5 border border-white/10 p-4 font-mono text-xs uppercase tracking-widest h-32 focus:border-white/30 transition-colors focus:outline-none resize-none" />
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="w-full py-4 bg-white text-black font-bold uppercase tracking-[0.3em] hover:bg-white/90 transition-colors flex items-center justify-center gap-2 group text-[10px] sm:text-xs cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {status === "sending" ? (
+                  <><Loader2 size={18} className="animate-spin" /> Sending...</>
+                ) : status === "success" ? (
+                  <><CheckCircle size={18} /> Message Sent</>
+                ) : (
+                  <>{t('contact.form.btn')} <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>
+                )}
               </button>
+              {status === "error" && (
+                <p className="text-red-400 font-mono text-xs text-center">Something went wrong. Please try again or email us directly.</p>
+              )}
             </form>
 
             {/* Contact Details Grid */}
