@@ -296,11 +296,15 @@
 /* ========== HERO ========== */
 .elconekt .hero {
   position: relative;
-  height: 100vh;
-  min-height: 720px;
+  min-height: 100vh;
   display: flex;
-  align-items: flex-end;
-  padding-bottom: 8vh;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* Padding-top clears the fixed nav; padding-bottom gives breathing room
+     before the next section. Using min-height (not height) lets the hero
+     grow on tall content rather than overflowing on top of the nav. */
+  padding-top: clamp(110px, 14vh, 160px);
+  padding-bottom: clamp(60px, 8vh, 110px);
   overflow: hidden;
 }
 .elconekt .hero__bg {
@@ -436,22 +440,32 @@
 
 /* ========== Reveal animation ==========
    GSAP drives .reveal and .reveal-stagger > * via useReveal().
-   We set the initial state in CSS so there's no FOUC before JS hydrates,
-   and respect prefers-reduced-motion as a safety net.
+
+   FAIL-SAFE: the "initial hidden" state is ONLY applied once JS has
+   added `motion-ready` to <html>. If the bundle fails to load, errors
+   out, or is too slow, content remains visible. This prevents the
+   ghost-page failure mode where everything stays at opacity: 0.
 */
-.elconekt .reveal {
+html.motion-ready .elconekt .reveal {
   opacity: 0;
   transform: translateY(40px);
   will-change: opacity, transform;
+  /* Last-resort: if GSAP somehow never fires for this element,
+     it still becomes visible after 4s — never leave the user with a blank page. */
+  animation: elc-reveal-failsafe 1s ease 4s forwards;
 }
-.elconekt .reveal-stagger > * {
+html.motion-ready .elconekt .reveal-stagger > * {
   opacity: 0;
   transform: translateY(30px);
   will-change: opacity, transform;
+  animation: elc-reveal-failsafe 1s ease 4s forwards;
+}
+@keyframes elc-reveal-failsafe {
+  to { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .elconekt .reveal,
-  .elconekt .reveal-stagger > * {
+  html.motion-ready .elconekt .reveal,
+  html.motion-ready .elconekt .reveal-stagger > * {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -1741,8 +1755,9 @@ html.has-custom-cursor [data-cursor="hover"] {
 
 /* ==========================================================
    Text-reveal word masks (data-reveal-text targets)
+   Only applied when motion is ready — failsafe against stuck text.
    ========================================================== */
-.elconekt [data-reveal-text] .tr-word {
+html.motion-ready .elconekt [data-reveal-text] .tr-word {
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
@@ -1750,7 +1765,7 @@ html.has-custom-cursor [data-cursor="hover"] {
   padding-bottom: 0.06em;
   line-height: inherit;
 }
-.elconekt [data-reveal-text] .tr-word__inner {
+html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
   display: inline-block;
   will-change: transform;
 }

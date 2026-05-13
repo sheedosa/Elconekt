@@ -26,6 +26,15 @@ gsap.registerPlugin(ScrollTrigger);
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
 
+  // Mark the HTML element as motion-ready so CSS can safely apply
+  // "initial hidden" state ONLY when JS is running. Without this flag,
+  // `.reveal` opacity:0 would persist on broken/slow JS and the page
+  // would look empty.
+  useEffect(() => {
+    document.documentElement.classList.add("motion-ready");
+    return () => document.documentElement.classList.remove("motion-ready");
+  }, []);
+
   useEffect(() => {
     if (prefersReducedMotion()) return;
 
@@ -47,7 +56,16 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     // Tell ScrollTrigger that Lenis owns the scroll.
     lenis.on("scroll", ScrollTrigger.update);
 
+    // Force a refresh once Lenis is attached so triggers that are already
+    // in view fire correctly. Without this, elements above the fold can
+    // get stuck in their initial hidden state.
+    const refreshTimers = [
+      window.setTimeout(() => ScrollTrigger.refresh(), 100),
+      window.setTimeout(() => ScrollTrigger.refresh(), 600),
+    ];
+
     return () => {
+      refreshTimers.forEach(clearTimeout);
       gsap.ticker.remove(update);
       lenis.destroy();
       lenisRef.current = null;
