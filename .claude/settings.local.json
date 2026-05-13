@@ -64,7 +64,8 @@
       "Bash(awk -F'to=\"' '{print $2}')",
       "Bash(awk -F'\"' '{print $1}')",
       "Bash(awk -F'href=\"' '{print $2}')",
-      "Bash(awk -F'id=\"' '{print $2}')"
+      "Bash(awk -F'id=\"' '{print $2}')",
+      "Bash(curl -sI https://elconekt.com/__TRACKED_VAR__)"
     ]
   }
 }
