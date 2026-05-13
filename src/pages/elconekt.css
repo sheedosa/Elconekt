@@ -640,194 +640,418 @@ html.motion-ready .elconekt .reveal-stagger > * {
 
 /* === 01 Full Stack — code window === */
 /* === 01 Full Stack — layered architecture === */
-.elconekt .viz-layers {
-  position: absolute; inset: 0;
-  display: grid; place-items: center;
-  overflow: hidden;
-}
-.elconekt .viz-layers__stack {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  width: 78%;
-  max-width: 240px;
-}
-.elconekt .viz-layers__row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0;
-}
-.elconekt .viz-layers__bar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 14px 18px;
-  border-radius: 10px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  transition: transform 0.5s var(--ease-out), box-shadow 0.5s;
-}
-.elconekt .viz-layers__bar svg {
-  flex-shrink: 0;
-  opacity: 0.7;
-}
-.elconekt .viz-layers__bar--front {
-  background: var(--navy);
-  color: #fff;
-  box-shadow: 0 4px 20px -8px rgba(7,27,70,0.3);
-}
-.elconekt .viz-layers__bar--api {
-  background: var(--blue);
-  color: #fff;
-  box-shadow: 0 4px 20px -8px rgba(30,99,255,0.35);
-}
-.elconekt .viz-layers__bar--data {
-  background: var(--surface-2);
-  color: var(--navy);
-  border: 1px solid var(--line);
-}
-.elconekt .viz-layers__bar svg { opacity: 1; }
-.elconekt .service-card:hover .viz-layers__bar--front { transform: translateY(-2px); }
-.elconekt .service-card:hover .viz-layers__bar--api { transform: translateY(-1px); }
-.elconekt .service-card:hover .viz-layers__bar--data { transform: translateY(0); }
-
-/* Flow dots between layers */
-.elconekt .viz-layers__flow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  padding: 4px 0;
-}
-.elconekt .viz-layers__flow span {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--blue);
-  opacity: 0.3;
-  animation: elc-flowDot 1.8s ease-in-out infinite;
-}
-.elconekt .viz-layers__flow span:nth-child(1) { animation-delay: 0s; }
-.elconekt .viz-layers__flow span:nth-child(2) { animation-delay: 0.25s; }
-.elconekt .viz-layers__flow span:nth-child(3) { animation-delay: 0.5s; }
-@keyframes elc-flowDot {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.8; }
-}
-
-/* === 02 AI — network graph === */
-.elconekt .viz-network {
-  position: absolute; inset: 0;
-  display: grid; place-items: center;
-  overflow: hidden;
-}
-.elconekt .viz-network__svg {
-  width: 82%;
-  max-width: 240px;
-  height: auto;
-  overflow: visible;
-}
-.elconekt .viz-network__edges line {
-  stroke: var(--line);
-  stroke-width: 1.2;
-  transition: stroke 0.4s;
-}
-.elconekt .viz-network__edge--faint {
-  stroke-dasharray: 3 4;
-  opacity: 0.5;
-}
-.elconekt .viz-network__node {
-  fill: #fff;
-  stroke: var(--navy);
-  stroke-width: 1.5;
-  transition: transform 0.4s var(--ease-out);
-}
-.elconekt .viz-network__hub {
-  fill: var(--navy);
-}
-.elconekt .viz-network__hub-ring {
-  fill: none;
-  stroke: var(--blue);
-  stroke-width: 1.2;
-  stroke-opacity: 0.5;
-}
-.elconekt .viz-network__hub-glow {
-  fill: none;
-  stroke: var(--blue);
-  stroke-width: 0.8;
-  stroke-opacity: 0;
-  animation: elc-hubGlow 3s ease-out infinite;
-}
-@keyframes elc-hubGlow {
-  0% { stroke-opacity: 0.5; r: 16; }
-  100% { stroke-opacity: 0; r: 32; }
-}
-.elconekt .viz-network__hub-label {
-  fill: #fff;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-.elconekt .viz-network__dot {
-  fill: var(--blue);
-  opacity: 0.7;
-}
-.elconekt .service-card:hover .viz-network__edges line {
-  stroke: rgba(30,99,255,0.25);
-}
-
-/* === 03 Cybersecurity — lock with rings === */
+/* === Shared viz container — all three service-card visualisations === */
+.elconekt .viz-layers,
+.elconekt .viz-network,
 .elconekt .viz-lock {
   position: absolute; inset: 0;
   display: grid; place-items: center;
   overflow: hidden;
 }
-.elconekt .viz-lock__icon {
-  width: 56px;
-  height: auto;
+
+/* =========================================================
+   01 — Full Stack: Devices viz
+   White desktop + phone mockups suggesting cross-platform UI,
+   with a floating component tag for the software-structure feel.
+   ========================================================= */
+.elconekt .viz-devices {
+  --device-bg: rgba(255, 255, 255, 0.95);
+  --device-stroke: rgba(255, 255, 255, 0.5);
+  --device-line: rgba(7, 27, 70, 0.18);
+  --device-line-strong: rgba(7, 27, 70, 0.35);
+  position: absolute; inset: 0;
+}
+/* Desktop browser sits left, large */
+.elconekt .viz-devices__desktop {
+  position: absolute;
+  top: 20px;
+  left: 26px;
+  width: 200px;
+  height: 142px;
+  background: var(--device-bg);
+  border-radius: 9px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset,
+    0 18px 40px -16px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  transition: transform 0.6s var(--ease-out), box-shadow 0.6s;
+}
+.elconekt .service-card:hover .viz-devices__desktop {
+  transform: translateY(-3px) rotate(-0.6deg);
+}
+.elconekt .viz-devices__chrome {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 10px;
+  background: rgba(7, 27, 70, 0.04);
+  border-bottom: 1px solid rgba(7, 27, 70, 0.08);
+}
+.elconekt .viz-devices__chrome span {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(7, 27, 70, 0.18);
+}
+.elconekt .viz-devices__chrome span:nth-child(1) { background: #FF5F57; }
+.elconekt .viz-devices__chrome span:nth-child(2) { background: #FEBC2E; }
+.elconekt .viz-devices__chrome span:nth-child(3) { background: #28C840; }
+.elconekt .viz-devices__url {
+  flex: 1;
+  height: 7px;
+  margin-left: 6px;
+  border-radius: 3px;
+  background: rgba(7, 27, 70, 0.08);
+}
+.elconekt .viz-devices__screen {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  height: calc(100% - 22px);
+  background: #fff;
+}
+.elconekt .viz-devices__sidebar {
+  background: rgba(7, 27, 70, 0.04);
+  border-right: 1px solid rgba(7, 27, 70, 0.06);
+  padding: 9px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.elconekt .viz-devices__sidebar span {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(7, 27, 70, 0.1);
+}
+.elconekt .viz-devices__sidebar span:first-child {
+  background: linear-gradient(135deg, #1E63FF, #82a8ff);
+  height: 7px;
+}
+.elconekt .viz-devices__main {
+  padding: 10px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.elconekt .viz-devices__hero {
+  height: 30px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #0a224f 0%, #1E63FF 100%);
   position: relative;
-  z-index: 2;
-  filter: drop-shadow(0 6px 20px rgba(7,27,70,0.12));
-  transition: transform 0.5s var(--ease-out);
+  overflow: hidden;
 }
-.elconekt .service-card:hover .viz-lock__icon {
-  transform: translateY(-3px);
-}
-.elconekt .viz-lock__rings {
+.elconekt .viz-devices__hero::after {
+  content: '';
   position: absolute;
   inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+  transform: translateX(-100%);
+  animation: elc-deviceShine 4s ease-in-out infinite 1.2s;
+}
+@keyframes elc-deviceShine {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+.elconekt .viz-devices__grid {
   display: grid;
-  place-items: center;
-  pointer-events: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
 }
-.elconekt .viz-lock__ring {
+.elconekt .viz-devices__grid span {
+  height: 18px;
+  border-radius: 3px;
+  background: rgba(7, 27, 70, 0.07);
+  border: 1px solid rgba(7, 27, 70, 0.05);
+}
+.elconekt .viz-devices__grid span:nth-child(2) {
+  background: rgba(30, 99, 255, 0.14);
+  border-color: rgba(30, 99, 255, 0.22);
+}
+.elconekt .viz-devices__row {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(7, 27, 70, 0.08);
+}
+.elconekt .viz-devices__row--short { width: 60%; }
+
+/* Phone overlaps from the bottom-right */
+.elconekt .viz-devices__phone {
   position: absolute;
+  bottom: 14px;
+  right: 26px;
+  width: 70px;
+  height: 130px;
+  background: var(--device-bg);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 0 0 1px rgba(7, 27, 70, 0.25) inset,
+    0 18px 32px -14px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  transition: transform 0.6s var(--ease-out);
+}
+.elconekt .service-card:hover .viz-devices__phone {
+  transform: translateY(-4px) rotate(2deg);
+}
+.elconekt .viz-devices__notch {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 5px;
+  background: #0a0a0a;
+  border-radius: 3px;
+  z-index: 2;
+}
+.elconekt .viz-devices__phone-screen {
+  padding: 13px 7px 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 100%;
+  background: #fff;
+}
+.elconekt .viz-devices__phone-header {
+  height: 12px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #0a224f, #1E63FF);
+}
+.elconekt .viz-devices__phone-card {
+  height: 30px;
+  border-radius: 4px;
+  background: rgba(30, 99, 255, 0.1);
+  border: 1px solid rgba(30, 99, 255, 0.18);
+}
+.elconekt .viz-devices__phone-row {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(7, 27, 70, 0.1);
+}
+.elconekt .viz-devices__phone-row--short { width: 55%; }
+.elconekt .viz-devices__phone-dock {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  padding: 4px 2px;
+  border-top: 1px solid rgba(7, 27, 70, 0.08);
+}
+.elconekt .viz-devices__phone-dock span {
+  height: 5px;
+  border-radius: 2px;
+  background: rgba(7, 27, 70, 0.15);
+}
+.elconekt .viz-devices__phone-dock span:nth-child(1) {
+  background: var(--blue);
+}
+
+/* Floating component tag — software-structure hint */
+.elconekt .viz-devices__tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  transition: transform 0.6s var(--ease-out);
+}
+.elconekt .viz-devices__tag-dot {
+  width: 5px; height: 5px;
   border-radius: 50%;
-  border: 1px solid var(--blue);
-  animation: elc-lockRing 4s ease-out infinite;
+  background: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.7);
+  animation: elc-blink 2s ease-in-out infinite;
 }
-.elconekt .viz-lock__ring--1 {
-  width: 80px; height: 80px;
-  animation-delay: 0s;
+.elconekt .service-card:hover .viz-devices__tag { transform: translateY(-2px); }
+@keyframes elc-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* =========================================================
+   02 — AI: Neural Network viz
+   Multi-layer MLP — input → hidden → output with active pulse
+   paths. High-fidelity diagrammatic feel rather than abstract nodes.
+   ========================================================= */
+.elconekt .viz-neural {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  background: radial-gradient(420px 240px at 75% 50%, rgba(30, 99, 255, 0.16), transparent 70%);
 }
-.elconekt .viz-lock__ring--2 {
-  width: 80px; height: 80px;
-  animation-delay: 1.3s;
+.elconekt .viz-neural__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
-.elconekt .viz-lock__ring--3 {
-  width: 80px; height: 80px;
-  animation-delay: 2.6s;
+.elconekt .viz-neural__labels text {
+  fill: rgba(255, 255, 255, 0.32);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  font-weight: 500;
 }
-@keyframes elc-lockRing {
-  0% { transform: scale(0.6); opacity: 0.45; }
-  100% { transform: scale(2.8); opacity: 0; }
+.elconekt .viz-neural__edges line {
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 1;
+  transition: stroke 0.5s;
 }
-@keyframes elc-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+.elconekt .viz-neural__edges-active line {
+  stroke: rgba(130, 168, 255, 0.7);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 6px rgba(130, 168, 255, 0.65));
+}
+.elconekt .service-card:hover .viz-neural__edges line {
+  stroke: rgba(255, 255, 255, 0.18);
+}
+.elconekt .viz-neural__node {
+  fill: rgba(255, 255, 255, 0.16);
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 1.4;
+}
+.elconekt .viz-neural__node--mid {
+  fill: rgba(255, 255, 255, 0.2);
+  stroke: rgba(255, 255, 255, 0.7);
+}
+.elconekt .viz-neural__node--active {
+  fill: var(--card-accent);
+  stroke: #fff;
+  filter: drop-shadow(0 0 6px rgba(130, 168, 255, 0.7));
+}
+.elconekt .viz-neural__halo {
+  fill: none;
+  stroke: rgba(130, 168, 255, 0.35);
+  stroke-width: 1;
+  animation: elc-neuralHalo 3.4s ease-out infinite;
+  transform-origin: 270px 100px;
+  transform-box: fill-box;
+}
+.elconekt .viz-neural__halo--tight {
+  stroke: rgba(130, 168, 255, 0.5);
+  animation-delay: 1.2s;
+}
+@keyframes elc-neuralHalo {
+  0% { opacity: 0.8; transform: scale(0.65); }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+.elconekt .viz-neural__out {
+  fill: var(--blue);
+  filter: drop-shadow(0 0 18px rgba(30, 99, 255, 0.75));
+}
+.elconekt .viz-neural__out-core {
+  fill: #fff;
+}
+.elconekt .viz-neural__pulse {
+  fill: #fff;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+}
+.elconekt .viz-neural__pulse--alt {
+  fill: var(--card-accent);
+  opacity: 0.8;
+}
+
+/* =========================================================
+   03 — Cybersecurity: Defense Matrix viz
+   Concentric defense rings, rotating scan sweep, perimeter
+   sensors, and a central shield with check — tactical SOC feel.
+   ========================================================= */
+.elconekt .viz-defense {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+}
+.elconekt .viz-defense__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.elconekt .viz-defense__grid path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 1;
+}
+.elconekt .viz-defense__ring {
+  fill: none;
+}
+.elconekt .viz-defense__ring--outer {
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+  animation: elc-defenseRot 60s linear infinite;
+  transform-origin: center;
+}
+.elconekt .viz-defense__ring--mid {
+  stroke: rgba(130, 168, 255, 0.32);
+  stroke-width: 1.2;
+  animation: elc-defenseRotR 40s linear infinite;
+  transform-origin: center;
+}
+.elconekt .viz-defense__ring--inner {
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1;
+  stroke-dasharray: 1 3;
+  animation: elc-defenseRot 24s linear infinite;
+  transform-origin: center;
+}
+@keyframes elc-defenseRot {
+  to { transform: rotate(360deg); }
+}
+@keyframes elc-defenseRotR {
+  to { transform: rotate(-360deg); }
+}
+.elconekt .viz-defense__ticks line {
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.elconekt .viz-defense__cross line {
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+.elconekt .viz-defense__sweep {
+  animation: elc-defenseSweep 4.5s linear infinite;
+  transform-origin: center;
+}
+@keyframes elc-defenseSweep {
+  to { transform: rotate(360deg); }
+}
+.elconekt .viz-defense__sensor {
+  fill: var(--card-accent);
+  animation: elc-defenseSensor 2s ease-in-out infinite;
+}
+.elconekt .viz-defense__sensor--2 { animation-delay: 0.5s; }
+.elconekt .viz-defense__sensor--3 { animation-delay: 1s; }
+.elconekt .viz-defense__sensor--4 { animation-delay: 1.5s; }
+@keyframes elc-defenseSensor {
+  0%, 100% { opacity: 0.4; r: 2.5; }
+  50% { opacity: 1; r: 3.5; }
+}
+.elconekt .viz-defense__shield {
+  fill: rgba(255, 255, 255, 0.06);
+  stroke: #fff;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
+}
+.elconekt .viz-defense__check {
+  fill: none;
+  stroke: var(--card-accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.elconekt .service-card:hover .viz-defense__shield {
+  transform: scale(1.05);
+  transform-origin: center;
+  transition: transform 0.5s var(--ease-out);
+}
 
 /* ========== AI Grid section ========== */
 .elconekt .ai-grid {

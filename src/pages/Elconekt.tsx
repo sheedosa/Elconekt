@@ -297,28 +297,44 @@ export default function Elconekt() {
             <article className="service-card">
               <div className="service-card__num">01 / Full Stack Development</div>
               <div className="service-card__viz">
-                <div className="viz-layers">
-                  <div className="viz-layers__stack">
-                    <div className="viz-layers__row">
-                      <div className="viz-layers__bar viz-layers__bar--front">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 3h12v10H2z" stroke="currentColor" strokeWidth="1.2" /><path d="M2 6h12" stroke="currentColor" strokeWidth="1.2" /><circle cx="4.5" cy="4.5" r="0.8" fill="currentColor" /><circle cx="6.5" cy="4.5" r="0.8" fill="currentColor" /></svg>
-                        <span>Interface</span>
-                      </div>
-                      <div className="viz-layers__flow"><span /><span /><span /></div>
+                <div className="viz-layers viz-devices">
+                  {/* Desktop browser mockup */}
+                  <div className="viz-devices__desktop" aria-hidden="true">
+                    <div className="viz-devices__chrome">
+                      <span /><span /><span />
+                      <div className="viz-devices__url" />
                     </div>
-                    <div className="viz-layers__row">
-                      <div className="viz-layers__bar viz-layers__bar--api">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l-2 4 2 4M12 4l2 4-2 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /><path d="M9 3L7 13" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /></svg>
-                        <span>Logic</span>
+                    <div className="viz-devices__screen">
+                      <div className="viz-devices__sidebar">
+                        <span /><span /><span /><span />
                       </div>
-                      <div className="viz-layers__flow"><span /><span /><span /></div>
-                    </div>
-                    <div className="viz-layers__row">
-                      <div className="viz-layers__bar viz-layers__bar--data">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="4" rx="5.5" ry="2.2" stroke="currentColor" strokeWidth="1.2" /><path d="M2.5 4v8c0 1.2 2.5 2.2 5.5 2.2s5.5-1 5.5-2.2V4" stroke="currentColor" strokeWidth="1.2" /><path d="M2.5 8c0 1.2 2.5 2.2 5.5 2.2s5.5-1 5.5-2.2" stroke="currentColor" strokeWidth="1.2" /></svg>
-                        <span>Data</span>
+                      <div className="viz-devices__main">
+                        <div className="viz-devices__hero" />
+                        <div className="viz-devices__grid">
+                          <span /><span /><span />
+                        </div>
+                        <div className="viz-devices__row" />
+                        <div className="viz-devices__row viz-devices__row--short" />
                       </div>
                     </div>
+                  </div>
+                  {/* Phone mockup */}
+                  <div className="viz-devices__phone" aria-hidden="true">
+                    <div className="viz-devices__notch" />
+                    <div className="viz-devices__phone-screen">
+                      <div className="viz-devices__phone-header" />
+                      <div className="viz-devices__phone-card" />
+                      <div className="viz-devices__phone-row" />
+                      <div className="viz-devices__phone-row viz-devices__phone-row--short" />
+                      <div className="viz-devices__phone-dock">
+                        <span /><span /><span /><span />
+                      </div>
+                    </div>
+                  </div>
+                  {/* Component tag floating to suggest software structure */}
+                  <div className="viz-devices__tag" aria-hidden="true">
+                    <span className="viz-devices__tag-dot" />
+                    <span>&lt;Component /&gt;</span>
                   </div>
                 </div>
               </div>
@@ -334,42 +350,69 @@ export default function Elconekt() {
             <article className="service-card">
               <div className="service-card__num">02 / AI Solutions &amp; Intelligent Systems</div>
               <div className="service-card__viz">
-                <div className="viz-network">
-                  <svg className="viz-network__svg" viewBox="0 0 240 160" fill="none">
-                    {/* Connections */}
-                    <g className="viz-network__edges" stroke="var(--line)" strokeWidth="1">
-                      <line x1="120" y1="80" x2="60" y2="36" />
-                      <line x1="120" y1="80" x2="180" y2="36" />
-                      <line x1="120" y1="80" x2="42" y2="100" />
-                      <line x1="120" y1="80" x2="198" y2="100" />
-                      <line x1="120" y1="80" x2="80" y2="140" />
-                      <line x1="120" y1="80" x2="160" y2="140" />
-                      <line x1="60" y1="36" x2="180" y2="36" className="viz-network__edge--faint" />
-                      <line x1="42" y1="100" x2="80" y2="140" className="viz-network__edge--faint" />
-                      <line x1="198" y1="100" x2="160" y2="140" className="viz-network__edge--faint" />
+                <div className="viz-network viz-neural">
+                  <svg className="viz-neural__svg" viewBox="0 0 320 200" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    {/* Layer column labels (subtle) */}
+                    <g className="viz-neural__labels">
+                      <text x="50" y="186" textAnchor="middle">INPUT</text>
+                      <text x="160" y="186" textAnchor="middle">HIDDEN</text>
+                      <text x="270" y="186" textAnchor="middle">OUTPUT</text>
                     </g>
-                    {/* Animated data dots traveling along edges */}
-                    <circle className="viz-network__dot" r="2.5">
-                      <animateMotion dur="3s" repeatCount="indefinite" path="M120,80 L60,36" />
+
+                    {/* Connection lattice — full mesh between layers */}
+                    <g className="viz-neural__edges">
+                      {/* Layer 1 → 2 */}
+                      <line x1="50" y1="50" x2="160" y2="58" />
+                      <line x1="50" y1="50" x2="160" y2="100" />
+                      <line x1="50" y1="50" x2="160" y2="142" />
+                      <line x1="50" y1="90" x2="160" y2="58" />
+                      <line x1="50" y1="90" x2="160" y2="100" />
+                      <line x1="50" y1="90" x2="160" y2="142" />
+                      <line x1="50" y1="130" x2="160" y2="58" />
+                      <line x1="50" y1="130" x2="160" y2="100" />
+                      <line x1="50" y1="130" x2="160" y2="142" />
+                      <line x1="50" y1="170" x2="160" y2="58" />
+                      <line x1="50" y1="170" x2="160" y2="100" />
+                      <line x1="50" y1="170" x2="160" y2="142" />
+                      {/* Layer 2 → 3 */}
+                      <line x1="160" y1="58" x2="270" y2="100" />
+                      <line x1="160" y1="100" x2="270" y2="100" />
+                      <line x1="160" y1="142" x2="270" y2="100" />
+                    </g>
+
+                    {/* Highlighted active paths — strong signal flowing left to right */}
+                    <g className="viz-neural__edges-active">
+                      <line x1="50" y1="90" x2="160" y2="100" />
+                      <line x1="160" y1="100" x2="270" y2="100" />
+                    </g>
+
+                    {/* Pulse particles travelling between layers */}
+                    <circle className="viz-neural__pulse" r="2.4">
+                      <animateMotion dur="2.4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" path="M50,90 L160,100 L270,100" />
                     </circle>
-                    <circle className="viz-network__dot" r="2.5">
-                      <animateMotion dur="3.4s" repeatCount="indefinite" path="M120,80 L198,100" begin="0.6s" />
+                    <circle className="viz-neural__pulse viz-neural__pulse--alt" r="1.8">
+                      <animateMotion dur="3.2s" repeatCount="indefinite" begin="0.8s" path="M50,50 L160,58 L270,100" />
                     </circle>
-                    <circle className="viz-network__dot" r="2.5">
-                      <animateMotion dur="2.8s" repeatCount="indefinite" path="M120,80 L160,140" begin="1.2s" />
+                    <circle className="viz-neural__pulse viz-neural__pulse--alt" r="1.8">
+                      <animateMotion dur="2.8s" repeatCount="indefinite" begin="1.4s" path="M50,130 L160,142 L270,100" />
                     </circle>
-                    {/* Outer nodes */}
-                    <circle cx="60" cy="36" r="6" className="viz-network__node" />
-                    <circle cx="180" cy="36" r="6" className="viz-network__node" />
-                    <circle cx="42" cy="100" r="6" className="viz-network__node" />
-                    <circle cx="198" cy="100" r="6" className="viz-network__node" />
-                    <circle cx="80" cy="140" r="6" className="viz-network__node" />
-                    <circle cx="160" cy="140" r="6" className="viz-network__node" />
-                    {/* Centre node */}
-                    <circle cx="120" cy="80" r="14" className="viz-network__hub" />
-                    <circle cx="120" cy="80" r="14" className="viz-network__hub-ring" />
-                    <circle cx="120" cy="80" r="22" className="viz-network__hub-glow" />
-                    <text x="120" y="84" textAnchor="middle" className="viz-network__hub-label">AI</text>
+
+                    {/* Input layer — 4 nodes */}
+                    <circle cx="50" cy="50" r="5" className="viz-neural__node" />
+                    <circle cx="50" cy="90" r="5" className="viz-neural__node viz-neural__node--active" />
+                    <circle cx="50" cy="130" r="5" className="viz-neural__node" />
+                    <circle cx="50" cy="170" r="5" className="viz-neural__node" />
+
+                    {/* Hidden layer — 3 nodes (slightly larger) */}
+                    <circle cx="160" cy="58" r="6.5" className="viz-neural__node viz-neural__node--mid" />
+                    <circle cx="160" cy="100" r="6.5" className="viz-neural__node viz-neural__node--mid viz-neural__node--active" />
+                    <circle cx="160" cy="142" r="6.5" className="viz-neural__node viz-neural__node--mid" />
+
+                    {/* Output node — bright halo */}
+                    <circle cx="270" cy="100" r="26" className="viz-neural__halo" />
+                    <circle cx="270" cy="100" r="18" className="viz-neural__halo viz-neural__halo--tight" />
+                    <circle cx="270" cy="100" r="11" className="viz-neural__out" />
+                    <circle cx="270" cy="100" r="4" className="viz-neural__out-core" />
                   </svg>
                 </div>
               </div>
@@ -385,19 +428,78 @@ export default function Elconekt() {
             <article className="service-card">
               <div className="service-card__num">03 / Cybersecurity &amp; Digital Resilience</div>
               <div className="service-card__viz">
-                <div className="viz-lock">
-                  <div className="viz-lock__rings">
-                    <div className="viz-lock__ring viz-lock__ring--1" />
-                    <div className="viz-lock__ring viz-lock__ring--2" />
-                    <div className="viz-lock__ring viz-lock__ring--3" />
-                  </div>
-                  <svg className="viz-lock__icon" viewBox="0 0 64 72" fill="none">
-                    <rect x="8" y="30" width="48" height="36" rx="6" fill="var(--navy)" />
-                    <rect x="8" y="30" width="48" height="36" rx="6" stroke="var(--blue)" strokeWidth="1.2" strokeOpacity="0.4" />
-                    <path d="M18 30V22a14 14 0 1 1 28 0v8" stroke="var(--navy)" strokeWidth="3.5" strokeLinecap="round" fill="none" />
-                    <path d="M18 30V22a14 14 0 1 1 28 0v8" stroke="var(--blue)" strokeWidth="1.2" strokeOpacity="0.5" strokeLinecap="round" fill="none" />
-                    <circle cx="32" cy="46" r="4" fill="var(--blue)" />
-                    <path d="M32 50v6" stroke="var(--blue)" strokeWidth="2.5" strokeLinecap="round" />
+                <div className="viz-lock viz-defense">
+                  <svg className="viz-defense__svg" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true">
+                    <defs>
+                      <radialGradient id="vizDefenseGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="rgba(130,168,255,0.32)" />
+                        <stop offset="60%" stopColor="rgba(130,168,255,0.08)" />
+                        <stop offset="100%" stopColor="rgba(130,168,255,0)" />
+                      </radialGradient>
+                      <linearGradient id="vizDefenseSweep" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="rgba(130,168,255,0)" />
+                        <stop offset="100%" stopColor="rgba(130,168,255,0.55)" />
+                      </linearGradient>
+                    </defs>
+
+                    {/* Background glow disc */}
+                    <circle cx="160" cy="100" r="90" fill="url(#vizDefenseGlow)" />
+
+                    {/* Hex grid backdrop — subtle */}
+                    <g className="viz-defense__grid">
+                      <path d="M40 50 L60 40 L80 50 L80 70 L60 80 L40 70 Z" />
+                      <path d="M80 50 L100 40 L120 50 L120 70 L100 80 L80 70 Z" />
+                      <path d="M200 130 L220 120 L240 130 L240 150 L220 160 L200 150 Z" />
+                      <path d="M240 50 L260 40 L280 50 L280 70 L260 80 L240 70 Z" />
+                      <path d="M40 130 L60 120 L80 130 L80 150 L60 160 L40 150 Z" />
+                    </g>
+
+                    {/* Concentric defence rings */}
+                    <g className="viz-defense__rings" transform="translate(160 100)">
+                      <circle r="80" className="viz-defense__ring viz-defense__ring--outer" />
+                      <circle r="58" className="viz-defense__ring viz-defense__ring--mid" />
+                      <circle r="36" className="viz-defense__ring viz-defense__ring--inner" />
+                    </g>
+
+                    {/* Tick marks on outer ring */}
+                    <g className="viz-defense__ticks" transform="translate(160 100)">
+                      <line x1="0" y1="-80" x2="0" y2="-72" />
+                      <line x1="80" y1="0" x2="72" y2="0" />
+                      <line x1="0" y1="80" x2="0" y2="72" />
+                      <line x1="-80" y1="0" x2="-72" y2="0" />
+                      <line x1="56.6" y1="-56.6" x2="50.9" y2="-50.9" />
+                      <line x1="56.6" y1="56.6" x2="50.9" y2="50.9" />
+                      <line x1="-56.6" y1="56.6" x2="-50.9" y2="50.9" />
+                      <line x1="-56.6" y1="-56.6" x2="-50.9" y2="-50.9" />
+                    </g>
+
+                    {/* Rotating scan sweep */}
+                    <g className="viz-defense__sweep" transform="translate(160 100)">
+                      <path d="M0,0 L80,0 A80,80 0 0,0 56.6,-56.6 Z" fill="url(#vizDefenseSweep)" />
+                    </g>
+
+                    {/* Cross-hair guides */}
+                    <g className="viz-defense__cross" transform="translate(160 100)">
+                      <line x1="-90" y1="0" x2="-82" y2="0" />
+                      <line x1="82" y1="0" x2="90" y2="0" />
+                      <line x1="0" y1="-90" x2="0" y2="-82" />
+                      <line x1="0" y1="82" x2="0" y2="90" />
+                    </g>
+
+                    {/* Sensor pings around perimeter */}
+                    <circle cx="160" cy="20" r="2.5" className="viz-defense__sensor" />
+                    <circle cx="240" cy="100" r="2.5" className="viz-defense__sensor viz-defense__sensor--2" />
+                    <circle cx="160" cy="180" r="2.5" className="viz-defense__sensor viz-defense__sensor--3" />
+                    <circle cx="80" cy="100" r="2.5" className="viz-defense__sensor viz-defense__sensor--4" />
+
+                    {/* Central shield emblem */}
+                    <g className="viz-defense__core" transform="translate(160 100)">
+                      <path
+                        d="M0,-22 L18,-14 L18,4 C18,16 10,22 0,26 C-10,22 -18,16 -18,4 L-18,-14 Z"
+                        className="viz-defense__shield"
+                      />
+                      <path d="M-7,1 L-1,7 L9,-5" className="viz-defense__check" />
+                    </g>
                   </svg>
                 </div>
               </div>
