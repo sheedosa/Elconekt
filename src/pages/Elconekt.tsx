@@ -351,7 +351,7 @@ export default function Elconekt() {
               <div className="service-card__num">02 / AI Solutions &amp; Intelligent Systems</div>
               <div className="service-card__viz">
                 <div className="viz-network viz-brain">
-                  <svg className="viz-brain__svg" viewBox="0 0 320 200" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                  <svg className="viz-brain__svg" viewBox="0 0 200 200" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
                     <defs>
                       <radialGradient id="vizBrainCore" cx="50%" cy="50%" r="50%">
                         <stop offset="0%" stopColor="rgba(255,255,255,0.95)" />
@@ -360,78 +360,74 @@ export default function Elconekt() {
                       </radialGradient>
                     </defs>
 
-                    {/* Brain hemisphere contour — organic, dotted */}
+                    {/* Outer brain contour — soft organic boundary, dotted */}
                     <path
                       className="viz-brain__contour"
-                      d="M 160,46 C 196,46 226,62 226,100 C 226,138 196,154 160,154 C 124,154 94,138 94,100 C 94,62 124,46 160,46 Z"
+                      d="M 100,18 C 142,18 178,52 178,100 C 178,148 142,182 100,182 C 58,182 22,148 22,100 C 22,52 58,18 100,18 Z"
                     />
-                    {/* Central fissure suggesting two hemispheres */}
-                    <path className="viz-brain__fissure" d="M 160,52 C 154,72 154,128 160,148" />
-                    {/* Subtle gyri (brain folds) */}
-                    <path className="viz-brain__gyrus" d="M 108,82 C 118,76 132,76 142,84" />
-                    <path className="viz-brain__gyrus" d="M 108,118 C 118,124 132,124 142,116" />
-                    <path className="viz-brain__gyrus" d="M 212,82 C 202,76 188,76 178,84" />
-                    <path className="viz-brain__gyrus" d="M 212,118 C 202,124 188,124 178,116" />
 
-                    {/* Synaptic curves radiating from the core */}
+                    {/* Counter-rotating dotted orbit — visual depth */}
+                    <g className="viz-brain__orbit">
+                      <circle cx="100" cy="100" r="60" />
+                    </g>
+
+                    {/* Background glow disc */}
+                    <circle cx="100" cy="100" r="46" fill="url(#vizBrainCore)" />
+
+                    {/* Synaptic curves — eight radial axons curving outward from the
+                        core to perimeter neurons, mirrored for radial symmetry. */}
                     <g className="viz-brain__synapses">
-                      <path d="M 120,72 Q 140,84 160,100" />
-                      <path d="M 200,72 Q 180,84 160,100" />
-                      <path d="M 104,100 Q 132,100 160,100" />
-                      <path d="M 216,100 Q 188,100 160,100" />
-                      <path d="M 120,128 Q 140,116 160,100" />
-                      <path d="M 200,128 Q 180,116 160,100" />
-                      <path d="M 142,60 Q 151,80 160,100" />
-                      <path d="M 178,60 Q 169,80 160,100" />
-                      <path d="M 142,140 Q 151,120 160,100" />
-                      <path d="M 178,140 Q 169,120 160,100" />
+                      <path d="M 100,100 Q 124,88 152,68" />
+                      <path d="M 100,100 Q 132,100 168,100" />
+                      <path d="M 100,100 Q 124,112 152,132" />
+                      <path d="M 100,100 Q 108,124 100,168" />
+                      <path d="M 100,100 Q 76,112 48,132" />
+                      <path d="M 100,100 Q 68,100 32,100" />
+                      <path d="M 100,100 Q 76,88 48,68" />
+                      <path d="M 100,100 Q 92,76 100,32" />
                     </g>
 
-                    {/* Highlighted active synapses — currently firing */}
+                    {/* Active synapses — opposite-pair firing pattern */}
                     <g className="viz-brain__synapses-active">
-                      <path d="M 120,72 Q 140,84 160,100" />
-                      <path d="M 200,128 Q 180,116 160,100" />
+                      <path d="M 100,100 Q 124,88 152,68" />
+                      <path d="M 100,100 Q 76,112 48,132" />
                     </g>
 
-                    {/* Pulse particles travelling synapses (thoughts firing) */}
+                    {/* Pulse particles travelling synapses — staggered timings
+                        across all four quadrants so the firing reads as continuous. */}
                     <circle r="2" className="viz-brain__pulse">
-                      <animateMotion dur="2.4s" repeatCount="indefinite" path="M 120,72 Q 140,84 160,100" />
+                      <animateMotion dur="2.4s" repeatCount="indefinite" path="M 100,100 Q 124,88 152,68" />
                     </circle>
-                    <circle r="1.8" className="viz-brain__pulse">
-                      <animateMotion dur="2.8s" repeatCount="indefinite" begin="0.5s" path="M 200,128 Q 180,116 160,100" />
-                    </circle>
-                    <circle r="1.8" className="viz-brain__pulse">
-                      <animateMotion dur="3.2s" repeatCount="indefinite" begin="1.1s" path="M 216,100 Q 188,100 160,100" />
+                    <circle r="2" className="viz-brain__pulse">
+                      <animateMotion dur="2.6s" repeatCount="indefinite" begin="0.6s" path="M 100,100 Q 76,112 48,132" />
                     </circle>
                     <circle r="1.6" className="viz-brain__pulse">
-                      <animateMotion dur="2.6s" repeatCount="indefinite" begin="1.7s" path="M 142,60 Q 151,80 160,100" />
+                      <animateMotion dur="3s" repeatCount="indefinite" begin="1.1s" path="M 100,100 Q 132,100 168,100" />
+                    </circle>
+                    <circle r="1.6" className="viz-brain__pulse">
+                      <animateMotion dur="2.8s" repeatCount="indefinite" begin="1.6s" path="M 100,100 Q 92,76 100,32" />
+                    </circle>
+                    <circle r="1.4" className="viz-brain__pulse">
+                      <animateMotion dur="3.2s" repeatCount="indefinite" begin="2.1s" path="M 100,100 Q 108,124 100,168" />
                     </circle>
 
-                    {/* Central glow disc */}
-                    <circle cx="160" cy="100" r="38" fill="url(#vizBrainCore)" />
+                    {/* Expanding thought-ripples emanating from the core */}
+                    <circle cx="100" cy="100" r="22" className="viz-brain__halo" />
+                    <circle cx="100" cy="100" r="22" className="viz-brain__halo viz-brain__halo--late" />
 
-                    {/* Expanding thought-ripples from the core */}
-                    <circle cx="160" cy="100" r="22" className="viz-brain__halo" />
-                    <circle cx="160" cy="100" r="22" className="viz-brain__halo viz-brain__halo--late" />
+                    {/* Outer neurons at synapse endpoints — radially symmetric */}
+                    <circle cx="152" cy="68" r="3.6" className="viz-brain__neuron viz-brain__neuron--firing" />
+                    <circle cx="168" cy="100" r="3.6" className="viz-brain__neuron" />
+                    <circle cx="152" cy="132" r="3.6" className="viz-brain__neuron" />
+                    <circle cx="100" cy="168" r="3.6" className="viz-brain__neuron" />
+                    <circle cx="48" cy="132" r="3.6" className="viz-brain__neuron viz-brain__neuron--firing" />
+                    <circle cx="32" cy="100" r="3.6" className="viz-brain__neuron" />
+                    <circle cx="48" cy="68" r="3.6" className="viz-brain__neuron" />
+                    <circle cx="100" cy="32" r="3.6" className="viz-brain__neuron" />
 
-                    {/* Neurons — satellite nodes positioned organically around the brain */}
-                    <circle cx="120" cy="72" r="3.5" className="viz-brain__neuron viz-brain__neuron--firing" />
-                    <circle cx="200" cy="72" r="3.5" className="viz-brain__neuron" />
-                    <circle cx="104" cy="100" r="3.5" className="viz-brain__neuron" />
-                    <circle cx="216" cy="100" r="3.5" className="viz-brain__neuron" />
-                    <circle cx="120" cy="128" r="3.5" className="viz-brain__neuron" />
-                    <circle cx="200" cy="128" r="3.5" className="viz-brain__neuron viz-brain__neuron--firing" />
-                    <circle cx="142" cy="60" r="3" className="viz-brain__neuron" />
-                    <circle cx="178" cy="60" r="3" className="viz-brain__neuron" />
-                    <circle cx="142" cy="140" r="3" className="viz-brain__neuron" />
-                    <circle cx="178" cy="140" r="3" className="viz-brain__neuron" />
-
-                    {/* Central neural core — bright white nucleus */}
-                    <circle cx="160" cy="100" r="13" className="viz-brain__core" />
-                    <circle cx="160" cy="100" r="5" className="viz-brain__core-inner" />
-
-                    {/* Subtle mono label */}
-                    <text x="160" y="184" textAnchor="middle" className="viz-brain__label">NEURAL CORE</text>
+                    {/* Central neural core — bright white nucleus, the heart */}
+                    <circle cx="100" cy="100" r="14" className="viz-brain__core" />
+                    <circle cx="100" cy="100" r="5" className="viz-brain__core-inner" />
                   </svg>
                 </div>
               </div>

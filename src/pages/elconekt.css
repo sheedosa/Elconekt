@@ -884,34 +884,36 @@ html.motion-ready .elconekt .reveal-stagger > * {
 .elconekt .viz-brain {
   position: absolute; inset: 0;
   display: grid; place-items: center;
-  background: radial-gradient(380px 240px at 50% 50%, rgba(255, 255, 255, 0.06), transparent 70%);
+  background: radial-gradient(280px 200px at 50% 50%, rgba(255, 255, 255, 0.06), transparent 70%);
 }
 .elconekt .viz-brain__svg {
   width: 100%;
   height: 100%;
+  max-width: 240px;
+  max-height: 200px;
   overflow: visible;
 }
 .elconekt .viz-brain__contour {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.28);
+  stroke: rgba(255, 255, 255, 0.26);
   stroke-width: 1.2;
   stroke-dasharray: 2 4;
 }
-.elconekt .viz-brain__fissure {
+.elconekt .viz-brain__orbit circle {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.22);
+  stroke: rgba(255, 255, 255, 0.18);
   stroke-width: 1;
   stroke-dasharray: 1 3;
+  animation: elc-brainOrbit 30s linear infinite;
+  transform-origin: 100px 100px;
+  transform-box: view-box;
 }
-.elconekt .viz-brain__gyrus {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.16);
-  stroke-width: 1;
-  stroke-linecap: round;
+@keyframes elc-brainOrbit {
+  to { transform: rotate(360deg); }
 }
 .elconekt .viz-brain__synapses path {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.18);
+  stroke: rgba(255, 255, 255, 0.2);
   stroke-width: 1;
   transition: stroke 0.5s;
 }
@@ -922,11 +924,11 @@ html.motion-ready .elconekt .reveal-stagger > * {
   filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
 }
 .elconekt .service-card:hover .viz-brain__synapses path {
-  stroke: rgba(255, 255, 255, 0.32);
+  stroke: rgba(255, 255, 255, 0.34);
 }
 .elconekt .viz-brain__neuron {
-  fill: rgba(255, 255, 255, 0.25);
-  stroke: rgba(255, 255, 255, 0.75);
+  fill: rgba(255, 255, 255, 0.3);
+  stroke: rgba(255, 255, 255, 0.8);
   stroke-width: 1.2;
 }
 .elconekt .viz-brain__neuron--firing {
@@ -936,8 +938,8 @@ html.motion-ready .elconekt .reveal-stagger > * {
   animation: elc-brainFire 2.2s ease-in-out infinite;
 }
 @keyframes elc-brainFire {
-  0%, 100% { r: 3.5; opacity: 0.85; }
-  50% { r: 4.5; opacity: 1; }
+  0%, 100% { r: 3.6; opacity: 0.85; }
+  50% { r: 4.8; opacity: 1; }
 }
 .elconekt .viz-brain__core {
   fill: rgba(255, 255, 255, 0.15);
@@ -946,33 +948,26 @@ html.motion-ready .elconekt .reveal-stagger > * {
 }
 .elconekt .viz-brain__core-inner {
   fill: #fff;
-  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.95));
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.95));
 }
 .elconekt .viz-brain__halo {
   fill: none;
   stroke: rgba(255, 255, 255, 0.5);
   stroke-width: 1;
   animation: elc-brainHalo 3.4s ease-out infinite;
-  transform-origin: 160px 100px;
+  transform-origin: 100px 100px;
   transform-box: view-box;
 }
 .elconekt .viz-brain__halo--late {
   animation-delay: 1.7s;
 }
 @keyframes elc-brainHalo {
-  0% { opacity: 0.7; transform: scale(0.55); }
-  100% { opacity: 0; transform: scale(1.6); }
+  0% { opacity: 0.75; transform: scale(0.55); }
+  100% { opacity: 0; transform: scale(1.7); }
 }
 .elconekt .viz-brain__pulse {
   fill: #fff;
   filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.85));
-}
-.elconekt .viz-brain__label {
-  fill: rgba(255, 255, 255, 0.32);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 8px;
-  letter-spacing: 0.18em;
-  font-weight: 500;
 }
 
 /* =========================================================
