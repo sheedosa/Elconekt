@@ -5,11 +5,16 @@ import { useReveal } from "../motion/useReveal";
 import { useMagnetic } from "../motion/useMagnetic";
 import { useTextReveal } from "../motion/useTextReveal";
 import HeroNodeBackground from "../motion/HeroNodeBackground";
+import { usePageMeta } from "../motion/usePageMeta";
 
 export default function Contact() {
   useReveal();
   useMagnetic();
   useTextReveal();
+  usePageMeta(
+    "Contact",
+    "Start a conversation with Elconekt. Whether you're planning a project, exploring AI, or strengthening security — we'd be happy to help.",
+  );
 
   const [form, setForm] = useState({
     name: "",

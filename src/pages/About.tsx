@@ -4,11 +4,16 @@ import { useReveal } from "../motion/useReveal";
 import { useMagnetic } from "../motion/useMagnetic";
 import { useTextReveal } from "../motion/useTextReveal";
 import HeroNodeBackground from "../motion/HeroNodeBackground";
+import { usePageMeta } from "../motion/usePageMeta";
 
 export default function About() {
   useReveal();
   useMagnetic();
   useTextReveal();
+  usePageMeta(
+    "About",
+    "Elconekt is an AI-enabled systems integrator and technology consultancy. We design, build, and secure intelligent digital infrastructure for governments, enterprises, and growing businesses.",
+  );
 
   const principles = [
     { num: "01", title: "Engineering-led", desc: "Senior expertise. Real accountability." },

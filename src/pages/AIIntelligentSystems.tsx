@@ -5,12 +5,17 @@ import { useReveal } from "../motion/useReveal";
 import { useMagnetic } from "../motion/useMagnetic";
 import { useTextReveal } from "../motion/useTextReveal";
 import HeroNodeBackground from "../motion/HeroNodeBackground";
+import { usePageMeta } from "../motion/usePageMeta";
 
 export default function AIIntelligentSystems() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   useReveal();
   useMagnetic();
   useTextReveal();
+  usePageMeta(
+    "AI & Intelligent Systems",
+    "Practical AI implementation and intelligent systems designed to improve operations, automate work, and create measurable business impact.",
+  );
 
   const services = [
     { icon: <><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.3" /><path d="M5 8h2l1.5-3 1.5 6 1-3h1.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" fill="none" /></>, title: "AI Strategy & Advisory", desc: "Helping organisations understand where AI creates value, with clear roadmaps and pragmatic prioritisation." },

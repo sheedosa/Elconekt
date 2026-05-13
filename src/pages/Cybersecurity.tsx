@@ -6,12 +6,17 @@ import { useMagnetic } from "../motion/useMagnetic";
 import { useTextReveal } from "../motion/useTextReveal";
 import PinnedSequence from "../motion/PinnedSequence";
 import HeroNodeBackground from "../motion/HeroNodeBackground";
+import { usePageMeta } from "../motion/usePageMeta";
 
 export default function Cybersecurity() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   useReveal();
   useMagnetic();
   useTextReveal();
+  usePageMeta(
+    "Cybersecurity & Digital Resilience",
+    "Enterprise-grade cybersecurity built for organisations that cannot afford disruption. Protect, detect, comply, respond.",
+  );
 
   const services = [
     { icon: <><path d="M2 4l6-2 6 2v5c0 3.5-2.5 5.5-6 6.5-3.5-1-6-3-6-6.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /><path d="M5.5 8l2 2L11 6.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></>, title: "Penetration testing", desc: "Authorised offensive testing of your applications, infrastructure, and cloud surface to surface real exploitable risk." },

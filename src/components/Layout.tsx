@@ -67,7 +67,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="elconekt">
       {/* NAV */}
       <nav className="nav" ref={navRef} aria-label="Primary">
-        <Link className="nav__brand" to="/">
+        <Link
+          className="nav__brand"
+          to="/"
+          aria-label="Elconekt — back to home"
+          onClick={() => { setMenuOpen(false); setServicesOpen(false); }}
+        >
           <img src="/elconekt-logo.png" alt="Elconekt" className="nav__logo" />
         </Link>
         <ul className={`nav__menu${menuOpen ? " is-open" : ""}`}>

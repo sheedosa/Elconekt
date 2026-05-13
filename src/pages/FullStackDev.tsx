@@ -6,12 +6,17 @@ import { useMagnetic } from "../motion/useMagnetic";
 import { useTextReveal } from "../motion/useTextReveal";
 import PinnedSequence from "../motion/PinnedSequence";
 import HeroNodeBackground from "../motion/HeroNodeBackground";
+import { usePageMeta } from "../motion/usePageMeta";
 
 export default function FullStackDev() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   useReveal();
   useMagnetic();
   useTextReveal();
+  usePageMeta(
+    "Full Stack Development",
+    "Modern websites, applications and digital platforms built to scale. Engineered for performance, usability, and long-term growth.",
+  );
 
   return (
     <>
