@@ -1,9 +1,20 @@
 import { useEffect, useRef, useCallback } from "react";
 import { ArrowIcon, RightArrowIcon } from "../components/Layout";
 import { Link } from "react-router-dom";
+import { useReveal } from "../motion/useReveal";
+import { useParallax } from "../motion/useParallax";
+import { useMagnetic } from "../motion/useMagnetic";
+import { useTextReveal } from "../motion/useTextReveal";
+import { smoothScrollTo } from "../motion/SmoothScroll";
+import { prefersReducedMotion } from "../motion/env";
+import HeroBackdrop from "../motion/HeroBackdrop";
 
 export default function Elconekt() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  useReveal();
+  useParallax();
+  useMagnetic();
+  useTextReveal();
 
   // Hero canvas animation
   useEffect(() => {
@@ -129,23 +140,6 @@ export default function Elconekt() {
     };
   }, []);
 
-  // IntersectionObserver reveals
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            e.target.classList.add("in");
-            io.unobserve(e.target);
-          }
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-    );
-    document.querySelectorAll(".elconekt .reveal, .elconekt .reveal-stagger").forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
-
   // Animated stat counters
   useEffect(() => {
     const stats = document.querySelectorAll<HTMLElement>(".elconekt [data-count]");
@@ -178,15 +172,21 @@ export default function Elconekt() {
 
 
   const scrollTo = useCallback((id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    if (prefersReducedMotion()) {
+      document.getElementById(id)?.scrollIntoView({ behavior: "auto" });
+    } else {
+      smoothScrollTo("#" + id, -20);
+    }
   }, []);
 
   return (
     <>
       {/* HERO */}
       <header className="hero" id="elc-top">
-        <canvas className="hero__canvas" ref={canvasRef} />
-        <div className="hero__grad" />
+        <div className="hero__bg">
+          <HeroBackdrop fallback={<canvas className="hero__canvas" ref={canvasRef} />} />
+        </div>
+        <div className="hero__grad" data-parallax="0.2" />
         <div className="container hero__inner">
           <div className="hero__meta">
             <span className="eyebrow">Intelligent Systems Integrator</span>
@@ -201,11 +201,11 @@ export default function Elconekt() {
             AI-powered digital solutions, intelligent systems, and enterprise-grade cybersecurity for modern organisations.
           </p>
           <div className="hero__ctas">
-            <a className="btn btn--primary" href="mailto:hello@elconekt.com">
+            <a className="btn btn--primary" href="mailto:hello@elconekt.com" data-magnetic="0.3">
               Talk to Us
               <ArrowIcon size={14} />
             </a>
-            <a className="btn btn--ghost" href="#" onClick={(e) => { e.preventDefault(); scrollTo("elc-services"); }}>
+            <a className="btn btn--ghost" href="#" onClick={(e) => { e.preventDefault(); scrollTo("elc-services"); }} data-magnetic="0.3">
               Explore Services
               <RightArrowIcon />
             </a>
@@ -223,11 +223,11 @@ export default function Elconekt() {
           <div className="intro__layout">
             <div>
               <span className="eyebrow" style={{ marginBottom: 32, display: "inline-flex" }}>[ 02 — Who we are ]</span>
-              <h2 className="intro__copy" style={{ marginTop: 24 }}>
+              <h2 className="intro__copy" data-reveal-text style={{ marginTop: 24 }}>
                 A technology partner<br />built <span className="accent">differently.</span>
               </h2>
             </div>
-            <div className="intro__right">
+            <div className="intro__right" data-parallax="-0.08">
               <p>Elconekt was founded on a simple belief: modern organisations need more than disconnected vendors. They need one trusted partner who can help them build, transform, and protect their operations.</p>
               <p>That's why we combine full stack development, intelligent systems, and cybersecurity under one roof, delivering integrated solutions designed for long-term growth.</p>
             </div>
@@ -284,7 +284,7 @@ export default function Elconekt() {
           <div className="section__header reveal">
             <div>
               <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 03 — What we do ]</span>
-              <h2 className="section__title" style={{ marginTop: 20 }}>
+              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
                 Build.<br />Transform.<br />
                 <span className="accent">Protect.</span>
               </h2>
@@ -420,7 +420,7 @@ export default function Elconekt() {
           <div className="section__header reveal">
             <div>
               <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 04 — The AI thread ]</span>
-              <h2 className="section__title" style={{ marginTop: 20 }}>
+              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
                 <span className="accent">AI</span><br />
                 across everything<br />we deliver.
               </h2>
@@ -457,7 +457,7 @@ export default function Elconekt() {
           <div className="section__header reveal">
             <div>
               <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 05 — Why Elconekt ]</span>
-              <h2 className="section__title" style={{ marginTop: 20 }}>Six reasons<br />leaders<br />choose us.</h2>
+              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>Six reasons<br />leaders choose us.</h2>
             </div>
             <p className="section__lead">
               We're built for the moments that matter. The launch that can't slip, the breach that can't happen, the system that has to scale. <strong>No middlemen. No lock-in. No surprises.</strong>
@@ -495,7 +495,7 @@ export default function Elconekt() {
           <div className="section__header reveal">
             <div>
               <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 06 — Where we work ]</span>
-              <h2 className="section__title" style={{ marginTop: 20 }}>Sectors<br />we serve.</h2>
+              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>Sectors<br />we serve.</h2>
             </div>
             <p className="section__lead">From sovereign infrastructure to scaling SMEs. We operate across industries where the cost of failure is real and the standard for delivery is higher.</p>
           </div>
@@ -530,7 +530,7 @@ export default function Elconekt() {
         <div className="container">
           <div className="reveal">
             <span className="eyebrow" style={{ color: "rgba(255,255,255,0.55)", marginBottom: 40, display: "inline-flex" }}>[ 07 — Start a conversation ]</span>
-            <h2 className="cta-close__title" style={{ marginTop: 32 }}>
+            <h2 className="cta-close__title" data-reveal-text style={{ marginTop: 32 }}>
               Let's build<br />something <span className="accent">smarter</span>—<br />and <span className="accent">safer.</span>
             </h2>
           </div>

@@ -1,26 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowIcon, RightArrowIcon } from "../components/Layout";
+import { useReveal } from "../motion/useReveal";
+import { useMagnetic } from "../motion/useMagnetic";
+import { useTextReveal } from "../motion/useTextReveal";
+import PinnedSequence from "../motion/PinnedSequence";
 
 export default function FullStackDev() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  // IntersectionObserver reveals
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            e.target.classList.add("in");
-            io.unobserve(e.target);
-          }
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-    );
-    document.querySelectorAll(".elconekt .reveal, .elconekt .reveal-stagger").forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
+  useReveal();
+  useMagnetic();
+  useTextReveal();
 
   return (
     <>
@@ -36,18 +26,18 @@ export default function FullStackDev() {
               <span>Full Stack Development</span>
             </div>
             <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 01 — Full Stack Development ]</span>
-            <h1 className="svc-hero__title">
+            <h1 className="svc-hero__title" data-reveal-text>
               Build modern<br />digital <span className="accent">products.</span>
             </h1>
             <p className="svc-hero__sub">
               From websites and mobile apps to complex platforms, we engineer digital products designed to scale.
             </p>
             <div className="svc-hero__ctas">
-              <a className="btn btn--primary" href="mailto:hello@elconekt.com">
+              <a className="btn btn--primary" href="mailto:hello@elconekt.com" data-magnetic="0.3">
                 Discuss Your Project
                 <ArrowIcon size={14} />
               </a>
-              <a className="btn btn--ghost" href="#svc-work">
+              <a className="btn btn--ghost" href="#svc-work" data-magnetic="0.3">
                 How We Work
                 <RightArrowIcon />
               </a>
@@ -62,7 +52,7 @@ export default function FullStackDev() {
           <div className="section__header reveal">
             <div>
               <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ What we build ]</span>
-              <h2 className="section__title" style={{ marginTop: 20 }}>
+              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
                 Everything your<br />business runs on.
               </h2>
             </div>
@@ -95,37 +85,20 @@ export default function FullStackDev() {
         </div>
       </section>
 
-      {/* HOW WE WORK */}
-      <section className="section section--surface" id="svc-work">
-        <div className="container">
-          <div className="section__header reveal">
-            <div>
-              <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ How we work ]</span>
-              <h2 className="section__title" style={{ marginTop: 20 }}>
-                From brief<br />to launch.
-              </h2>
-            </div>
-            <p className="section__lead">
-              A proven four-phase process that keeps projects lean, transparent, and on track. No surprises, no scope creep.
-            </p>
-          </div>
-
-          <div className="svc-process reveal-stagger">
-            {[
-              { num: "01", title: "Discover", desc: "We listen, research, and define the problem. Stakeholder interviews, technical audits, and competitive analysis shape a clear brief." },
-              { num: "02", title: "Design", desc: "Wireframes, prototypes, and design systems. We validate with real users before a single line of production code is written." },
-              { num: "03", title: "Build", desc: "Agile sprints with weekly demos. Clean, tested code deployed to staging so you can see progress in real time." },
-              { num: "04", title: "Launch", desc: "Performance tuning, security hardening, and go-live support. We stay on until the product is stable and your team is confident." },
-            ].map((step) => (
-              <div className="svc-process__step" key={step.num}>
-                <span className="svc-process__num">{step.num}</span>
-                <h3 className="svc-process__title">{step.title}</h3>
-                <p className="svc-process__desc">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* HOW WE WORK — pinned scroll storytelling on desktop, normal stack on mobile */}
+      <div id="svc-work">
+        <PinnedSequence
+          eyebrow="[ How we work ]"
+          heading={<>From brief<br />to launch.</>}
+          lead="A proven four-phase process that keeps projects lean, transparent, and on track. No surprises, no scope creep."
+          steps={[
+            { num: "01", title: "Discover", desc: "We listen, research, and define the problem. Stakeholder interviews, technical audits, and competitive analysis shape a clear brief." },
+            { num: "02", title: "Design", desc: "Wireframes, prototypes, and design systems. We validate with real users before a single line of production code is written." },
+            { num: "03", title: "Build", desc: "Agile sprints with weekly demos. Clean, tested code deployed to staging so you can see progress in real time." },
+            { num: "04", title: "Launch", desc: "Performance tuning, security hardening, and go-live support. We stay on until the product is stable and your team is confident." },
+          ]}
+        />
+      </div>
 
       {/* TECH STACK */}
       <section className="section">
@@ -133,7 +106,7 @@ export default function FullStackDev() {
           <div className="section__header reveal">
             <div>
               <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ Tech stack ]</span>
-              <h2 className="section__title" style={{ marginTop: 20 }}>
+              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
                 Tools we<br />build with.
               </h2>
             </div>
@@ -166,7 +139,7 @@ export default function FullStackDev() {
           <div className="section__header reveal">
             <div>
               <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ FAQ ]</span>
-              <h2 className="section__title" style={{ marginTop: 20 }}>
+              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
                 Common<br />questions.
               </h2>
             </div>
@@ -199,13 +172,13 @@ export default function FullStackDev() {
         <div className="container">
           <div className="reveal">
             <span className="eyebrow" style={{ color: "rgba(255,255,255,0.55)", marginBottom: 40, display: "inline-flex" }}>[ Start a conversation ]</span>
-            <h2 className="cta-close__title" style={{ marginTop: 32 }}>
+            <h2 className="cta-close__title" data-reveal-text style={{ marginTop: 32 }}>
               Ready to build<br />something <span className="accent">great?</span>
             </h2>
           </div>
           <div className="cta-close__row reveal">
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <a className="btn btn--primary" href="mailto:hello@elconekt.com">
+              <a className="btn btn--primary" href="mailto:hello@elconekt.com" data-magnetic="0.3">
                 Discuss Your Project
                 <ArrowIcon size={14} />
               </a>

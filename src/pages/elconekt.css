@@ -18,6 +18,24 @@
   --container: 1280px;
   --gutter: clamp(20px, 4vw, 56px);
 
+  /* ---- Fluid type scale (cinematic) ----
+     Anchored to viewport width with safe floor + ceiling.
+     Mobile floor keeps everything readable; desktop ceiling
+     unlocks the oversized editorial feel. */
+  --fs-display:  clamp(3.5rem, 12vw, 11rem);   /* hero h1            56-176px */
+  --fs-h1:       clamp(2.75rem, 7.5vw, 7rem);  /* section title      44-112px */
+  --fs-h2:       clamp(2.25rem, 5.5vw, 5rem);  /* intro/CTA title    36-80px  */
+  --fs-h3:       clamp(1.5rem, 2.2vw, 2.25rem);/* card titles        24-36px  */
+  --fs-lead:     clamp(1.125rem, 1.3vw, 1.375rem); /* lead body      18-22px */
+  --fs-body:     1.0625rem;                    /* 17px */
+  --fs-eyebrow:  0.6875rem;                    /* 11px */
+
+  /* ---- Cinematic spacing ----
+     Bigger vertical rhythm so sections breathe. */
+  --space-section:   clamp(120px, 18vh, 220px);
+  --space-section-y: clamp(60px, 8vh, 120px);
+  --space-header:    clamp(64px, 10vh, 140px);
+
   background: var(--bg);
   color: var(--ink-2);
   font-family: 'Inter', system-ui, sans-serif;
@@ -285,9 +303,17 @@
   padding-bottom: 8vh;
   overflow: hidden;
 }
-.elconekt .hero__canvas {
+.elconekt .hero__bg {
   position: absolute; inset: 0;
   z-index: 0;
+  pointer-events: none;
+}
+.elconekt .hero__bg .hero3d__canvas {
+  /* R3F canvas owns pointer events for cursor parallax */
+  pointer-events: auto;
+}
+.elconekt .hero__canvas {
+  position: absolute; inset: 0;
   width: 100%;
   height: 100%;
 }
@@ -314,11 +340,11 @@
   gap: 24px;
 }
 .elconekt .hero__title {
-  font-size: clamp(56px, 9.2vw, 156px);
+  font-size: var(--fs-display);
   font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 0.92;
-  max-width: 1200px;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  max-width: 14ch;
   color: var(--ink);
 }
 .elconekt .hero__title .accent {
@@ -347,11 +373,11 @@
 }
 
 .elconekt .hero__sub {
-  font-size: clamp(17px, 1.4vw, 20px);
-  line-height: 1.55;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
   color: var(--ink-2);
-  max-width: 560px;
-  margin-top: 32px;
+  max-width: 48ch;
+  margin-top: clamp(28px, 4vh, 48px);
   opacity: 0;
   animation: elc-fadeUp 1s var(--ease-out) 0.8s forwards;
 }
@@ -408,72 +434,69 @@
   100% { top: 100%; }
 }
 
-/* ========== Reveal animation ========== */
+/* ========== Reveal animation ==========
+   GSAP drives .reveal and .reveal-stagger > * via useReveal().
+   We set the initial state in CSS so there's no FOUC before JS hydrates,
+   and respect prefers-reduced-motion as a safety net.
+*/
 .elconekt .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out);
-}
-.elconekt .reveal.in {
-  opacity: 1;
-  transform: translateY(0);
+  will-change: opacity, transform;
 }
 .elconekt .reveal-stagger > * {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  will-change: opacity, transform;
 }
-.elconekt .reveal-stagger.in > * {
-  opacity: 1;
-  transform: translateY(0);
+@media (prefers-reduced-motion: reduce) {
+  .elconekt .reveal,
+  .elconekt .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
-.elconekt .reveal-stagger.in > *:nth-child(1) { transition-delay: 0.05s; }
-.elconekt .reveal-stagger.in > *:nth-child(2) { transition-delay: 0.15s; }
-.elconekt .reveal-stagger.in > *:nth-child(3) { transition-delay: 0.25s; }
-.elconekt .reveal-stagger.in > *:nth-child(4) { transition-delay: 0.35s; }
-.elconekt .reveal-stagger.in > *:nth-child(5) { transition-delay: 0.45s; }
-.elconekt .reveal-stagger.in > *:nth-child(6) { transition-delay: 0.55s; }
-.elconekt .reveal-stagger.in > *:nth-child(7) { transition-delay: 0.65s; }
-.elconekt .reveal-stagger.in > *:nth-child(8) { transition-delay: 0.75s; }
 
 /* ========== Section base ========== */
 .elconekt section { position: relative; }
 .elconekt .section {
-  padding: clamp(100px, 14vh, 180px) 0;
+  padding: var(--space-section) 0;
 }
-.elconekt .section--tight { padding: clamp(80px, 10vh, 120px) 0; }
+.elconekt .section--tight { padding: var(--space-section-y) 0; }
 .elconekt .section--surface { background: var(--surface); }
 
 .elconekt .section__header {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 60px;
+  grid-template-columns: 1fr 1.3fr;
+  gap: clamp(40px, 6vw, 96px);
   align-items: end;
-  margin-bottom: 80px;
+  margin-bottom: var(--space-header);
 }
 .elconekt .section__title {
-  font-size: clamp(40px, 5.5vw, 84px);
+  font-size: var(--fs-h1);
   font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 0.98;
+  letter-spacing: -0.042em;
+  line-height: 0.94;
   max-width: 14ch;
 }
 .elconekt .section__lead {
-  font-size: clamp(18px, 1.45vw, 21px);
-  line-height: 1.55;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
   color: var(--ink-2);
-  max-width: 56ch;
+  max-width: 52ch;
   font-weight: 400;
+  letter-spacing: -0.005em;
 }
 .elconekt .section__title .accent { color: var(--blue); }
 .elconekt .section__lead strong { color: var(--ink); font-weight: 600; }
 
 /* ========== Intro / stats ========== */
 .elconekt .intro__copy {
-  font-size: clamp(36px, 4.5vw, 64px);
+  font-size: var(--fs-h2);
   font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
   max-width: 22ch;
   font-family: 'Space Grotesk', sans-serif;
 }
@@ -1075,12 +1098,12 @@
 }
 .elconekt .cta-close .container { position: relative; z-index: 2; }
 .elconekt .cta-close__title {
-  font-size: clamp(48px, 7vw, 120px);
+  font-size: var(--fs-h1);
   font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 0.96;
-  max-width: 16ch;
-  margin-bottom: 60px;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  max-width: 14ch;
+  margin-bottom: clamp(48px, 7vh, 96px);
 }
 .elconekt .cta-close__title .accent {
   color: #82a8ff;
@@ -1234,7 +1257,7 @@
 
 /* ========== Service page — hero ========== */
 .elconekt .svc-hero {
-  padding: clamp(140px, 16vw, 200px) 0 clamp(80px, 10vw, 120px);
+  padding: clamp(160px, 20vh, 240px) 0 clamp(96px, 12vh, 160px);
   background: var(--surface);
   border-bottom: 1px solid var(--line);
 }
@@ -1257,21 +1280,21 @@
 .elconekt .svc-hero__breadcrumb span:not(:last-child) { opacity: 0.5; }
 .elconekt .svc-hero__title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(40px, 6vw, 80px);
-  font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 0.96;
+  font-size: var(--fs-h1);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
   color: var(--ink);
   margin-bottom: 28px;
   max-width: 16ch;
 }
 .elconekt .svc-hero__title .accent { color: var(--blue); }
 .elconekt .svc-hero__sub {
-  font-size: clamp(18px, 1.5vw, 22px);
-  line-height: 1.55;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
   color: var(--ink-2);
   max-width: 52ch;
-  margin-bottom: 40px;
+  margin-bottom: clamp(32px, 4vh, 56px);
 }
 .elconekt .svc-hero__ctas {
   display: flex;
@@ -1526,7 +1549,8 @@
   .elconekt .svc-offerings { grid-template-columns: 1fr; }
   .elconekt .svc-process { grid-template-columns: repeat(2, 1fr); }
   .elconekt .svc-stack { grid-template-columns: repeat(2, 1fr); }
-  .elconekt .section__header { grid-template-columns: 1fr; gap: 24px; margin-bottom: 50px; }
+  .elconekt .section__header { grid-template-columns: 1fr; gap: 32px; margin-bottom: clamp(48px, 8vh, 80px); align-items: start; }
+  .elconekt .section__lead { max-width: 100%; }
   .elconekt .intro__layout { grid-template-columns: 1fr; gap: 40px; }
   .elconekt .principles { grid-template-columns: repeat(2, 1fr); }
   .elconekt .services { grid-template-columns: 1fr; }
@@ -1548,6 +1572,207 @@
 
   .elconekt .svc-process { grid-template-columns: 1fr; }
   .elconekt .svc-stack { grid-template-columns: 1fr; }
-  .elconekt .svc-hero__title { font-size: clamp(2rem, 8vw, 3rem); }
-  .elconekt .svc-hero__sub { font-size: 1rem; }
+}
+
+/* ==========================================================
+   PinnedSequence — desktop pinned two-column, mobile stack
+   ========================================================== */
+.elconekt .pinseq {
+  position: relative;
+  /* desktop pin needs at least 100vh of height inside */
+}
+.elconekt .pinseq__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 6vw, 96px);
+  min-height: 100vh;
+  align-items: center;
+  padding-top: var(--space-section-y);
+  padding-bottom: var(--space-section-y);
+}
+.elconekt .pinseq__left { position: relative; }
+.elconekt .pinseq__heading { margin-top: 20px; max-width: 14ch; }
+.elconekt .pinseq__lead {
+  margin-top: 24px;
+  max-width: 38ch;
+  color: var(--muted);
+}
+.elconekt .pinseq__dots {
+  list-style: none;
+  margin-top: clamp(32px, 5vh, 56px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0;
+}
+.elconekt .pinseq__dot {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding-left: 22px;
+  position: relative;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted-2);
+  text-transform: uppercase;
+  transition: color 0.5s var(--ease-out);
+}
+.elconekt .pinseq__dot::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: background 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+.elconekt .pinseq__dot.is-active { color: var(--ink); }
+.elconekt .pinseq__dot.is-active::before { background: var(--blue); transform: scale(1.5); }
+.elconekt .pinseq__dot-num { color: var(--blue); font-weight: 500; }
+.elconekt .pinseq__dot-title { font-family: 'Space Grotesk', sans-serif; font-size: 14px; letter-spacing: -0.01em; text-transform: none; }
+
+/* Right panel — stacked, only one visible at a time on desktop */
+.elconekt .pinseq__right {
+  position: relative;
+  min-height: 60vh;
+  display: grid;
+}
+.elconekt .pinseq__panel {
+  grid-column: 1; grid-row: 1; /* stack panels */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-self: center;
+}
+.elconekt .pinseq__panel-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--blue);
+  font-weight: 500;
+}
+.elconekt .pinseq__panel-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+  color: var(--ink);
+}
+.elconekt .pinseq__panel-desc {
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 42ch;
+}
+
+/* Mobile-only flow (hidden on desktop) */
+.elconekt .pinseq__mobile { display: none; }
+
+@media (max-width: 899px) {
+  .elconekt .pinseq__container { display: none; }
+  .elconekt .pinseq__mobile {
+    display: block;
+    padding-top: var(--space-section-y);
+    padding-bottom: var(--space-section-y);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .elconekt .pinseq__container { display: none; }
+  .elconekt .pinseq__mobile { display: block; }
+}
+
+/* ==========================================================
+   Custom cursor — desktop only (component self-gates)
+   ========================================================== */
+html.has-custom-cursor,
+html.has-custom-cursor body,
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [data-cursor="hover"] {
+  cursor: none !important;
+}
+.cursor {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+.cursor--dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  margin-left: -4px;
+  margin-top: -4px;
+}
+.cursor--ring {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.7);
+  transform: translate(-50%, -50%);
+  margin-left: -18px;
+  margin-top: -18px;
+  transition: border-color 0.3s, background 0.3s;
+}
+.cursor--ring.is-hover {
+  background: rgba(255,255,255,0.08);
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor { display: none !important; }
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button { cursor: auto !important; }
+}
+
+/* Buttons with magnetic behavior keep their inline transform from gsap.
+   We avoid conflicting CSS hover transforms when data-magnetic is present. */
+.elconekt [data-magnetic] { will-change: transform; }
+@media (hover: hover) and (pointer: fine) {
+  .elconekt .btn--primary[data-magnetic]:hover,
+  .elconekt .btn--ghost[data-magnetic]:hover {
+    transform: none; /* magnetic JS controls it */
+  }
+}
+
+/* ==========================================================
+   Text-reveal word masks (data-reveal-text targets)
+   ========================================================== */
+.elconekt [data-reveal-text] .tr-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* Slight extra height so descenders + accent borders don't clip */
+  padding-bottom: 0.06em;
+  line-height: inherit;
+}
+.elconekt [data-reveal-text] .tr-word__inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ==========================================================
+   Page-mount entry — subtle full-page fade so the cinematic
+   feel starts the moment the route hydrates.
+   ========================================================== */
+.elconekt {
+  animation: elc-page-in 0.9s var(--ease-out) both;
+}
+@keyframes elc-page-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .elconekt { animation: none; }
+}
+
+/* Nav: premium backdrop blur when scrolled. */
+.elconekt .nav.scrolled {
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  background: rgba(255, 255, 255, 0.72);
 }

@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { smoothScrollTo } from "../motion/SmoothScroll";
+import { prefersReducedMotion } from "../motion/env";
 
 const ArrowIcon = ({ size = 12 }: { size?: number }) => (
   <svg className="arrow" width={size} height={size} viewBox="0 0 12 12" fill="none">
@@ -54,7 +56,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const scrollTo = (id: string) => {
     if (isHome) {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      if (prefersReducedMotion()) {
+        document.getElementById(id)?.scrollIntoView({ behavior: "auto" });
+      } else {
+        smoothScrollTo("#" + id, -20);
+      }
     } else {
       navigate("/#" + id);
     }
@@ -105,7 +111,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <span className={`nav__burger-line${menuOpen ? " is-open" : ""}`} />
           <span className={`nav__burger-line${menuOpen ? " is-open" : ""}`} />
         </button>
-        <a className="nav__cta" href="mailto:hello@elconekt.com">
+        <a className="nav__cta" href="mailto:hello@elconekt.com" data-magnetic="0.25">
           Talk to Us
           <ArrowIcon />
         </a>
