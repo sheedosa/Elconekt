@@ -350,69 +350,88 @@ export default function Elconekt() {
             <article className="service-card">
               <div className="service-card__num">02 / AI Solutions &amp; Intelligent Systems</div>
               <div className="service-card__viz">
-                <div className="viz-network viz-neural">
-                  <svg className="viz-neural__svg" viewBox="0 0 320 200" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    {/* Layer column labels (subtle) */}
-                    <g className="viz-neural__labels">
-                      <text x="50" y="186" textAnchor="middle">INPUT</text>
-                      <text x="160" y="186" textAnchor="middle">HIDDEN</text>
-                      <text x="270" y="186" textAnchor="middle">OUTPUT</text>
+                <div className="viz-network viz-brain">
+                  <svg className="viz-brain__svg" viewBox="0 0 320 200" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                    <defs>
+                      <radialGradient id="vizBrainCore" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="rgba(255,255,255,0.95)" />
+                        <stop offset="35%" stopColor="rgba(255,255,255,0.45)" />
+                        <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+                      </radialGradient>
+                    </defs>
+
+                    {/* Brain hemisphere contour — organic, dotted */}
+                    <path
+                      className="viz-brain__contour"
+                      d="M 160,46 C 196,46 226,62 226,100 C 226,138 196,154 160,154 C 124,154 94,138 94,100 C 94,62 124,46 160,46 Z"
+                    />
+                    {/* Central fissure suggesting two hemispheres */}
+                    <path className="viz-brain__fissure" d="M 160,52 C 154,72 154,128 160,148" />
+                    {/* Subtle gyri (brain folds) */}
+                    <path className="viz-brain__gyrus" d="M 108,82 C 118,76 132,76 142,84" />
+                    <path className="viz-brain__gyrus" d="M 108,118 C 118,124 132,124 142,116" />
+                    <path className="viz-brain__gyrus" d="M 212,82 C 202,76 188,76 178,84" />
+                    <path className="viz-brain__gyrus" d="M 212,118 C 202,124 188,124 178,116" />
+
+                    {/* Synaptic curves radiating from the core */}
+                    <g className="viz-brain__synapses">
+                      <path d="M 120,72 Q 140,84 160,100" />
+                      <path d="M 200,72 Q 180,84 160,100" />
+                      <path d="M 104,100 Q 132,100 160,100" />
+                      <path d="M 216,100 Q 188,100 160,100" />
+                      <path d="M 120,128 Q 140,116 160,100" />
+                      <path d="M 200,128 Q 180,116 160,100" />
+                      <path d="M 142,60 Q 151,80 160,100" />
+                      <path d="M 178,60 Q 169,80 160,100" />
+                      <path d="M 142,140 Q 151,120 160,100" />
+                      <path d="M 178,140 Q 169,120 160,100" />
                     </g>
 
-                    {/* Connection lattice — full mesh between layers */}
-                    <g className="viz-neural__edges">
-                      {/* Layer 1 → 2 */}
-                      <line x1="50" y1="50" x2="160" y2="58" />
-                      <line x1="50" y1="50" x2="160" y2="100" />
-                      <line x1="50" y1="50" x2="160" y2="142" />
-                      <line x1="50" y1="90" x2="160" y2="58" />
-                      <line x1="50" y1="90" x2="160" y2="100" />
-                      <line x1="50" y1="90" x2="160" y2="142" />
-                      <line x1="50" y1="130" x2="160" y2="58" />
-                      <line x1="50" y1="130" x2="160" y2="100" />
-                      <line x1="50" y1="130" x2="160" y2="142" />
-                      <line x1="50" y1="170" x2="160" y2="58" />
-                      <line x1="50" y1="170" x2="160" y2="100" />
-                      <line x1="50" y1="170" x2="160" y2="142" />
-                      {/* Layer 2 → 3 */}
-                      <line x1="160" y1="58" x2="270" y2="100" />
-                      <line x1="160" y1="100" x2="270" y2="100" />
-                      <line x1="160" y1="142" x2="270" y2="100" />
+                    {/* Highlighted active synapses — currently firing */}
+                    <g className="viz-brain__synapses-active">
+                      <path d="M 120,72 Q 140,84 160,100" />
+                      <path d="M 200,128 Q 180,116 160,100" />
                     </g>
 
-                    {/* Highlighted active paths — strong signal flowing left to right */}
-                    <g className="viz-neural__edges-active">
-                      <line x1="50" y1="90" x2="160" y2="100" />
-                      <line x1="160" y1="100" x2="270" y2="100" />
-                    </g>
-
-                    {/* Pulse particles travelling between layers */}
-                    <circle className="viz-neural__pulse" r="2.4">
-                      <animateMotion dur="2.4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" path="M50,90 L160,100 L270,100" />
+                    {/* Pulse particles travelling synapses (thoughts firing) */}
+                    <circle r="2" className="viz-brain__pulse">
+                      <animateMotion dur="2.4s" repeatCount="indefinite" path="M 120,72 Q 140,84 160,100" />
                     </circle>
-                    <circle className="viz-neural__pulse viz-neural__pulse--alt" r="1.8">
-                      <animateMotion dur="3.2s" repeatCount="indefinite" begin="0.8s" path="M50,50 L160,58 L270,100" />
+                    <circle r="1.8" className="viz-brain__pulse">
+                      <animateMotion dur="2.8s" repeatCount="indefinite" begin="0.5s" path="M 200,128 Q 180,116 160,100" />
                     </circle>
-                    <circle className="viz-neural__pulse viz-neural__pulse--alt" r="1.8">
-                      <animateMotion dur="2.8s" repeatCount="indefinite" begin="1.4s" path="M50,130 L160,142 L270,100" />
+                    <circle r="1.8" className="viz-brain__pulse">
+                      <animateMotion dur="3.2s" repeatCount="indefinite" begin="1.1s" path="M 216,100 Q 188,100 160,100" />
+                    </circle>
+                    <circle r="1.6" className="viz-brain__pulse">
+                      <animateMotion dur="2.6s" repeatCount="indefinite" begin="1.7s" path="M 142,60 Q 151,80 160,100" />
                     </circle>
 
-                    {/* Input layer — 4 nodes */}
-                    <circle cx="50" cy="50" r="5" className="viz-neural__node" />
-                    <circle cx="50" cy="90" r="5" className="viz-neural__node viz-neural__node--active" />
-                    <circle cx="50" cy="130" r="5" className="viz-neural__node" />
-                    <circle cx="50" cy="170" r="5" className="viz-neural__node" />
+                    {/* Central glow disc */}
+                    <circle cx="160" cy="100" r="38" fill="url(#vizBrainCore)" />
 
-                    {/* Hidden layer — 3 nodes (slightly larger) */}
-                    <circle cx="160" cy="58" r="6.5" className="viz-neural__node viz-neural__node--mid" />
-                    <circle cx="160" cy="100" r="6.5" className="viz-neural__node viz-neural__node--mid viz-neural__node--active" />
-                    <circle cx="160" cy="142" r="6.5" className="viz-neural__node viz-neural__node--mid" />
+                    {/* Expanding thought-ripples from the core */}
+                    <circle cx="160" cy="100" r="22" className="viz-brain__halo" />
+                    <circle cx="160" cy="100" r="22" className="viz-brain__halo viz-brain__halo--late" />
 
-                    {/* Output node — bright halo */}
-                    <circle cx="270" cy="100" r="26" className="viz-neural__halo" />
-                    <circle cx="270" cy="100" r="18" className="viz-neural__halo viz-neural__halo--tight" />
-                    <circle cx="270" cy="100" r="11" className="viz-neural__out" />
-                    <circle cx="270" cy="100" r="4" className="viz-neural__out-core" />
+                    {/* Neurons — satellite nodes positioned organically around the brain */}
+                    <circle cx="120" cy="72" r="3.5" className="viz-brain__neuron viz-brain__neuron--firing" />
+                    <circle cx="200" cy="72" r="3.5" className="viz-brain__neuron" />
+                    <circle cx="104" cy="100" r="3.5" className="viz-brain__neuron" />
+                    <circle cx="216" cy="100" r="3.5" className="viz-brain__neuron" />
+                    <circle cx="120" cy="128" r="3.5" className="viz-brain__neuron" />
+                    <circle cx="200" cy="128" r="3.5" className="viz-brain__neuron viz-brain__neuron--firing" />
+                    <circle cx="142" cy="60" r="3" className="viz-brain__neuron" />
+                    <circle cx="178" cy="60" r="3" className="viz-brain__neuron" />
+                    <circle cx="142" cy="140" r="3" className="viz-brain__neuron" />
+                    <circle cx="178" cy="140" r="3" className="viz-brain__neuron" />
+
+                    {/* Central neural core — bright white nucleus */}
+                    <circle cx="160" cy="100" r="13" className="viz-brain__core" />
+                    <circle cx="160" cy="100" r="5" className="viz-brain__core-inner" />
+
+                    {/* Subtle mono label */}
+                    <text x="160" y="184" textAnchor="middle" className="viz-brain__label">NEURAL CORE</text>
                   </svg>
                 </div>
               </div>
@@ -429,76 +448,67 @@ export default function Elconekt() {
               <div className="service-card__num">03 / Cybersecurity &amp; Digital Resilience</div>
               <div className="service-card__viz">
                 <div className="viz-lock viz-defense">
-                  <svg className="viz-defense__svg" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true">
+                  <svg className="viz-defense__svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true">
                     <defs>
                       <radialGradient id="vizDefenseGlow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="rgba(130,168,255,0.32)" />
-                        <stop offset="60%" stopColor="rgba(130,168,255,0.08)" />
-                        <stop offset="100%" stopColor="rgba(130,168,255,0)" />
+                        <stop offset="0%" stopColor="rgba(255,255,255,0.24)" />
+                        <stop offset="50%" stopColor="rgba(255,255,255,0.06)" />
+                        <stop offset="100%" stopColor="rgba(255,255,255,0)" />
                       </radialGradient>
                       <linearGradient id="vizDefenseSweep" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="rgba(130,168,255,0)" />
-                        <stop offset="100%" stopColor="rgba(130,168,255,0.55)" />
+                        <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+                        <stop offset="100%" stopColor="rgba(255,255,255,0.55)" />
                       </linearGradient>
                     </defs>
 
-                    {/* Background glow disc */}
-                    <circle cx="160" cy="100" r="90" fill="url(#vizDefenseGlow)" />
-
-                    {/* Hex grid backdrop — subtle */}
-                    <g className="viz-defense__grid">
-                      <path d="M40 50 L60 40 L80 50 L80 70 L60 80 L40 70 Z" />
-                      <path d="M80 50 L100 40 L120 50 L120 70 L100 80 L80 70 Z" />
-                      <path d="M200 130 L220 120 L240 130 L240 150 L220 160 L200 150 Z" />
-                      <path d="M240 50 L260 40 L280 50 L280 70 L260 80 L240 70 Z" />
-                      <path d="M40 130 L60 120 L80 130 L80 150 L60 160 L40 150 Z" />
-                    </g>
+                    {/* Background glow disc — perfectly centred */}
+                    <circle cx="100" cy="100" r="92" fill="url(#vizDefenseGlow)" />
 
                     {/* Concentric defence rings */}
-                    <g className="viz-defense__rings" transform="translate(160 100)">
-                      <circle r="80" className="viz-defense__ring viz-defense__ring--outer" />
-                      <circle r="58" className="viz-defense__ring viz-defense__ring--mid" />
-                      <circle r="36" className="viz-defense__ring viz-defense__ring--inner" />
+                    <g className="viz-defense__rings" transform="translate(100 100)">
+                      <circle r="84" className="viz-defense__ring viz-defense__ring--outer" />
+                      <circle r="62" className="viz-defense__ring viz-defense__ring--mid" />
+                      <circle r="40" className="viz-defense__ring viz-defense__ring--inner" />
                     </g>
 
-                    {/* Tick marks on outer ring */}
-                    <g className="viz-defense__ticks" transform="translate(160 100)">
-                      <line x1="0" y1="-80" x2="0" y2="-72" />
-                      <line x1="80" y1="0" x2="72" y2="0" />
-                      <line x1="0" y1="80" x2="0" y2="72" />
-                      <line x1="-80" y1="0" x2="-72" y2="0" />
-                      <line x1="56.6" y1="-56.6" x2="50.9" y2="-50.9" />
-                      <line x1="56.6" y1="56.6" x2="50.9" y2="50.9" />
-                      <line x1="-56.6" y1="56.6" x2="-50.9" y2="50.9" />
-                      <line x1="-56.6" y1="-56.6" x2="-50.9" y2="-50.9" />
+                    {/* Tick marks on outer ring — 8 cardinal/diagonal positions */}
+                    <g className="viz-defense__ticks" transform="translate(100 100)">
+                      <line x1="0" y1="-84" x2="0" y2="-76" />
+                      <line x1="84" y1="0" x2="76" y2="0" />
+                      <line x1="0" y1="84" x2="0" y2="76" />
+                      <line x1="-84" y1="0" x2="-76" y2="0" />
+                      <line x1="59.4" y1="-59.4" x2="53.7" y2="-53.7" />
+                      <line x1="59.4" y1="59.4" x2="53.7" y2="53.7" />
+                      <line x1="-59.4" y1="59.4" x2="-53.7" y2="53.7" />
+                      <line x1="-59.4" y1="-59.4" x2="-53.7" y2="-53.7" />
                     </g>
 
                     {/* Rotating scan sweep */}
-                    <g className="viz-defense__sweep" transform="translate(160 100)">
-                      <path d="M0,0 L80,0 A80,80 0 0,0 56.6,-56.6 Z" fill="url(#vizDefenseSweep)" />
+                    <g className="viz-defense__sweep" transform="translate(100 100)">
+                      <path d="M0,0 L84,0 A84,84 0 0,0 59.4,-59.4 Z" fill="url(#vizDefenseSweep)" />
                     </g>
 
-                    {/* Cross-hair guides */}
-                    <g className="viz-defense__cross" transform="translate(160 100)">
-                      <line x1="-90" y1="0" x2="-82" y2="0" />
-                      <line x1="82" y1="0" x2="90" y2="0" />
-                      <line x1="0" y1="-90" x2="0" y2="-82" />
-                      <line x1="0" y1="82" x2="0" y2="90" />
+                    {/* Cross-hair guides — small marks outside the outer ring */}
+                    <g className="viz-defense__cross" transform="translate(100 100)">
+                      <line x1="-94" y1="0" x2="-88" y2="0" />
+                      <line x1="88" y1="0" x2="94" y2="0" />
+                      <line x1="0" y1="-94" x2="0" y2="-88" />
+                      <line x1="0" y1="88" x2="0" y2="94" />
                     </g>
 
-                    {/* Sensor pings around perimeter */}
-                    <circle cx="160" cy="20" r="2.5" className="viz-defense__sensor" />
-                    <circle cx="240" cy="100" r="2.5" className="viz-defense__sensor viz-defense__sensor--2" />
-                    <circle cx="160" cy="180" r="2.5" className="viz-defense__sensor viz-defense__sensor--3" />
-                    <circle cx="80" cy="100" r="2.5" className="viz-defense__sensor viz-defense__sensor--4" />
+                    {/* Sensor pings — 4 perimeter positions */}
+                    <circle cx="100" cy="16" r="2.6" className="viz-defense__sensor" />
+                    <circle cx="184" cy="100" r="2.6" className="viz-defense__sensor viz-defense__sensor--2" />
+                    <circle cx="100" cy="184" r="2.6" className="viz-defense__sensor viz-defense__sensor--3" />
+                    <circle cx="16" cy="100" r="2.6" className="viz-defense__sensor viz-defense__sensor--4" />
 
-                    {/* Central shield emblem */}
-                    <g className="viz-defense__core" transform="translate(160 100)">
+                    {/* Central shield emblem — sits exactly at viewBox centre */}
+                    <g className="viz-defense__core" transform="translate(100 100)">
                       <path
-                        d="M0,-22 L18,-14 L18,4 C18,16 10,22 0,26 C-10,22 -18,16 -18,4 L-18,-14 Z"
+                        d="M0,-24 L20,-15 L20,4 C20,17 11,24 0,28 C-11,24 -20,17 -20,4 L-20,-15 Z"
                         className="viz-defense__shield"
                       />
-                      <path d="M-7,1 L-1,7 L9,-5" className="viz-defense__check" />
+                      <path d="M-8,1 L-2,7 L10,-5" className="viz-defense__check" />
                     </g>
                   </svg>
                 </div>

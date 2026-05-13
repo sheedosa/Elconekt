@@ -876,85 +876,103 @@ html.motion-ready .elconekt .reveal-stagger > * {
 @keyframes elc-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
 /* =========================================================
-   02 — AI: Neural Network viz
-   Multi-layer MLP — input → hidden → output with active pulse
-   paths. High-fidelity diagrammatic feel rather than abstract nodes.
+   02 — AI: Brain / Neural Core viz
+   Brain-shape contour with synaptic curves radiating to a
+   bright white central core. White-dominant for the website's
+   light aesthetic; centred at the viewBox midpoint.
    ========================================================= */
-.elconekt .viz-neural {
+.elconekt .viz-brain {
   position: absolute; inset: 0;
   display: grid; place-items: center;
-  background: radial-gradient(420px 240px at 75% 50%, rgba(30, 99, 255, 0.16), transparent 70%);
+  background: radial-gradient(380px 240px at 50% 50%, rgba(255, 255, 255, 0.06), transparent 70%);
 }
-.elconekt .viz-neural__svg {
+.elconekt .viz-brain__svg {
   width: 100%;
   height: 100%;
   overflow: visible;
 }
-.elconekt .viz-neural__labels text {
+.elconekt .viz-brain__contour {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-width: 1.2;
+  stroke-dasharray: 2 4;
+}
+.elconekt .viz-brain__fissure {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 1;
+  stroke-dasharray: 1 3;
+}
+.elconekt .viz-brain__gyrus {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+.elconekt .viz-brain__synapses path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 1;
+  transition: stroke 0.5s;
+}
+.elconekt .viz-brain__synapses-active path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 1.4;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
+}
+.elconekt .service-card:hover .viz-brain__synapses path {
+  stroke: rgba(255, 255, 255, 0.32);
+}
+.elconekt .viz-brain__neuron {
+  fill: rgba(255, 255, 255, 0.25);
+  stroke: rgba(255, 255, 255, 0.75);
+  stroke-width: 1.2;
+}
+.elconekt .viz-brain__neuron--firing {
+  fill: #fff;
+  stroke: #fff;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.85));
+  animation: elc-brainFire 2.2s ease-in-out infinite;
+}
+@keyframes elc-brainFire {
+  0%, 100% { r: 3.5; opacity: 0.85; }
+  50% { r: 4.5; opacity: 1; }
+}
+.elconekt .viz-brain__core {
+  fill: rgba(255, 255, 255, 0.15);
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 1.6;
+}
+.elconekt .viz-brain__core-inner {
+  fill: #fff;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.95));
+}
+.elconekt .viz-brain__halo {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 1;
+  animation: elc-brainHalo 3.4s ease-out infinite;
+  transform-origin: 160px 100px;
+  transform-box: view-box;
+}
+.elconekt .viz-brain__halo--late {
+  animation-delay: 1.7s;
+}
+@keyframes elc-brainHalo {
+  0% { opacity: 0.7; transform: scale(0.55); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+.elconekt .viz-brain__pulse {
+  fill: #fff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.85));
+}
+.elconekt .viz-brain__label {
   fill: rgba(255, 255, 255, 0.32);
   font-family: 'JetBrains Mono', monospace;
   font-size: 8px;
   letter-spacing: 0.18em;
   font-weight: 500;
-}
-.elconekt .viz-neural__edges line {
-  stroke: rgba(255, 255, 255, 0.1);
-  stroke-width: 1;
-  transition: stroke 0.5s;
-}
-.elconekt .viz-neural__edges-active line {
-  stroke: rgba(130, 168, 255, 0.7);
-  stroke-width: 1.5;
-  filter: drop-shadow(0 0 6px rgba(130, 168, 255, 0.65));
-}
-.elconekt .service-card:hover .viz-neural__edges line {
-  stroke: rgba(255, 255, 255, 0.18);
-}
-.elconekt .viz-neural__node {
-  fill: rgba(255, 255, 255, 0.16);
-  stroke: rgba(255, 255, 255, 0.55);
-  stroke-width: 1.4;
-}
-.elconekt .viz-neural__node--mid {
-  fill: rgba(255, 255, 255, 0.2);
-  stroke: rgba(255, 255, 255, 0.7);
-}
-.elconekt .viz-neural__node--active {
-  fill: var(--card-accent);
-  stroke: #fff;
-  filter: drop-shadow(0 0 6px rgba(130, 168, 255, 0.7));
-}
-.elconekt .viz-neural__halo {
-  fill: none;
-  stroke: rgba(130, 168, 255, 0.35);
-  stroke-width: 1;
-  animation: elc-neuralHalo 3.4s ease-out infinite;
-  transform-origin: 270px 100px;
-  transform-box: fill-box;
-}
-.elconekt .viz-neural__halo--tight {
-  stroke: rgba(130, 168, 255, 0.5);
-  animation-delay: 1.2s;
-}
-@keyframes elc-neuralHalo {
-  0% { opacity: 0.8; transform: scale(0.65); }
-  100% { opacity: 0; transform: scale(1.4); }
-}
-.elconekt .viz-neural__out {
-  fill: var(--blue);
-  filter: drop-shadow(0 0 18px rgba(30, 99, 255, 0.75));
-}
-.elconekt .viz-neural__out-core {
-  fill: #fff;
-}
-.elconekt .viz-neural__pulse {
-  fill: #fff;
-  opacity: 0.95;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
-}
-.elconekt .viz-neural__pulse--alt {
-  fill: var(--card-accent);
-  opacity: 0.8;
 }
 
 /* =========================================================
@@ -969,49 +987,40 @@ html.motion-ready .elconekt .reveal-stagger > * {
 .elconekt .viz-defense__svg {
   width: 100%;
   height: 100%;
+  max-width: 240px;     /* keeps the composition square + centred */
+  max-height: 200px;
   overflow: visible;
 }
-.elconekt .viz-defense__grid path {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.06);
-  stroke-width: 1;
-}
-.elconekt .viz-defense__ring {
-  fill: none;
-}
+.elconekt .viz-defense__ring { fill: none; }
 .elconekt .viz-defense__ring--outer {
-  stroke: rgba(255, 255, 255, 0.18);
+  stroke: rgba(255, 255, 255, 0.22);
   stroke-width: 1;
   stroke-dasharray: 2 4;
   animation: elc-defenseRot 60s linear infinite;
   transform-origin: center;
 }
 .elconekt .viz-defense__ring--mid {
-  stroke: rgba(130, 168, 255, 0.32);
+  stroke: rgba(255, 255, 255, 0.45);
   stroke-width: 1.2;
   animation: elc-defenseRotR 40s linear infinite;
   transform-origin: center;
 }
 .elconekt .viz-defense__ring--inner {
-  stroke: rgba(255, 255, 255, 0.4);
+  stroke: rgba(255, 255, 255, 0.55);
   stroke-width: 1;
   stroke-dasharray: 1 3;
   animation: elc-defenseRot 24s linear infinite;
   transform-origin: center;
 }
-@keyframes elc-defenseRot {
-  to { transform: rotate(360deg); }
-}
-@keyframes elc-defenseRotR {
-  to { transform: rotate(-360deg); }
-}
+@keyframes elc-defenseRot { to { transform: rotate(360deg); } }
+@keyframes elc-defenseRotR { to { transform: rotate(-360deg); } }
 .elconekt .viz-defense__ticks line {
-  stroke: rgba(255, 255, 255, 0.4);
+  stroke: rgba(255, 255, 255, 0.55);
   stroke-width: 1.4;
   stroke-linecap: round;
 }
 .elconekt .viz-defense__cross line {
-  stroke: rgba(255, 255, 255, 0.55);
+  stroke: rgba(255, 255, 255, 0.7);
   stroke-width: 1.2;
   stroke-linecap: round;
 }
@@ -1019,22 +1028,21 @@ html.motion-ready .elconekt .reveal-stagger > * {
   animation: elc-defenseSweep 4.5s linear infinite;
   transform-origin: center;
 }
-@keyframes elc-defenseSweep {
-  to { transform: rotate(360deg); }
-}
+@keyframes elc-defenseSweep { to { transform: rotate(360deg); } }
 .elconekt .viz-defense__sensor {
-  fill: var(--card-accent);
+  fill: #ffffff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.85));
   animation: elc-defenseSensor 2s ease-in-out infinite;
 }
 .elconekt .viz-defense__sensor--2 { animation-delay: 0.5s; }
 .elconekt .viz-defense__sensor--3 { animation-delay: 1s; }
 .elconekt .viz-defense__sensor--4 { animation-delay: 1.5s; }
 @keyframes elc-defenseSensor {
-  0%, 100% { opacity: 0.4; r: 2.5; }
-  50% { opacity: 1; r: 3.5; }
+  0%, 100% { opacity: 0.45; r: 2.6; }
+  50% { opacity: 1; r: 3.6; }
 }
 .elconekt .viz-defense__shield {
-  fill: rgba(255, 255, 255, 0.06);
+  fill: rgba(255, 255, 255, 0.1);
   stroke: #fff;
   stroke-width: 1.6;
   stroke-linejoin: round;
@@ -1042,7 +1050,7 @@ html.motion-ready .elconekt .reveal-stagger > * {
 }
 .elconekt .viz-defense__check {
   fill: none;
-  stroke: var(--card-accent);
+  stroke: #fff;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -1050,6 +1058,7 @@ html.motion-ready .elconekt .reveal-stagger > * {
 .elconekt .service-card:hover .viz-defense__shield {
   transform: scale(1.05);
   transform-origin: center;
+  transform-box: fill-box;
   transition: transform 0.5s var(--ease-out);
 }
 
