@@ -211,10 +211,6 @@ export default function Elconekt() {
             </a>
           </div>
         </div>
-        <div className="scroll-cue">
-          <span>Scroll</span>
-          <span className="scroll-cue__line" />
-        </div>
       </header>
 
       {/* INTRO */}

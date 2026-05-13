@@ -16,25 +16,28 @@
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
   --container: 1280px;
-  --gutter: clamp(20px, 4vw, 56px);
+  --gutter: clamp(24px, 4vw, 56px);
 
   /* ---- Fluid type scale (cinematic) ----
      Anchored to viewport width with safe floor + ceiling.
-     Mobile floor keeps everything readable; desktop ceiling
-     unlocks the oversized editorial feel. */
-  --fs-display:  clamp(3.5rem, 12vw, 11rem);   /* hero h1            56-176px */
-  --fs-h1:       clamp(2.75rem, 7.5vw, 7rem);  /* section title      44-112px */
-  --fs-h2:       clamp(2.25rem, 5.5vw, 5rem);  /* intro/CTA title    36-80px  */
-  --fs-h3:       clamp(1.5rem, 2.2vw, 2.25rem);/* card titles        24-36px  */
-  --fs-lead:     clamp(1.125rem, 1.3vw, 1.375rem); /* lead body      18-22px */
-  --fs-body:     1.0625rem;                    /* 17px */
-  --fs-eyebrow:  0.6875rem;                    /* 11px */
+     Section titles share a single size (--fs-section-title) so the
+     editorial rhythm is consistent across every section. The hero is
+     intentionally larger (--fs-display) to mark its prominence. */
+  --fs-display:        clamp(3.25rem, 10vw, 9rem);    /* hero h1            52-144px */
+  --fs-section-title:  clamp(2.5rem, 5.5vw, 4.5rem);  /* unified section h2 40-72px  */
+  --fs-h1:             var(--fs-section-title);       /* legacy alias */
+  --fs-h2:             var(--fs-section-title);       /* legacy alias */
+  --fs-h3:             clamp(1.5rem, 2.2vw, 2.25rem); /* card titles        24-36px */
+  --fs-lead:           clamp(1.0625rem, 1.2vw, 1.25rem); /* lead body       17-20px */
+  --fs-body:           1.0625rem;                     /* 17px */
+  --fs-eyebrow:        0.6875rem;                     /* 11px */
 
   /* ---- Cinematic spacing ----
-     Bigger vertical rhythm so sections breathe. */
-  --space-section:   clamp(120px, 18vh, 220px);
-  --space-section-y: clamp(60px, 8vh, 120px);
-  --space-header:    clamp(64px, 10vh, 140px);
+     Tighter rhythm — sections breathe without feeling cavernous
+     on smaller laptops or short viewports. */
+  --space-section:   clamp(72px, 11vh, 144px);
+  --space-section-y: clamp(48px, 6vh, 88px);
+  --space-header:    clamp(48px, 7vh, 96px);
 
   background: var(--bg);
   color: var(--ink-2);
@@ -122,8 +125,17 @@
   width: auto;
 }
 .elconekt .footer__logo {
-  height: 44px;
+  height: 36px;
   width: auto;
+  /* Logo has dark text — sit it inside a soft frosted frame so the
+     glyphs read against the dark footer without looking like a card. */
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 /* Hamburger menu button */
 .elconekt .nav__burger {
@@ -399,45 +411,6 @@
   50% { opacity: 0.5; transform: scale(0.8); }
 }
 
-.elconekt .scroll-cue {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  font-weight: 500;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  opacity: 0;
-  animation: elc-fadeUp 1s var(--ease-out) 1.4s forwards;
-}
-.elconekt .scroll-cue__line {
-  width: 1px; height: 40px;
-  background: linear-gradient(to bottom, transparent, var(--ink-2));
-  position: relative;
-  overflow: hidden;
-}
-.elconekt .scroll-cue__line::after {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: 0; width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, transparent, var(--blue));
-  animation: elc-slide 2.5s ease-in-out infinite;
-}
-@keyframes elc-slide {
-  0% { top: -100%; }
-  100% { top: 100%; }
-}
-
 /* ========== Reveal animation ==========
    GSAP drives .reveal and .reveal-stagger > * via useReveal().
 
@@ -507,11 +480,11 @@ html.motion-ready .elconekt .reveal-stagger > * {
 
 /* ========== Intro / stats ========== */
 .elconekt .intro__copy {
-  font-size: var(--fs-h2);
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 1.02;
-  max-width: 22ch;
+  font-size: var(--fs-section-title);
+  font-weight: 500;
+  letter-spacing: -0.042em;
+  line-height: 0.94;
+  max-width: 14ch;
   font-family: 'Space Grotesk', sans-serif;
 }
 .elconekt .intro__copy .accent {
@@ -535,7 +508,7 @@ html.motion-ready .elconekt .reveal-stagger > * {
 .elconekt .intro__right p:last-child { margin-bottom: 0; }
 
 .elconekt .principles {
-  margin-top: 80px;
+  margin-top: clamp(40px, 5vw, 64px);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
@@ -586,8 +559,8 @@ html.motion-ready .elconekt .reveal-stagger > * {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 22px;
-  padding: 36px;
-  min-height: 480px;
+  padding: 32px;
+  min-height: 420px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1115,7 +1088,7 @@ html.motion-ready .elconekt .reveal-stagger > * {
 
 /* ========== CTA close ========== */
 .elconekt .cta-close {
-  padding: clamp(120px, 16vh, 220px) 0;
+  padding: clamp(80px, 11vh, 144px) 0;
   background: var(--navy);
   color: #fff;
   position: relative;
@@ -1131,12 +1104,12 @@ html.motion-ready .elconekt .reveal-stagger > * {
 }
 .elconekt .cta-close .container { position: relative; z-index: 2; }
 .elconekt .cta-close__title {
-  font-size: var(--fs-h1);
-  font-weight: 400;
-  letter-spacing: -0.045em;
-  line-height: 0.92;
+  font-size: var(--fs-section-title);
+  font-weight: 500;
+  letter-spacing: -0.042em;
+  line-height: 0.94;
   max-width: 14ch;
-  margin-bottom: clamp(48px, 7vh, 96px);
+  margin-bottom: clamp(40px, 6vh, 72px);
 }
 .elconekt .cta-close__title .accent {
   color: #82a8ff;
@@ -1163,15 +1136,15 @@ html.motion-ready .elconekt .reveal-stagger > * {
 
 /* ========== Footer ========== */
 .elconekt .footer {
-  padding: 80px 0 36px;
+  padding: clamp(56px, 8vh, 80px) 0 28px;
   background: var(--ink);
   color: rgba(255,255,255,0.78);
 }
 .elconekt .footer__top {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 60px;
-  padding-bottom: 60px;
+  gap: clamp(32px, 4vw, 60px);
+  padding-bottom: clamp(40px, 5vh, 56px);
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .elconekt .footer__brand {
@@ -1290,7 +1263,7 @@ html.motion-ready .elconekt .reveal-stagger > * {
 
 /* ========== Service page — hero ========== */
 .elconekt .svc-hero {
-  padding: clamp(160px, 20vh, 240px) 0 clamp(96px, 12vh, 160px);
+  padding: clamp(130px, 16vh, 180px) 0 clamp(72px, 9vh, 120px);
   background: var(--surface);
   border-bottom: 1px solid var(--line);
 }
@@ -1313,13 +1286,13 @@ html.motion-ready .elconekt .reveal-stagger > * {
 .elconekt .svc-hero__breadcrumb span:not(:last-child) { opacity: 0.5; }
 .elconekt .svc-hero__title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: var(--fs-h1);
+  font-size: var(--fs-section-title);
   font-weight: 500;
-  letter-spacing: -0.045em;
-  line-height: 0.92;
+  letter-spacing: -0.042em;
+  line-height: 0.94;
   color: var(--ink);
-  margin-bottom: 28px;
-  max-width: 16ch;
+  margin-bottom: 24px;
+  max-width: 14ch;
 }
 .elconekt .svc-hero__title .accent { color: var(--blue); }
 .elconekt .svc-hero__sub {
@@ -1911,35 +1884,38 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
     background: var(--bg);
   }
 
-  /* Per-section card adjustments so they read as standalone tiles */
+  /* Why cards on mobile carousel — bigger, more breathable.
+     They carry watermark + icon + title + body so they need room
+     to read like a manifesto card rather than a cramped tile. */
   .elconekt .why-cell {
-    min-height: 280px;
-    padding: 28px 26px;
+    flex: 0 0 min(86vw, 380px);
+    min-height: 360px;
+    padding: 36px 30px 32px;
+  }
+  .elconekt .why-cell__head { margin-bottom: 40px; }
+  .elconekt .why-cell__title { font-size: 24px; }
+  .elconekt .why-cell__desc { font-size: 15px; line-height: 1.55; }
+  .elconekt .why-cell__icon { width: 52px; height: 52px; }
+  .elconekt .why-cell__watermark {
+    font-size: 140px;
+    right: -6px;
+    top: -16px;
   }
   .elconekt .why-cell:first-child {
     /* Reset desktop bento on mobile — back to standard tile */
     grid-column: auto;
     grid-row: auto;
-    padding: 28px 26px;
+    padding: 36px 30px 32px;
     background: var(--bg);
   }
-  .elconekt .why-cell:first-child .why-cell__icon,
-  .elconekt .why-cell:first-child .why-cell__title,
-  .elconekt .why-cell:first-child .why-cell__desc,
+  .elconekt .why-cell:first-child .why-cell__icon { width: 52px; height: 52px; }
+  .elconekt .why-cell:first-child .why-cell__title { font-size: 24px; max-width: none; margin-bottom: 0; }
+  .elconekt .why-cell:first-child .why-cell__desc { font-size: 15px; max-width: none; }
+  .elconekt .why-cell:first-child .why-cell__head { margin-bottom: 40px; }
   .elconekt .why-cell:first-child .why-cell__watermark {
-    /* Reset hero-card overrides */
-    font-size: revert;
-    width: revert;
-    height: revert;
-    max-width: revert;
-    margin-bottom: revert;
-    right: revert;
-    top: revert;
-  }
-  .elconekt .why-cell:first-child .why-cell__watermark {
-    font-size: 160px;
-    right: -8px;
-    top: -24px;
+    font-size: 140px;
+    right: -6px;
+    top: -16px;
   }
 
   .elconekt .industry { min-height: 240px; padding: 24px 22px; }
