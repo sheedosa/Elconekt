@@ -1796,6 +1796,225 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
 }
 
 /* ==========================================================
+   Dark card theme — unified across the entire site
+   ----------------------------------------------------------
+   Every card primitive (Principles, Services, AI grid, Why
+   Elconekt, Industries, svc-offerings, tech stack, FAQ) now
+   sits on a navy gradient surface with high-contrast white
+   text and a light periwinkle accent. Matches the existing
+   CTA Close + AI icon tile palette so the dark cards feel
+   native to the existing theme — not a bolted-on dark mode.
+   ========================================================== */
+.elconekt {
+  --card-bg:        linear-gradient(155deg, #0c2658 0%, #071B46 100%);
+  --card-bg-hover:  linear-gradient(155deg, #103173 0%, #0a2451 100%);
+  --card-border:    rgba(255, 255, 255, 0.08);
+  --card-border-hover: rgba(255, 255, 255, 0.18);
+  --card-text:      #ffffff;
+  --card-muted:     rgba(255, 255, 255, 0.68);
+  --card-mono:      rgba(255, 255, 255, 0.55);
+  --card-accent:    #82a8ff;
+  --card-divider:   rgba(255, 255, 255, 0.08);
+}
+
+/* --- Principles --- */
+.elconekt .principles {
+  background: var(--card-divider);
+  border-color: var(--card-divider);
+}
+.elconekt .principle {
+  background: var(--card-bg);
+  color: var(--card-muted);
+}
+.elconekt .principle__num { color: var(--card-accent); }
+.elconekt .principle__title { color: var(--card-text); }
+.elconekt .principle__title .ai { color: var(--card-accent); }
+.elconekt .principle__desc { color: var(--card-muted); }
+
+/* --- Service cards --- */
+.elconekt .service-card {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+  color: var(--card-text);
+}
+.elconekt .service-card:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.55);
+}
+.elconekt .service-card__num { color: var(--card-accent); }
+.elconekt .service-card__title { color: var(--card-text); }
+.elconekt .service-card__desc { color: var(--card-muted); }
+.elconekt .service-card__viz { background: rgba(0, 0, 0, 0.22); }
+.elconekt .service-card__foot { color: var(--card-text); }
+.elconekt .service-card__foot .arrow { background: #fff; color: var(--navy); }
+.elconekt .service-card:hover .service-card__foot .arrow {
+  background: var(--blue);
+  color: #fff;
+}
+/* Service-card viz internal pieces — tune for dark surface */
+.elconekt .viz-layers__bar--front {
+  background: linear-gradient(135deg, #1f4ba1 0%, #102f78 100%);
+  box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.5);
+}
+.elconekt .viz-layers__bar--data {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--card-text);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+.elconekt .viz-network__edges line { stroke: rgba(255, 255, 255, 0.25); }
+.elconekt .viz-network__edge--faint { stroke: rgba(255, 255, 255, 0.1); }
+.elconekt .viz-network__node { fill: rgba(255, 255, 255, 0.4); }
+.elconekt .viz-network__hub-label { fill: #fff; }
+/* Cybersecurity lock — recolor for the dark card surface.
+   SVG presentation attributes (fill / stroke) lose to CSS rules. */
+.elconekt .viz-lock__icon rect[fill] { fill: rgba(255, 255, 255, 0.1); }
+.elconekt .viz-lock__icon rect[stroke] { stroke: rgba(130, 168, 255, 0.5); }
+.elconekt .viz-lock__icon path[stroke="var(--navy)"] { stroke: rgba(255, 255, 255, 0.85); }
+.elconekt .viz-lock__icon path[stroke="var(--blue)"] { stroke: var(--card-accent); }
+.elconekt .viz-lock__icon circle[fill="var(--blue)"] { fill: var(--card-accent); }
+.elconekt .viz-lock__icon { filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.35)); }
+
+/* --- AI grid cards --- */
+.elconekt .ai-grid {
+  background: var(--card-divider);
+  border-color: var(--card-divider);
+}
+.elconekt .ai-grid__card { background: var(--card-bg); }
+.elconekt .ai-grid__card:hover { background: var(--card-bg-hover); }
+.elconekt .ai-grid__title { color: var(--card-text); }
+.elconekt .ai-grid__desc { color: var(--card-muted); }
+/* Icon tile already navy — bump contrast a touch on the dark card */
+.elconekt .ai-grid__icon {
+  background: linear-gradient(135deg, #1a3d8a 0%, #0e2766 100%);
+  box-shadow:
+    0 0 0 1px rgba(130, 168, 255, 0.28) inset,
+    0 8px 22px -10px rgba(30, 99, 255, 0.5);
+}
+
+/* --- Why Elconekt cells --- */
+.elconekt .why-grid {
+  border-color: var(--card-divider);
+  background: var(--card-divider);
+  gap: 1px;
+}
+.elconekt .why-cell {
+  background: var(--card-bg);
+  border-color: var(--card-divider);
+  color: var(--card-text);
+}
+.elconekt .why-cell::before {
+  background: linear-gradient(155deg, rgba(130, 168, 255, 0.08) 0%, transparent 55%);
+}
+.elconekt .why-cell__num { color: var(--card-mono); }
+.elconekt .why-cell__title { color: var(--card-text); }
+.elconekt .why-cell__desc { color: var(--card-muted); }
+.elconekt .why-cell__watermark { color: rgba(255, 255, 255, 0.04); }
+.elconekt .why-cell:hover .why-cell__watermark { color: rgba(130, 168, 255, 0.1); }
+.elconekt .why-cell__icon .ink { color: rgba(255, 255, 255, 0.85); }
+.elconekt .why-cell__icon .blue { color: var(--card-accent); }
+/* Desktop bento — hero card gets a slightly elevated tone so it still leads */
+@media (min-width: 769px) {
+  .elconekt .why-grid .why-cell:first-child {
+    background:
+      radial-gradient(900px 500px at 0% 100%, rgba(30, 99, 255, 0.18), transparent 60%),
+      linear-gradient(155deg, #103173 0%, #0a2451 100%);
+  }
+}
+
+/* --- Industries --- */
+.elconekt .industries-grid {
+  background: var(--card-divider);
+  border-color: var(--card-divider);
+}
+.elconekt .industry {
+  background: var(--card-bg);
+  color: var(--card-text);
+}
+/* Cell already lives on a dark surface — replace the slide-up hover
+   (which used to swap white → navy) with a subtle lighten + lift. */
+.elconekt .industry::before { display: none; }
+.elconekt .industry:hover { background: var(--card-bg-hover); }
+.elconekt .industry__num { color: var(--card-accent); }
+.elconekt .industry__title { color: var(--card-text); }
+.elconekt .industry__sub { color: var(--card-mono); }
+.elconekt .industry__icon .ink { color: rgba(255, 255, 255, 0.9); }
+.elconekt .industry__icon .blue { color: var(--card-accent); }
+.elconekt .industry:hover .industry__num { color: var(--card-accent); }
+.elconekt .industry:hover .industry__title { color: var(--card-text); }
+.elconekt .industry:hover .industry__sub { color: var(--card-muted); }
+.elconekt .industry__dot { background: var(--card-accent); }
+
+/* --- Full Stack offerings --- */
+.elconekt .svc-offerings {
+  background: var(--card-divider);
+  border-color: var(--card-divider);
+}
+.elconekt .svc-offering {
+  background: var(--card-bg);
+  color: var(--card-text);
+}
+.elconekt .svc-offering:hover { background: var(--card-bg-hover); }
+.elconekt .svc-offering__title { color: var(--card-text); }
+.elconekt .svc-offering__desc { color: var(--card-muted); }
+.elconekt .svc-offering__icon {
+  background: linear-gradient(135deg, #1a3d8a 0%, #0e2766 100%);
+  color: var(--card-accent);
+  box-shadow: 0 0 0 1px rgba(130, 168, 255, 0.28) inset;
+}
+.elconekt .svc-offering:hover .svc-offering__icon {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* --- Tech stack tiles --- */
+.elconekt .svc-stack {
+  background: var(--card-divider);
+  border-color: var(--card-divider);
+}
+.elconekt .svc-stack__item {
+  background: var(--card-bg);
+  color: var(--card-text);
+}
+.elconekt .svc-stack__item:hover { background: var(--card-bg-hover); }
+.elconekt .svc-stack__name { color: var(--card-text); }
+.elconekt .svc-stack__cat { color: var(--card-accent); }
+
+/* --- FAQ accordion --- */
+.elconekt .svc-faq {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 0 28px;
+  overflow: hidden;
+}
+.elconekt .svc-faq__item {
+  border-bottom-color: var(--card-divider);
+}
+.elconekt .svc-faq__item:last-child { border-bottom: none; }
+.elconekt .svc-faq__q { color: var(--card-text); }
+.elconekt .svc-faq__chevron { color: var(--card-mono); }
+.elconekt .svc-faq__item.is-open .svc-faq__chevron { color: var(--card-accent); }
+.elconekt .svc-faq__a p { color: var(--card-muted); }
+
+/* --- Mobile carousel — restore card borders against light section bg --- */
+@media (max-width: 768px) {
+  .elconekt .principle,
+  .elconekt .ai-grid__card,
+  .elconekt .why-cell,
+  .elconekt .industry,
+  .elconekt .svc-offering {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 14px 40px -22px rgba(7, 27, 70, 0.55);
+  }
+  /* Service cards already use !important via cascade — also tighten their
+     border on mobile carousel so the dark tile reads cleanly. */
+  .elconekt .service-card {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 14px 40px -22px rgba(7, 27, 70, 0.55);
+  }
+}
+
+/* ==========================================================
    Desktop bento — Why Elconekt
    ----------------------------------------------------------
    First card becomes a 2-col × 2-row hero tile. The other
@@ -1881,7 +2100,9 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
   .elconekt .industries-grid::-webkit-scrollbar,
   .elconekt .svc-offerings::-webkit-scrollbar { display: none; }
 
-  /* Card sizing — each takes ~82% of viewport, capped on tablets */
+  /* Card sizing — each takes ~82% of viewport, capped on tablets.
+     Background is intentionally NOT set here so the dark-card theme
+     applied later in the cascade can take effect. */
   .elconekt .principle,
   .elconekt .ai-grid__card,
   .elconekt .why-cell,
@@ -1890,9 +2111,7 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
     flex: 0 0 min(82vw, 360px);
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    border: 1px solid var(--line);
     border-radius: 16px;
-    background: var(--bg);
   }
 
   /* Why cards on mobile carousel — bigger, more breathable.
@@ -1913,11 +2132,12 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
     top: -16px;
   }
   .elconekt .why-cell:first-child {
-    /* Reset desktop bento on mobile — back to standard tile */
+    /* Reset desktop bento on mobile — back to standard tile.
+       Background inherits the dark-card theme. */
     grid-column: auto;
     grid-row: auto;
     padding: 36px 30px 32px;
-    background: var(--bg);
+    background: var(--card-bg);
   }
   .elconekt .why-cell:first-child .why-cell__icon { width: 52px; height: 52px; }
   .elconekt .why-cell:first-child .why-cell__title { font-size: 24px; max-width: none; margin-bottom: 0; }
