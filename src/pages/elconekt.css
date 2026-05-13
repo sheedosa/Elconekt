@@ -5,8 +5,12 @@
   --surface-2: #EEF2F8;
   --ink: #0A0A0A;
   --ink-2: #1A1F2C;
-  --muted: #4A5468;
-  --muted-2: #6B7488;
+  /* Text tokens.  --muted is used as the body / paragraph colour on
+     light backgrounds — keep it near-black for strong contrast.
+     --muted-2 is for the rare secondary label (eyebrows, placeholders)
+     and stays a touch lighter without dropping into low-contrast grey. */
+  --muted: #1A1F2C;
+  --muted-2: #3A4253;
   --line: #E5E9F0;
   --navy: #071B46;
   --blue: #1E63FF;
@@ -1736,6 +1740,9 @@ html.motion-ready .elconekt .reveal-stagger > * {
   /* Mobile dropdown */
   .elconekt .nav__dropdown-trigger {
     display: flex;
+    align-items: center;
+    justify-content: space-between;  /* chevron pinned to the right edge */
+    gap: 8px;
     width: 100%;
     padding: 14px 0;
     font-size: 17px;
@@ -1748,23 +1755,36 @@ html.motion-ready .elconekt .reveal-stagger > * {
     transform: none;
     opacity: 1;
     pointer-events: auto;
-    background: none;
+    background: var(--surface);
     border: none;
+    border-left: 2px solid var(--blue);
     border-radius: 0;
     box-shadow: none;
-    padding: 0 0 0 16px;
+    padding: 4px 0 4px 14px;
+    margin: 6px 0 4px 6px;
     min-width: 0;
     display: none;
+    flex-direction: column;
     gap: 0;
   }
   .elconekt .nav__dropdown.is-open { display: flex; }
   .elconekt .nav__dropdown a {
-    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
     font-size: 15px;
     border-bottom: 1px solid var(--line);
     border-radius: 0;
+    color: var(--ink);
   }
-  .elconekt .nav__dropdown a:hover { background: none; }
+  .elconekt .nav__dropdown a:last-child { border-bottom: none; }
+  .elconekt .nav__dropdown a:hover { background: none; color: var(--blue); }
+  .elconekt .nav__dropdown-num {
+    min-width: 22px;
+    font-size: 11px;
+    color: var(--blue);
+  }
   /* Service page mobile */
   .elconekt .svc-offerings { grid-template-columns: 1fr; }
   .elconekt .svc-process { grid-template-columns: repeat(2, 1fr); }
@@ -2026,8 +2046,12 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
   --card-border:    rgba(255, 255, 255, 0.08);
   --card-border-hover: rgba(255, 255, 255, 0.18);
   --card-text:      #ffffff;
-  --card-muted:     rgba(255, 255, 255, 0.68);
-  --card-mono:      rgba(255, 255, 255, 0.55);
+  /* Card body / paragraph copy on dark surfaces.  Bumped to near-white
+     opacity so descriptions read clearly instead of fading into the
+     navy.  --card-mono is a touch lower for the few mono / eyebrow
+     uses that still benefit from a hint of hierarchy. */
+  --card-muted:     rgba(255, 255, 255, 0.92);
+  --card-mono:      rgba(255, 255, 255, 0.78);
   --card-accent:    #82a8ff;
   --card-divider:   rgba(255, 255, 255, 0.08);
 }

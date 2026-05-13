@@ -60,7 +60,11 @@
       "Bash(node -e \"try{require\\('sharp'\\);console.log\\('sharp OK'\\)}catch\\(e\\){console.log\\('no sharp'\\)}\")",
       "Bash(ls /System/Library/Fonts/Helvetica*.ttc /System/Library/Fonts/HelveticaNeue*.ttc /System/Library/Fonts/SFNS*.ttf 2>/dev/null | head -5; ls /Library/Fonts/*.ttf /Library/Fonts/*.otf 2>/dev/null | head -5)",
       "Bash(python3 /tmp/make_social.py)",
-      "Bash(sips -g pixelWidth -g pixelHeight public/elconekt-social.png)"
+      "Bash(sips -g pixelWidth -g pixelHeight public/elconekt-social.png)",
+      "Bash(awk -F'to=\"' '{print $2}')",
+      "Bash(awk -F'\"' '{print $1}')",
+      "Bash(awk -F'href=\"' '{print $2}')",
+      "Bash(awk -F'id=\"' '{print $2}')"
     ]
   }
 }
