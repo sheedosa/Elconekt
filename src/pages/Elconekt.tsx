@@ -205,10 +205,10 @@ export default function Elconekt() {
             AI-powered digital solutions, intelligent systems, and enterprise-grade cybersecurity for modern organisations.
           </p>
           <div className="hero__ctas">
-            <a className="btn btn--primary" href="mailto:hello@elconekt.com" data-magnetic="0.3">
+            <Link className="btn btn--primary" to="/contact" data-magnetic="0.3">
               Talk to Us
               <ArrowIcon size={14} />
-            </a>
+            </Link>
             <a className="btn btn--ghost" href="#" onClick={(e) => { e.preventDefault(); scrollTo("elc-services"); }} data-magnetic="0.3">
               Explore Services
               <RightArrowIcon />
@@ -673,17 +673,17 @@ export default function Elconekt() {
           </div>
           <div className="cta-close__row reveal">
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <a className="btn btn--primary" href="mailto:hello@elconekt.com">
+              <Link className="btn btn--primary" to="/contact">
                 Talk to Us
                 <ArrowIcon size={14} />
-              </a>
+              </Link>
               <a className="btn btn--ghost" href="#" onClick={(e) => { e.preventDefault(); scrollTo("elc-services"); }} style={{ color: "#fff", borderColor: "rgba(255,255,255,0.25)" }}>
                 Explore Services
                 <RightArrowIcon />
               </a>
             </div>
             <div className="cta-close__meta">
-              <span>hello@elconekt.com</span>
+              <span>info@elconekt.com</span>
               <span>·</span>
               <span>United Kingdom</span>
             </div>

@@ -35,7 +35,32 @@
       "Bash(rm -rf .github .vscode)",
       "Bash(find /tmp -maxdepth 2 -name \"*.png\" -newer /Users/rasheedamer/Documents/.claude/worktrees/vigorous-lederberg-1bfc0f/package.json 2>/dev/null | head -5; find /Users/rasheedamer -maxdepth 3 -name \"upload*\" -o -name \"image*\" 2>/dev/null | grep -i png | head -5)",
       "Bash(cp \"/Users/rasheedamer/Desktop/New Elconekt Logo/NEW_ELCONEKT_LOGO-removebg-preview.png\" /Users/rasheedamer/Documents/.claude/worktrees/vigorous-lederberg-1bfc0f/public/elconekt-logo.png)",
-      "Bash(gh api *)"
+      "Bash(gh api *)",
+      "Bash(git merge *)",
+      "Bash(git fetch *)",
+      "Bash(git stash *)",
+      "Bash(git rebase *)",
+      "Bash(git cherry-pick *)",
+      "Bash(gh auth *)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(npx tsc *)",
+      "Bash(curl -sI https://sheedosa.github.io/Elconekt/)",
+      "Bash(curl -s https://sheedosa.github.io/Elconekt/)",
+      "Bash(curl -sL https://sheedosa.github.io/Elconekt/)",
+      "Bash(curl -sI https://sheedosa.github.io/assets/index-XdBE2O4s.js)",
+      "Bash(curl -sI https://sheedosa.github.io/Elconekt/assets/index-XdBE2O4s.js)",
+      "Bash(curl -sI https://sheedosa.github.io)",
+      "Bash(curl -sIL https://sheedosa.github.io/Elconekt/assets/index-XdBE2O4s.js)",
+      "Bash(curl -sL https://elconekt.com/)",
+      "Bash(curl -sI https://elconekt.com/assets/index-XdBE2O4s.js)",
+      "Bash(curl -sI https://elconekt.com/elconekt-social.png)",
+      "Bash(find /tmp /var/folders /Users/rasheedamer/Downloads -maxdepth 3 -name \"*.png\" -newer /Users/rasheedamer/Documents/.claude/worktrees/vigorous-lederberg-1bfc0f/public/elconekt-logo.png 2>/dev/null | head -10)",
+      "Bash(sips -g pixelWidth -g pixelHeight public/elconekt-logo.png)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL OK'\\)\")",
+      "Bash(node -e \"try{require\\('sharp'\\);console.log\\('sharp OK'\\)}catch\\(e\\){console.log\\('no sharp'\\)}\")",
+      "Bash(ls /System/Library/Fonts/Helvetica*.ttc /System/Library/Fonts/HelveticaNeue*.ttc /System/Library/Fonts/SFNS*.ttf 2>/dev/null | head -5; ls /Library/Fonts/*.ttf /Library/Fonts/*.otf 2>/dev/null | head -5)",
+      "Bash(python3 /tmp/make_social.py)",
+      "Bash(sips -g pixelWidth -g pixelHeight public/elconekt-social.png)"
     ]
   }
 }

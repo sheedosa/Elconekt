@@ -32,10 +32,10 @@ export default function FullStackDev() {
               From websites and mobile apps to complex platforms, we engineer digital products designed to scale.
             </p>
             <div className="svc-hero__ctas reveal">
-              <a className="btn btn--primary" href="mailto:hello@elconekt.com" data-magnetic="0.3">
+              <Link className="btn btn--primary" to="/contact" data-magnetic="0.3">
                 Discuss Your Project
                 <ArrowIcon size={14} />
-              </a>
+              </Link>
               <a className="btn btn--ghost" href="#svc-work" data-magnetic="0.3">
                 How We Work
                 <RightArrowIcon />
@@ -173,17 +173,17 @@ export default function FullStackDev() {
           </div>
           <div className="cta-close__row reveal">
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <a className="btn btn--primary" href="mailto:hello@elconekt.com" data-magnetic="0.3">
+              <Link className="btn btn--primary" to="/contact" data-magnetic="0.3">
                 Discuss Your Project
                 <ArrowIcon size={14} />
-              </a>
+              </Link>
               <Link className="btn btn--ghost" to="/" style={{ color: "#fff", borderColor: "rgba(255,255,255,0.25)" }}>
                 Back to Home
                 <RightArrowIcon />
               </Link>
             </div>
             <div className="cta-close__meta">
-              <span>hello@elconekt.com</span>
+              <span>info@elconekt.com</span>
               <span>&middot;</span>
               <span>United Kingdom</span>
             </div>

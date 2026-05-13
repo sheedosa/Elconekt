@@ -77,7 +77,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </Link>
         <ul className={`nav__menu${menuOpen ? " is-open" : ""}`}>
           <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
-          <li><a href="#" onClick={(e) => { e.preventDefault(); setMenuOpen(false); scrollTo("elc-about"); }}>About</a></li>
+          <li><Link to="/about" onClick={() => setMenuOpen(false)}>About</Link></li>
           <li className="nav__dropdown-wrap">
             <button
               className="nav__dropdown-trigger"
@@ -103,18 +103,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Link>
             </div>
           </li>
-          <li><a href="#" onClick={(e) => { e.preventDefault(); setMenuOpen(false); scrollTo("elc-industries"); }}>Industries</a></li>
-          <li><a href="#" onClick={(e) => { e.preventDefault(); setMenuOpen(false); scrollTo("elc-contact"); }}>Contact</a></li>
+          <li><Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link></li>
         </ul>
         <button className="nav__burger" aria-label="Toggle menu" onClick={() => setMenuOpen(!menuOpen)}>
           <span className={`nav__burger-line${menuOpen ? " is-open" : ""}`} />
           <span className={`nav__burger-line${menuOpen ? " is-open" : ""}`} />
           <span className={`nav__burger-line${menuOpen ? " is-open" : ""}`} />
         </button>
-        <a className="nav__cta" href="mailto:hello@elconekt.com" data-magnetic="0.25">
+        <Link className="nav__cta" to="/contact" data-magnetic="0.25">
           Talk to Us
           <ArrowIcon />
-        </a>
+        </Link>
       </nav>
       {menuOpen && <div className="nav__overlay" onClick={() => setMenuOpen(false)} />}
 
@@ -133,10 +132,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="footer__col">
               <h5>Company</h5>
               <ul>
-                <li><a href="#" onClick={(e) => { e.preventDefault(); scrollTo("elc-about"); }}>About</a></li>
+                <li><Link to="/about">About</Link></li>
                 <li><a href="#" onClick={(e) => { e.preventDefault(); scrollTo("elc-services"); }}>Services</a></li>
                 <li><a href="#" onClick={(e) => { e.preventDefault(); scrollTo("elc-industries"); }}>Industries</a></li>
-                <li><a href="#" onClick={(e) => { e.preventDefault(); scrollTo("elc-contact"); }}>Contact</a></li>
+                <li><Link to="/contact">Contact</Link></li>
               </ul>
             </div>
             <div className="footer__col">
@@ -150,7 +149,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="footer__col">
               <h5>Contact</h5>
               <ul>
-                <li><a href="mailto:hello@elconekt.com">hello@elconekt.com</a></li>
+                <li><a href="mailto:info@elconekt.com">info@elconekt.com</a></li>
                 <li><span>London, United Kingdom</span></li>
               </ul>
             </div>

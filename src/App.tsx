@@ -1,7 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Elconekt from "./pages/Elconekt";
+import About from "./pages/About";
 import FullStackDev from "./pages/FullStackDev";
+import AIIntelligentSystems from "./pages/AIIntelligentSystems";
+import Cybersecurity from "./pages/Cybersecurity";
+import Contact from "./pages/Contact";
 import SmoothScroll from "./motion/SmoothScroll";
 import Cursor from "./motion/Cursor";
 import "./pages/elconekt.css";
@@ -14,7 +18,11 @@ export default function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Elconekt />} />
+            <Route path="/about" element={<About />} />
             <Route path="/services/full-stack-development" element={<FullStackDev />} />
+            <Route path="/services/ai-intelligent-systems" element={<AIIntelligentSystems />} />
+            <Route path="/services/cybersecurity" element={<Cybersecurity />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </Layout>
       </SmoothScroll>

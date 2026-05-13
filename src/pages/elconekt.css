@@ -2411,3 +2411,217 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
      for the carousel's own bottom padding. */
   .elconekt .section__header { margin-bottom: clamp(36px, 6vh, 64px); }
 }
+
+/* ==========================================================
+   About page — body prose blocks under the section title
+   ========================================================== */
+.elconekt .about-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 52ch;
+}
+.elconekt .about-prose strong { color: var(--ink); font-weight: 600; }
+.elconekt .about-prose__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.elconekt .about-prose__list span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.elconekt .about-prose__list span::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+/* ==========================================================
+   AI page — maturity ladder
+   ========================================================== */
+.elconekt .ai-ladder {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--card-divider);
+  border: 1px solid var(--card-divider);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.elconekt .ai-ladder__step {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 28px 32px;
+  background: var(--card-bg);
+  color: var(--card-text);
+  transition: background 0.4s var(--ease-out);
+}
+.elconekt .ai-ladder__step:hover { background: var(--card-bg-hover); }
+.elconekt .ai-ladder__num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: var(--card-accent);
+  font-weight: 500;
+  padding-top: 4px;
+}
+.elconekt .ai-ladder__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  line-height: 1.2;
+  color: var(--card-text);
+}
+.elconekt .ai-ladder__desc {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--card-muted);
+  max-width: 60ch;
+}
+
+/* ==========================================================
+   Contact page — split form + aside
+   ========================================================== */
+.elconekt .contact__layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: start;
+}
+.elconekt .contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.elconekt .contact__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.elconekt .contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.elconekt .contact__field > span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.elconekt .contact__field input,
+.elconekt .contact__field select,
+.elconekt .contact__field textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  resize: vertical;
+}
+.elconekt .contact__field input::placeholder,
+.elconekt .contact__field textarea::placeholder { color: var(--muted-2); }
+.elconekt .contact__field input:focus,
+.elconekt .contact__field select:focus,
+.elconekt .contact__field textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 4px rgba(30, 99, 255, 0.12);
+}
+.elconekt .contact__field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'><path d='M3 4.5l3 3 3-3' stroke='%231A1F2C' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+.elconekt .contact__submit { align-self: flex-start; margin-top: 8px; }
+
+.elconekt .contact__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 32px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-divider);
+  border-radius: 16px;
+  color: var(--card-muted);
+}
+.elconekt .contact__block h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--card-accent);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.elconekt .contact__block p {
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.elconekt .contact__email {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--card-text);
+  letter-spacing: -0.01em;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+.elconekt .contact__email:hover { color: var(--card-accent); }
+.elconekt .contact__meta {
+  font-size: 13px;
+  color: var(--card-mono);
+}
+.elconekt .contact__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.elconekt .contact__links a {
+  font-size: 14.5px;
+  color: var(--card-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.elconekt .contact__links a::before {
+  content: '↗';
+  color: var(--card-accent);
+  font-size: 12px;
+}
+.elconekt .contact__links a:hover { color: var(--card-accent); }
+
+@media (max-width: 900px) {
+  .elconekt .contact__layout { grid-template-columns: 1fr; gap: 40px; }
+  .elconekt .contact__row { grid-template-columns: 1fr; }
+}
