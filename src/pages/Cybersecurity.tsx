@@ -5,6 +5,7 @@ import { useReveal } from "../motion/useReveal";
 import { useMagnetic } from "../motion/useMagnetic";
 import { useTextReveal } from "../motion/useTextReveal";
 import PinnedSequence from "../motion/PinnedSequence";
+import HeroNodeBackground from "../motion/HeroNodeBackground";
 
 export default function Cybersecurity() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -26,6 +27,7 @@ export default function Cybersecurity() {
     <>
       {/* HERO */}
       <header className="svc-hero">
+        <HeroNodeBackground />
         <div className="container">
           <div className="svc-hero__inner">
             <div className="svc-hero__breadcrumb reveal">

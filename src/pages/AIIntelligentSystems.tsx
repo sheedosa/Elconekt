@@ -4,6 +4,7 @@ import { ArrowIcon, RightArrowIcon } from "../components/Layout";
 import { useReveal } from "../motion/useReveal";
 import { useMagnetic } from "../motion/useMagnetic";
 import { useTextReveal } from "../motion/useTextReveal";
+import HeroNodeBackground from "../motion/HeroNodeBackground";
 
 export default function AIIntelligentSystems() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -36,6 +37,7 @@ export default function AIIntelligentSystems() {
     <>
       {/* HERO */}
       <header className="svc-hero">
+        <HeroNodeBackground />
         <div className="container">
           <div className="svc-hero__inner">
             <div className="svc-hero__breadcrumb reveal">

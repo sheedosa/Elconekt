@@ -3,6 +3,7 @@ import { ArrowIcon, RightArrowIcon } from "../components/Layout";
 import { useReveal } from "../motion/useReveal";
 import { useMagnetic } from "../motion/useMagnetic";
 import { useTextReveal } from "../motion/useTextReveal";
+import HeroNodeBackground from "../motion/HeroNodeBackground";
 
 export default function About() {
   useReveal();
@@ -22,6 +23,7 @@ export default function About() {
     <>
       {/* HERO */}
       <header className="svc-hero">
+        <HeroNodeBackground />
         <div className="container">
           <div className="svc-hero__inner">
             <div className="svc-hero__breadcrumb reveal">

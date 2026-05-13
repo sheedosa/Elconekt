@@ -1477,9 +1477,22 @@ html.motion-ready .elconekt .reveal-stagger > * {
 
 /* ========== Service page — hero ========== */
 .elconekt .svc-hero {
+  position: relative;
   padding: clamp(130px, 16vh, 180px) 0 clamp(72px, 9vh, 120px);
   background: var(--surface);
   border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+/* When a HeroNodeBackground is layered in, lift the .container content
+   above the canvas + gradient overlay layers. */
+.elconekt .svc-hero .container {
+  position: relative;
+  z-index: 3;
+}
+.elconekt .svc-hero .hero__grad {
+  background:
+    radial-gradient(800px 600px at 75% 30%, rgba(30,99,255,0.08), transparent 65%),
+    radial-gradient(900px 700px at 15% 85%, rgba(7,27,70,0.05), transparent 60%);
 }
 .elconekt .svc-hero__breadcrumb {
   display: flex;
@@ -2447,53 +2460,89 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
 }
 
 /* ==========================================================
-   AI page — maturity ladder
+   AI page — maturity ladder (progression timeline)
    ========================================================== */
 .elconekt .ai-ladder {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1px;
-  background: var(--card-divider);
-  border: 1px solid var(--card-divider);
-  border-radius: 16px;
-  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+/* Vertical connecting track running through the step circles */
+.elconekt .ai-ladder::before {
+  content: '';
+  position: absolute;
+  left: 31px;
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background: linear-gradient(180deg,
+    rgba(30, 99, 255, 0.45) 0%,
+    rgba(130, 168, 255, 0.55) 50%,
+    rgba(30, 99, 255, 0.85) 100%);
+  border-radius: 2px;
+  z-index: 0;
 }
 .elconekt .ai-ladder__step {
+  position: relative;
   display: grid;
   grid-template-columns: 64px 1fr;
-  gap: 24px;
+  gap: 28px;
   align-items: start;
-  padding: 28px 32px;
-  background: var(--card-bg);
-  color: var(--card-text);
-  transition: background 0.4s var(--ease-out);
+  padding: 24px 28px 24px 0;
+  z-index: 1;
 }
-.elconekt .ai-ladder__step:hover { background: var(--card-bg-hover); }
 .elconekt .ai-ladder__num {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 2px solid rgba(30, 99, 255, 0.4);
+  display: grid;
+  place-items: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 0.16em;
+  font-size: 14px;
+  letter-spacing: 0.08em;
   color: var(--card-accent);
-  font-weight: 500;
-  padding-top: 4px;
+  font-weight: 600;
+  box-shadow:
+    0 8px 24px -8px rgba(30, 99, 255, 0.35),
+    0 0 0 6px rgba(255, 255, 255, 0.6);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-color 0.4s;
+}
+.elconekt .ai-ladder__step:hover .ai-ladder__num {
+  transform: scale(1.05);
+  border-color: var(--blue);
+  box-shadow:
+    0 14px 32px -8px rgba(30, 99, 255, 0.55),
+    0 0 0 6px rgba(255, 255, 255, 0.7);
+}
+.elconekt .ai-ladder__step > div {
+  padding-top: 14px;
 }
 .elconekt .ai-ladder__title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px;
+  font-size: clamp(20px, 2vw, 26px);
   font-weight: 600;
   letter-spacing: -0.02em;
-  margin-bottom: 6px;
-  line-height: 1.2;
-  color: var(--card-text);
+  margin-bottom: 8px;
+  line-height: 1.15;
+  color: var(--ink);
 }
 .elconekt .ai-ladder__desc {
-  font-size: 15px;
+  font-size: 15.5px;
   line-height: 1.55;
-  color: var(--card-muted);
+  color: var(--muted);
   max-width: 60ch;
+}
+@media (max-width: 640px) {
+  .elconekt .ai-ladder::before { left: 23px; }
+  .elconekt .ai-ladder__step { grid-template-columns: 48px 1fr; gap: 20px; }
+  .elconekt .ai-ladder__num { width: 48px; height: 48px; font-size: 12px; }
+  .elconekt .ai-ladder__step > div { padding-top: 8px; }
 }
 
 /* ==========================================================
