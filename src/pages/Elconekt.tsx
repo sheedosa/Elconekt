@@ -25,7 +25,6 @@ export default function Elconekt() {
 
     let W: number, H: number;
     let animId: number;
-    const mouse = { x: -9999, y: -9999 };
     const NODE_COUNT = 70;
     const MAX_DIST = 160;
     let nodes: { x: number; y: number; vx: number; vy: number; r: number; pulse: number; accent: boolean }[] = [];
@@ -57,13 +56,6 @@ export default function Elconekt() {
 
     function tick() {
       ctx!.clearRect(0, 0, W, H);
-      if (mouse.x > -9000) {
-        const g = ctx!.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 220);
-        g.addColorStop(0, "rgba(30,99,255,0.10)");
-        g.addColorStop(1, "rgba(30,99,255,0)");
-        ctx!.fillStyle = g;
-        ctx!.fillRect(0, 0, W, H);
-      }
       for (const n of nodes) {
         n.x += n.vx;
         n.y += n.vy;
@@ -85,17 +77,6 @@ export default function Elconekt() {
             ctx!.lineTo(b.x, b.y);
             ctx!.stroke();
           }
-        }
-        const a = nodes[i];
-        const mdx = a.x - mouse.x, mdy = a.y - mouse.y;
-        const md = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (md < 180) {
-          ctx!.strokeStyle = `rgba(30,99,255,${(1 - md / 180) * 0.45})`;
-          ctx!.lineWidth = 0.8;
-          ctx!.beginPath();
-          ctx!.moveTo(a.x, a.y);
-          ctx!.lineTo(mouse.x, mouse.y);
-          ctx!.stroke();
         }
       }
       for (const n of nodes) {
@@ -119,24 +100,15 @@ export default function Elconekt() {
       animId = requestAnimationFrame(tick);
     }
 
-    const onMove = (e: MouseEvent) => {
-      const rect = canvas!.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    };
-    const onLeave = () => { mouse.x = -9999; mouse.y = -9999; };
-
     resize();
     initNodes();
     animId = requestAnimationFrame(tick);
-    window.addEventListener("resize", () => { resize(); initNodes(); });
-    canvas.addEventListener("mousemove", onMove);
-    canvas.addEventListener("mouseleave", onLeave);
+    const onResize = () => { resize(); initNodes(); };
+    window.addEventListener("resize", onResize);
 
     return () => {
       cancelAnimationFrame(animId);
-      canvas.removeEventListener("mousemove", onMove);
-      canvas.removeEventListener("mouseleave", onLeave);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -186,7 +158,7 @@ export default function Elconekt() {
         <div className="hero__bg">
           <HeroBackdrop fallback={<canvas className="hero__canvas" ref={canvasRef} />} />
         </div>
-        <div className="hero__grad" data-parallax="0.2" />
+        <div className="hero__grad" />
         <div className="container hero__inner">
           <div className="hero__meta">
             <span className="eyebrow">Intelligent Systems Integrator</span>

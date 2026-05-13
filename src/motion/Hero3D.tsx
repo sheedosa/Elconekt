@@ -1,21 +1,19 @@
 import { Suspense, useMemo, useRef } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 /**
  * Hero3D
  * ------
- * Subtle, premium WebGL backdrop for the hero. A volumetric grid of glowing
- * points drifts gently in 3D space and reacts to the cursor with a soft
- * lerp — the camera (not the geometry) shifts, which feels more cinematic
- * than rotating the mesh directly.
+ * Subtle, premium WebGL backdrop for the hero. A volumetric grid of points
+ * drifts on a slow, self-contained loop — independent of scroll position
+ * and pointer activity. The scene runs the same regardless of what the
+ * user is doing on the page; it's purely ambient atmosphere.
  *
  * Performance:
- *  - One BufferGeometry + ShaderMaterial-free PointsMaterial.
+ *  - One BufferGeometry + PointsMaterial.
  *  - No per-frame allocations in the render loop.
  *  - DPR clamped to 1.5 to keep mobile/lower-end GPUs at 60fps.
- *  - Auto-suspends rendering when the canvas is offscreen (frameloop=demand).
- *    We use `frameloop="always"` here because we want continuous gentle drift.
  *
  * Mobile / reduced motion: parent decides not to mount this; this component
  * just assumes "render".
@@ -24,9 +22,6 @@ import * as THREE from "three";
 function PointField() {
   const ref = useRef<THREE.Points>(null);
   const groupRef = useRef<THREE.Group>(null);
-  const { size } = useThree();
-  const mouseTarget = useRef(new THREE.Vector2());
-  const mouseLerped = useRef(new THREE.Vector2());
 
   // Build the point cloud once. 3D Halton-ish-sequence-via-random for
   // a non-grid, evenly-distributed feel.
@@ -44,24 +39,15 @@ function PointField() {
     return { positions, scales };
   }, []);
 
-  // Track normalized cursor position relative to the canvas element.
+  // Pure ambient motion — no cursor, no scroll input. The field gently
+  // breathes on its own timeline.
   useFrame((state, dt) => {
-    const ndcX = (state.pointer.x ?? 0);
-    const ndcY = (state.pointer.y ?? 0);
-    mouseTarget.current.set(ndcX, ndcY);
-
-    // Lerp for buttery cursor follow.
-    mouseLerped.current.x += (mouseTarget.current.x - mouseLerped.current.x) * 0.04;
-    mouseLerped.current.y += (mouseTarget.current.y - mouseLerped.current.y) * 0.04;
-
+    const t = state.clock.elapsedTime;
     if (groupRef.current) {
-      // Camera-like parallax via group rotation — feels 3D without
-      // moving the actual camera (which would also shift the framing).
-      groupRef.current.rotation.y = mouseLerped.current.x * 0.18;
-      groupRef.current.rotation.x = -mouseLerped.current.y * 0.12;
+      // Slow autonomous sway, sine-based so it never feels mechanical.
+      groupRef.current.rotation.y = Math.sin(t * 0.08) * 0.12;
+      groupRef.current.rotation.x = Math.cos(t * 0.06) * 0.06;
     }
-
-    // Ambient drift — keeps the field alive even with no mouse movement.
     if (ref.current) {
       ref.current.rotation.y += dt * 0.018;
     }
@@ -150,7 +136,11 @@ export default function Hero3D() {
       dpr={[1, 1.5]}
       camera={{ position: [0, 0, 7], fov: 55 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+      // Pointer events disabled at both the DOM and R3F level — the hero
+      // background is purely ambient and must never react to interactions
+      // anywhere on the page.
+      eventSource={undefined}
+      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}
     >
       <Suspense fallback={null}>
         <PointField />

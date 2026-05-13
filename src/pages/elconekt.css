@@ -324,9 +324,10 @@
   z-index: 0;
   pointer-events: none;
 }
-.elconekt .hero__bg .hero3d__canvas {
-  /* R3F canvas owns pointer events for cursor parallax */
-  pointer-events: auto;
+.elconekt .hero__bg,
+.elconekt .hero__bg * {
+  /* Hero background is decorative-only — never captures pointer events. */
+  pointer-events: none !important;
 }
 .elconekt .hero__canvas {
   position: absolute; inset: 0;
