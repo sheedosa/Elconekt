@@ -987,75 +987,61 @@ html.motion-ready .elconekt .reveal-stagger > * {
   max-height: 280px;
   overflow: visible;
 }
-.elconekt .viz-defense__ring { fill: none; }
-.elconekt .viz-defense__ring--outer {
+/* Single slow-rotating perimeter ring — barely there, just enough
+   to give the composition a sense of ambient watchfulness. */
+.elconekt .viz-defense__ring circle {
+  fill: none;
   stroke: rgba(255, 255, 255, 0.22);
   stroke-width: 1;
   stroke-dasharray: 2 4;
-  animation: elc-defenseRot 60s linear infinite;
-  transform-origin: center;
-}
-.elconekt .viz-defense__ring--mid {
-  stroke: rgba(255, 255, 255, 0.45);
-  stroke-width: 1.2;
-  animation: elc-defenseRotR 40s linear infinite;
-  transform-origin: center;
-}
-.elconekt .viz-defense__ring--inner {
-  stroke: rgba(255, 255, 255, 0.55);
-  stroke-width: 1;
-  stroke-dasharray: 1 3;
-  animation: elc-defenseRot 24s linear infinite;
+  animation: elc-defenseRot 80s linear infinite;
   transform-origin: center;
 }
 @keyframes elc-defenseRot { to { transform: rotate(360deg); } }
-@keyframes elc-defenseRotR { to { transform: rotate(-360deg); } }
+
+/* Static cardinal tick marks — anchor points, no animation. */
 .elconekt .viz-defense__ticks line {
-  stroke: rgba(255, 255, 255, 0.55);
+  stroke: rgba(255, 255, 255, 0.7);
   stroke-width: 1.4;
   stroke-linecap: round;
 }
-.elconekt .viz-defense__cross line {
-  stroke: rgba(255, 255, 255, 0.7);
-  stroke-width: 1.2;
-  stroke-linecap: round;
+
+/* Gentle breathing aura around the shield — confident, calm. */
+.elconekt .viz-defense__aura {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 1;
+  animation: elc-defenseAura 4.5s ease-in-out infinite;
+  transform-origin: 100px 100px;
+  transform-box: view-box;
 }
-.elconekt .viz-defense__sweep {
-  animation: elc-defenseSweep 4.5s linear infinite;
-  transform-origin: center;
+@keyframes elc-defenseAura {
+  0%, 100% { opacity: 0.35; transform: scale(0.94); }
+  50%      { opacity: 0.75; transform: scale(1.06); }
 }
-@keyframes elc-defenseSweep { to { transform: rotate(360deg); } }
-.elconekt .viz-defense__sensor {
-  fill: #ffffff;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.85));
-  animation: elc-defenseSensor 2s ease-in-out infinite;
-}
-.elconekt .viz-defense__sensor--2 { animation-delay: 0.5s; }
-.elconekt .viz-defense__sensor--3 { animation-delay: 1s; }
-.elconekt .viz-defense__sensor--4 { animation-delay: 1.5s; }
-@keyframes elc-defenseSensor {
-  0%, 100% { opacity: 0.45; r: 2.6; }
-  50% { opacity: 1; r: 3.6; }
-}
+
+/* Hero shield — large, central, the only thing that really matters. */
 .elconekt .viz-defense__shield {
-  fill: rgba(255, 255, 255, 0.1);
+  fill: rgba(255, 255, 255, 0.08);
   stroke: #fff;
-  stroke-width: 1.6;
+  stroke-width: 2;
   stroke-linejoin: round;
-  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.55));
 }
 .elconekt .viz-defense__check {
   fill: none;
   stroke: #fff;
-  stroke-width: 2;
+  stroke-width: 2.6;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.elconekt .service-card:hover .viz-defense__shield {
-  transform: scale(1.05);
+.elconekt .viz-defense__core {
+  transition: transform 0.6s var(--ease-out);
   transform-origin: center;
   transform-box: fill-box;
-  transition: transform 0.5s var(--ease-out);
+}
+.elconekt .service-card:hover .viz-defense__core {
+  transform: scale(1.04);
 }
 
 /* ========== AI Grid section ========== */

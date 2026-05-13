@@ -444,64 +444,38 @@ export default function Elconekt() {
                   <svg className="viz-defense__svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true">
                     <defs>
                       <radialGradient id="vizDefenseGlow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="rgba(255,255,255,0.24)" />
-                        <stop offset="50%" stopColor="rgba(255,255,255,0.06)" />
+                        <stop offset="0%" stopColor="rgba(255,255,255,0.22)" />
+                        <stop offset="55%" stopColor="rgba(255,255,255,0.04)" />
                         <stop offset="100%" stopColor="rgba(255,255,255,0)" />
                       </radialGradient>
-                      <linearGradient id="vizDefenseSweep" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-                        <stop offset="100%" stopColor="rgba(255,255,255,0.55)" />
-                      </linearGradient>
                     </defs>
 
-                    {/* Background glow disc — perfectly centred */}
-                    <circle cx="100" cy="100" r="92" fill="url(#vizDefenseGlow)" />
+                    {/* Background glow — soft, centred */}
+                    <circle cx="100" cy="100" r="96" fill="url(#vizDefenseGlow)" />
 
-                    {/* Concentric defence rings */}
-                    <g className="viz-defense__rings" transform="translate(100 100)">
-                      <circle r="84" className="viz-defense__ring viz-defense__ring--outer" />
-                      <circle r="62" className="viz-defense__ring viz-defense__ring--mid" />
-                      <circle r="40" className="viz-defense__ring viz-defense__ring--inner" />
+                    {/* Single ambient ring — slow rotation, restrained */}
+                    <g className="viz-defense__ring" transform="translate(100 100)">
+                      <circle r="80" />
                     </g>
 
-                    {/* Tick marks on outer ring — 8 cardinal/diagonal positions */}
+                    {/* Four cardinal ticks — quiet, deliberate, no animation */}
                     <g className="viz-defense__ticks" transform="translate(100 100)">
-                      <line x1="0" y1="-84" x2="0" y2="-76" />
-                      <line x1="84" y1="0" x2="76" y2="0" />
-                      <line x1="0" y1="84" x2="0" y2="76" />
-                      <line x1="-84" y1="0" x2="-76" y2="0" />
-                      <line x1="59.4" y1="-59.4" x2="53.7" y2="-53.7" />
-                      <line x1="59.4" y1="59.4" x2="53.7" y2="53.7" />
-                      <line x1="-59.4" y1="59.4" x2="-53.7" y2="53.7" />
-                      <line x1="-59.4" y1="-59.4" x2="-53.7" y2="-53.7" />
+                      <line x1="0" y1="-80" x2="0" y2="-72" />
+                      <line x1="80" y1="0" x2="72" y2="0" />
+                      <line x1="0" y1="80" x2="0" y2="72" />
+                      <line x1="-80" y1="0" x2="-72" y2="0" />
                     </g>
 
-                    {/* Rotating scan sweep */}
-                    <g className="viz-defense__sweep" transform="translate(100 100)">
-                      <path d="M0,0 L84,0 A84,84 0 0,0 59.4,-59.4 Z" fill="url(#vizDefenseSweep)" />
-                    </g>
+                    {/* Breathing aura around the shield — one gentle pulse */}
+                    <circle cx="100" cy="100" r="56" className="viz-defense__aura" />
 
-                    {/* Cross-hair guides — small marks outside the outer ring */}
-                    <g className="viz-defense__cross" transform="translate(100 100)">
-                      <line x1="-94" y1="0" x2="-88" y2="0" />
-                      <line x1="88" y1="0" x2="94" y2="0" />
-                      <line x1="0" y1="-94" x2="0" y2="-88" />
-                      <line x1="0" y1="88" x2="0" y2="94" />
-                    </g>
-
-                    {/* Sensor pings — 4 perimeter positions */}
-                    <circle cx="100" cy="16" r="2.6" className="viz-defense__sensor" />
-                    <circle cx="184" cy="100" r="2.6" className="viz-defense__sensor viz-defense__sensor--2" />
-                    <circle cx="100" cy="184" r="2.6" className="viz-defense__sensor viz-defense__sensor--3" />
-                    <circle cx="16" cy="100" r="2.6" className="viz-defense__sensor viz-defense__sensor--4" />
-
-                    {/* Central shield emblem — sits exactly at viewBox centre */}
+                    {/* Hero element — large shield with check.  Centre stage. */}
                     <g className="viz-defense__core" transform="translate(100 100)">
                       <path
-                        d="M0,-24 L20,-15 L20,4 C20,17 11,24 0,28 C-11,24 -20,17 -20,4 L-20,-15 Z"
+                        d="M0,-44 L34,-30 L34,8 C34,30 18,42 0,50 C-18,42 -34,30 -34,8 L-34,-30 Z"
                         className="viz-defense__shield"
                       />
-                      <path d="M-8,1 L-2,7 L10,-5" className="viz-defense__check" />
+                      <path d="M-14,3 L-3,14 L18,-8" className="viz-defense__check" />
                     </g>
                   </svg>
                 </div>
