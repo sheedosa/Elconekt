@@ -444,39 +444,35 @@ export default function Elconekt() {
                   <svg className="viz-defense__svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true">
                     <defs>
                       <radialGradient id="vizDefenseGlow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="rgba(255,255,255,0.22)" />
-                        <stop offset="55%" stopColor="rgba(255,255,255,0.04)" />
-                        <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+                        <stop offset="0%" stopColor="rgba(30, 99, 255, 0.20)" />
+                        <stop offset="55%" stopColor="rgba(30, 99, 255, 0.05)" />
+                        <stop offset="100%" stopColor="rgba(30, 99, 255, 0)" />
                       </radialGradient>
+                      <linearGradient id="vizShieldFill" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="rgba(255, 255, 255, 0.14)" />
+                        <stop offset="100%" stopColor="rgba(255, 255, 255, 0.02)" />
+                      </linearGradient>
                     </defs>
 
-                    {/* Background glow — soft, centred */}
+                    {/* Soft theme-blue ambient glow */}
                     <circle cx="100" cy="100" r="96" fill="url(#vizDefenseGlow)" />
 
-                    {/* Single ambient ring — slow rotation, restrained */}
-                    <g className="viz-defense__ring" transform="translate(100 100)">
-                      <circle r="80" />
-                    </g>
+                    {/* Two staggered expanding rings — the only ambient motion */}
+                    <circle cx="100" cy="100" r="58" className="viz-defense__pulse" />
+                    <circle cx="100" cy="100" r="58" className="viz-defense__pulse viz-defense__pulse--late" />
 
-                    {/* Four cardinal ticks — quiet, deliberate, no animation */}
-                    <g className="viz-defense__ticks" transform="translate(100 100)">
-                      <line x1="0" y1="-80" x2="0" y2="-72" />
-                      <line x1="80" y1="0" x2="72" y2="0" />
-                      <line x1="0" y1="80" x2="0" y2="72" />
-                      <line x1="-80" y1="0" x2="-72" y2="0" />
-                    </g>
+                    {/* The shield — written in absolute viewBox coordinates so no
+                        inline transform conflicts with CSS hover transforms. */}
+                    <path
+                      className="viz-defense__shield"
+                      d="M 100,50 L 140,66 L 140,108 C 140,134 122,150 100,158 C 78,150 60,134 60,108 L 60,66 Z"
+                    />
 
-                    {/* Breathing aura around the shield — one gentle pulse */}
-                    <circle cx="100" cy="100" r="56" className="viz-defense__aura" />
-
-                    {/* Hero element — large shield with check.  Centre stage. */}
-                    <g className="viz-defense__core" transform="translate(100 100)">
-                      <path
-                        d="M0,-44 L34,-30 L34,8 C34,30 18,42 0,50 C-18,42 -34,30 -34,8 L-34,-30 Z"
-                        className="viz-defense__shield"
-                      />
-                      <path d="M-14,3 L-3,14 L18,-8" className="viz-defense__check" />
-                    </g>
+                    {/* Check mark — theme blue accent */}
+                    <path
+                      className="viz-defense__check"
+                      d="M 82,104 L 94,116 L 118,90"
+                    />
                   </svg>
                 </div>
               </div>
