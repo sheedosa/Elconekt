@@ -295,7 +295,6 @@ export default function Elconekt() {
           <div className="services reveal-stagger">
             {/* Card 01 — Full Stack */}
             <article className="service-card">
-              <div className="service-card__num">01 / Full Stack Development</div>
               <div className="service-card__viz">
                 <div className="viz-layers viz-devices">
                   {/* Desktop browser mockup */}
@@ -348,7 +347,6 @@ export default function Elconekt() {
 
             {/* Card 02 — AI Solutions */}
             <article className="service-card">
-              <div className="service-card__num">02 / AI Solutions &amp; Intelligent Systems</div>
               <div className="service-card__viz">
                 <div className="viz-network viz-brain">
                   <svg className="viz-brain__svg" viewBox="0 0 200 200" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -441,7 +439,6 @@ export default function Elconekt() {
 
             {/* Card 03 — Cybersecurity */}
             <article className="service-card">
-              <div className="service-card__num">03 / Cybersecurity &amp; Digital Resilience</div>
               <div className="service-card__viz">
                 <div className="viz-lock viz-defense">
                   <svg className="viz-defense__svg" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true">

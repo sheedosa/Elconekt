@@ -570,8 +570,8 @@ html.motion-ready .elconekt .reveal-stagger > * {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 22px;
-  padding: 32px;
-  min-height: 420px;
+  padding: 28px;
+  min-height: 460px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -582,43 +582,40 @@ html.motion-ready .elconekt .reveal-stagger > * {
   border-color: var(--ink-2);
   box-shadow: 0 30px 60px -30px rgba(7,27,70,0.18);
 }
-.elconekt .service-card__num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  font-weight: 500;
-  margin-bottom: 28px;
-}
 .elconekt .service-card__viz {
-  height: 200px;
-  margin: 0 -36px 28px;
+  /* Animation now owns the lion's share of the card — was 200px when
+     the card had a numbered eyebrow; with that gone we let it breathe. */
+  height: 280px;
+  margin: 0 -28px 20px;
   background: var(--surface);
   position: relative;
   overflow: hidden;
 }
 .elconekt .service-card__title {
-  font-size: 26px;
-  font-weight: 500;
+  font-size: 21px;
+  font-weight: 600;
   letter-spacing: -0.02em;
-  margin-bottom: 14px;
-  line-height: 1.05;
+  margin-bottom: 8px;
+  line-height: 1.15;
+  /* Reserve fixed vertical room so all 3 titles align across cards
+     even if one title wraps to two lines. */
+  min-height: 48px;
 }
 .elconekt .service-card__desc {
   color: var(--ink-2);
-  font-size: 15.5px;
-  line-height: 1.6;
+  font-size: 14.5px;
+  line-height: 1.55;
   margin-bottom: auto;
   max-width: 38ch;
 }
 .elconekt .service-card__foot {
-  margin-top: 26px;
+  margin-top: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-2);
   font-weight: 500;
@@ -661,15 +658,15 @@ html.motion-ready .elconekt .reveal-stagger > * {
   --device-line-strong: rgba(7, 27, 70, 0.35);
   position: absolute; inset: 0;
 }
-/* Desktop browser sits left, large */
+/* Desktop browser sits left, large — scaled up for the taller viz area */
 .elconekt .viz-devices__desktop {
   position: absolute;
-  top: 20px;
-  left: 26px;
-  width: 200px;
-  height: 142px;
+  top: 40px;
+  left: 30px;
+  width: 224px;
+  height: 168px;
   background: var(--device-bg);
-  border-radius: 9px;
+  border-radius: 10px;
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.3) inset,
     0 18px 40px -16px rgba(0, 0, 0, 0.55);
@@ -775,12 +772,12 @@ html.motion-ready .elconekt .reveal-stagger > * {
 /* Phone overlaps from the bottom-right */
 .elconekt .viz-devices__phone {
   position: absolute;
-  bottom: 14px;
-  right: 26px;
-  width: 70px;
-  height: 130px;
+  bottom: 22px;
+  right: 30px;
+  width: 82px;
+  height: 156px;
   background: var(--device-bg);
-  border-radius: 12px;
+  border-radius: 14px;
   border: 2px solid rgba(255, 255, 255, 0.4);
   box-shadow:
     0 0 0 1px rgba(7, 27, 70, 0.25) inset,
@@ -847,8 +844,8 @@ html.motion-ready .elconekt .reveal-stagger > * {
 /* Floating component tag — software-structure hint */
 .elconekt .viz-devices__tag {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 18px;
+  right: 18px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -889,8 +886,10 @@ html.motion-ready .elconekt .reveal-stagger > * {
 .elconekt .viz-brain__svg {
   width: 100%;
   height: 100%;
-  max-width: 240px;
-  max-height: 200px;
+  /* Generous max so the brain composition fills the taller viz area
+     while staying perfectly square + centred. */
+  max-width: 320px;
+  max-height: 280px;
   overflow: visible;
 }
 .elconekt .viz-brain__contour {
@@ -982,8 +981,10 @@ html.motion-ready .elconekt .reveal-stagger > * {
 .elconekt .viz-defense__svg {
   width: 100%;
   height: 100%;
-  max-width: 240px;     /* keeps the composition square + centred */
-  max-height: 200px;
+  /* Generous max so the defense matrix fills the taller viz area
+     while staying perfectly square + centred. */
+  max-width: 320px;
+  max-height: 280px;
   overflow: visible;
 }
 .elconekt .viz-defense__ring { fill: none; }
@@ -2069,7 +2070,6 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
   border-color: var(--card-border-hover);
   box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.55);
 }
-.elconekt .service-card__num { color: var(--card-accent); }
 .elconekt .service-card__title { color: var(--card-text); }
 .elconekt .service-card__desc { color: var(--card-muted); }
 .elconekt .service-card__viz { background: rgba(0, 0, 0, 0.22); }
