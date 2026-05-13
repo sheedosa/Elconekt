@@ -2288,6 +2288,59 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
 }
 
 /* ==========================================================
+   Mobile section spacing — tighter rhythm
+   ----------------------------------------------------------
+   Re-tune the rhythm tokens for small viewports so sections
+   don't feel cavernous on a phone. Also re-size the section
+   title so it sits comfortably in the available width without
+   forcing the title to wrap into 3-4 narrow lines.
+   ========================================================== */
+@media (max-width: 768px) {
+  .elconekt {
+    --space-section:   clamp(48px, 8vh, 88px);
+    --space-section-y: clamp(32px, 5vh, 56px);
+    --space-header:    clamp(28px, 4vh, 48px);
+    --fs-section-title: clamp(2.1rem, 8.6vw, 3rem);
+    --fs-lead: 1rem;
+  }
+  .elconekt .section__header {
+    margin-bottom: clamp(28px, 4vh, 48px);
+    gap: 16px;
+  }
+  .elconekt .section__title {
+    max-width: 16ch;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+  }
+  .elconekt .intro__copy {
+    max-width: 16ch;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+  }
+  .elconekt .section__lead {
+    line-height: 1.5;
+    max-width: 100%;
+  }
+  .elconekt .cta-close__title {
+    max-width: 16ch;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    margin-bottom: clamp(28px, 5vh, 56px);
+  }
+  .elconekt .svc-hero__title {
+    max-width: 16ch;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+  }
+  /* CTA Close + Service Hero: trim the cavernous top/bottom padding
+     so the dark CTA band reads as a punchy block, not a vast void. */
+  .elconekt .cta-close { padding: clamp(56px, 8vh, 96px) 0; }
+  .elconekt .svc-hero {
+    padding: clamp(100px, 12vh, 130px) 0 clamp(48px, 7vh, 80px);
+  }
+}
+
+/* ==========================================================
    Mobile carousels — horizontal scroll-snap
    ----------------------------------------------------------
    Card-heavy sections become single-row swipeable rails on
