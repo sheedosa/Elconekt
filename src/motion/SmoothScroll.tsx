@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { prefersReducedMotion } from "./env";

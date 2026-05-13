@@ -219,15 +219,15 @@ export default function Elconekt() {
 
       {/* INTRO */}
       <section className="section" id="elc-about">
-        <div className="container reveal">
+        <div className="container">
           <div className="intro__layout">
             <div>
-              <span className="eyebrow" style={{ marginBottom: 32, display: "inline-flex" }}>[ 02 — Who we are ]</span>
+              <span className="eyebrow reveal" style={{ marginBottom: 32, display: "inline-flex" }}>[ 02 — Who we are ]</span>
               <h2 className="intro__copy" data-reveal-text style={{ marginTop: 24 }}>
                 A technology partner<br />built <span className="accent">differently.</span>
               </h2>
             </div>
-            <div className="intro__right" data-parallax="-0.08">
+            <div className="intro__right reveal" data-parallax="-0.08">
               <p>Elconekt was founded on a simple belief: modern organisations need more than disconnected vendors. They need one trusted partner who can help them build, transform, and protect their operations.</p>
               <p>That's why we combine full stack development, intelligent systems, and cybersecurity under one roof, delivering integrated solutions designed for long-term growth.</p>
             </div>
@@ -281,15 +281,15 @@ export default function Elconekt() {
       {/* SERVICES */}
       <section className="section section--surface" id="elc-services">
         <div className="container">
-          <div className="section__header reveal">
+          <div className="section__header">
             <div>
-              <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 03 — What we do ]</span>
+              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ 03 — What we do ]</span>
               <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
                 Build.<br />Transform.<br />
                 <span className="accent">Protect.</span>
               </h2>
             </div>
-            <p className="section__lead">
+            <p className="section__lead reveal">
               From digital products to defended infrastructure, we close the gap between strategy and the systems that actually run your business.
             </p>
           </div>
@@ -417,15 +417,15 @@ export default function Elconekt() {
       {/* AI CORE */}
       <section className="section" id="elc-ai">
         <div className="container">
-          <div className="section__header reveal">
+          <div className="section__header">
             <div>
-              <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 04 — The AI thread ]</span>
+              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ 04 — The AI thread ]</span>
               <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
                 <span className="accent">AI</span><br />
                 across everything<br />we deliver.
               </h2>
             </div>
-            <p className="section__lead">
+            <p className="section__lead reveal">
               AI is embedded across everything we deliver. From customer-facing apps to back-of-house operations and the security perimeter around them.
             </p>
           </div>
@@ -454,12 +454,12 @@ export default function Elconekt() {
       {/* WHY */}
       <section className="section">
         <div className="container">
-          <div className="section__header reveal">
+          <div className="section__header">
             <div>
-              <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 05 — Why Elconekt ]</span>
+              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ 05 — Why Elconekt ]</span>
               <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>Six reasons<br />leaders choose us.</h2>
             </div>
-            <p className="section__lead">
+            <p className="section__lead reveal">
               We're built for the moments that matter. The launch that can't slip, the breach that can't happen, the system that has to scale. <strong>No middlemen. No lock-in. No surprises.</strong>
             </p>
           </div>
@@ -492,12 +492,12 @@ export default function Elconekt() {
       {/* INDUSTRIES */}
       <section className="section section--surface" id="elc-industries">
         <div className="container">
-          <div className="section__header reveal">
+          <div className="section__header">
             <div>
-              <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 06 — Where we work ]</span>
+              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ 06 — Where we work ]</span>
               <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>Sectors<br />we serve.</h2>
             </div>
-            <p className="section__lead">From sovereign infrastructure to scaling SMEs. We operate across industries where the cost of failure is real and the standard for delivery is higher.</p>
+            <p className="section__lead reveal">From sovereign infrastructure to scaling SMEs. We operate across industries where the cost of failure is real and the standard for delivery is higher.</p>
           </div>
 
           <div className="industries-grid reveal-stagger">
@@ -528,8 +528,8 @@ export default function Elconekt() {
       {/* CTA CLOSE */}
       <section className="cta-close" id="elc-contact">
         <div className="container">
-          <div className="reveal">
-            <span className="eyebrow" style={{ color: "rgba(255,255,255,0.55)", marginBottom: 40, display: "inline-flex" }}>[ 07 — Start a conversation ]</span>
+          <div>
+            <span className="eyebrow reveal" style={{ color: "rgba(255,255,255,0.55)", marginBottom: 40, display: "inline-flex" }}>[ 07 — Start a conversation ]</span>
             <h2 className="cta-close__title" data-reveal-text style={{ marginTop: 32 }}>
               Let's build<br />something <span className="accent">smarter</span>—<br />and <span className="accent">safer.</span>
             </h2>

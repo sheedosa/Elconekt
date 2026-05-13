@@ -17,22 +17,22 @@ export default function FullStackDev() {
       {/* HERO */}
       <header className="svc-hero">
         <div className="container">
-          <div className="svc-hero__inner reveal">
-            <div className="svc-hero__breadcrumb">
+          <div className="svc-hero__inner">
+            <div className="svc-hero__breadcrumb reveal">
               <Link to="/">Home</Link>
               <span>/</span>
               <Link to="/#elc-services">Services</Link>
               <span>/</span>
               <span>Full Stack Development</span>
             </div>
-            <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ 01 — Full Stack Development ]</span>
+            <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ 01 — Full Stack Development ]</span>
             <h1 className="svc-hero__title" data-reveal-text>
               Build modern<br />digital <span className="accent">products.</span>
             </h1>
-            <p className="svc-hero__sub">
+            <p className="svc-hero__sub reveal">
               From websites and mobile apps to complex platforms, we engineer digital products designed to scale.
             </p>
-            <div className="svc-hero__ctas">
+            <div className="svc-hero__ctas reveal">
               <a className="btn btn--primary" href="mailto:hello@elconekt.com" data-magnetic="0.3">
                 Discuss Your Project
                 <ArrowIcon size={14} />
@@ -49,14 +49,14 @@ export default function FullStackDev() {
       {/* WHAT WE BUILD */}
       <section className="section" id="svc-what">
         <div className="container">
-          <div className="section__header reveal">
+          <div className="section__header">
             <div>
-              <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ What we build ]</span>
+              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ What we build ]</span>
               <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
                 Everything your<br />business runs on.
               </h2>
             </div>
-            <p className="section__lead">
+            <p className="section__lead reveal">
               We design and build the digital products that power modern organisations, from public-facing platforms to the internal tools your team relies on daily.
             </p>
           </div>
@@ -103,14 +103,14 @@ export default function FullStackDev() {
       {/* TECH STACK */}
       <section className="section">
         <div className="container">
-          <div className="section__header reveal">
+          <div className="section__header">
             <div>
-              <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ Tech stack ]</span>
+              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ Tech stack ]</span>
               <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
                 Tools we<br />build with.
               </h2>
             </div>
-            <p className="section__lead">
+            <p className="section__lead reveal">
               We choose the right tools for each project. No vendor lock-in, no unnecessary complexity. Just solid, proven technology.
             </p>
           </div>
@@ -136,9 +136,9 @@ export default function FullStackDev() {
       {/* FAQ */}
       <section className="section section--surface">
         <div className="container">
-          <div className="section__header reveal">
+          <div className="section__header">
             <div>
-              <span className="eyebrow" style={{ marginBottom: 24, display: "inline-flex" }}>[ FAQ ]</span>
+              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ FAQ ]</span>
               <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
                 Common<br />questions.
               </h2>
@@ -170,8 +170,8 @@ export default function FullStackDev() {
       {/* CTA */}
       <section className="cta-close" id="elc-contact">
         <div className="container">
-          <div className="reveal">
-            <span className="eyebrow" style={{ color: "rgba(255,255,255,0.55)", marginBottom: 40, display: "inline-flex" }}>[ Start a conversation ]</span>
+          <div>
+            <span className="eyebrow reveal" style={{ color: "rgba(255,255,255,0.55)", marginBottom: 40, display: "inline-flex" }}>[ Start a conversation ]</span>
             <h2 className="cta-close__title" data-reveal-text style={{ marginTop: 32 }}>
               Ready to build<br />something <span className="accent">great?</span>
             </h2>
