@@ -866,20 +866,39 @@ html.motion-ready .elconekt .reveal-stagger > * {
   background: var(--surface);
 }
 .elconekt .ai-grid__icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: var(--navy);
-  color: var(--blue);
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0e2766 0%, var(--navy) 100%);
+  color: #82a8ff;
   display: grid;
   place-items: center;
-  margin-bottom: 20px;
-  transition: background 0.4s, transform 0.4s var(--ease-out);
+  margin-bottom: 24px;
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(30, 99, 255, 0.18) inset,
+    0 8px 22px -10px rgba(30, 99, 255, 0.35);
+  transition: background 0.4s, color 0.4s, transform 0.4s var(--ease-out), box-shadow 0.4s;
+}
+.elconekt .ai-grid__icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 30% 25%, rgba(130, 168, 255, 0.22), transparent 60%);
+  pointer-events: none;
+}
+.elconekt .ai-grid__icon svg {
+  position: relative;
+  z-index: 1;
 }
 .elconekt .ai-grid__card:hover .ai-grid__icon {
   background: var(--blue);
   color: #fff;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+    0 14px 30px -10px rgba(30, 99, 255, 0.55);
 }
 .elconekt .ai-grid__title {
   font-family: 'Space Grotesk', sans-serif;

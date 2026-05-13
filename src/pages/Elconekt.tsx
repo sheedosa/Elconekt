@@ -222,8 +222,7 @@ export default function Elconekt() {
         <div className="container">
           <div className="intro__layout">
             <div>
-              <span className="eyebrow reveal" style={{ marginBottom: 32, display: "inline-flex" }}>[ 02 — Who we are ]</span>
-              <h2 className="intro__copy" data-reveal-text style={{ marginTop: 24 }}>
+              <h2 className="intro__copy" data-reveal-text>
                 A technology partner<br />built <span className="accent">differently.</span>
               </h2>
             </div>
@@ -283,8 +282,7 @@ export default function Elconekt() {
         <div className="container">
           <div className="section__header">
             <div>
-              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ 03 — What we do ]</span>
-              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
+              <h2 className="section__title" data-reveal-text>
                 Build.<br />Transform.<br />
                 <span className="accent">Protect.</span>
               </h2>
@@ -419,8 +417,7 @@ export default function Elconekt() {
         <div className="container">
           <div className="section__header">
             <div>
-              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ 04 — The AI thread ]</span>
-              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
+              <h2 className="section__title" data-reveal-text>
                 <span className="accent">AI</span><br />
                 across everything<br />we deliver.
               </h2>
@@ -432,16 +429,85 @@ export default function Elconekt() {
 
           <div className="ai-grid reveal-stagger">
             {[
-              { icon: <><rect x="2" y="2" width="12" height="12" rx="2.5" stroke="currentColor" strokeWidth="1.3" /><path d="M5.5 8l1.5 1.5L10 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></>, title: "AI-powered apps", desc: "Custom applications with machine learning and natural language built in from the start." },
-              { icon: <><path d="M2.5 8a5.5 5.5 0 0 1 5.5-5.5M13.5 8a5.5 5.5 0 0 1-5.5 5.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /><path d="M8 2.5L6.5 4 8 5.5M8 13.5l1.5-1.5L8 10.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></>, title: "Automation", desc: "Workflow automation that removes manual steps and connects your systems end to end." },
-              { icon: <path d="M2 14V4M2 14h12M4.5 12V9M7.5 12V6M10.5 12V8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />, title: "Analytics", desc: "Real-time data pipelines and dashboards that surface what matters and drive decisions." },
-              { icon: <><circle cx="8" cy="8" r="3" stroke="currentColor" strokeWidth="1.3" /><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.3" /><path d="M8 2v2M8 14v-2M2 8h2M14 8h-2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /></>, title: "Computer vision", desc: "Surveillance, quality inspection, and visual recognition systems deployed at the edge." },
-              { icon: <><path d="M8 1.5L13.5 4.5V9.5C13.5 12 11 14 8 14.5 5 14 2.5 12 2.5 9.5V4.5Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" /><path d="M5.5 8l2 2L11 6.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></>, title: "Cyber defence", desc: "AI-driven threat detection, anomaly monitoring, and automated incident response." },
-              { icon: <><circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.3" /><path d="M8 4.5V8l2.5 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" /></>, title: "Managed operations", desc: "Continuous monitoring, optimisation, and support powered by intelligent tooling." },
+              {
+                // AI-powered apps — CPU / chip
+                icon: (
+                  <>
+                    <rect x="6" y="6" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.6" fill="currentColor" fillOpacity="0.18" />
+                    <rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor" />
+                    <path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                  </>
+                ),
+                title: "AI-powered apps",
+                desc: "Custom applications with machine learning and natural language built in from the start.",
+              },
+              {
+                // Automation — cycle arrows
+                icon: (
+                  <>
+                    <path d="M5 8a7 7 0 0 1 12-3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+                    <path d="M17 2v3.5h-3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M19 16a7 7 0 0 1-12 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+                    <path d="M7 22v-3.5h3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="12" cy="12" r="2.5" fill="currentColor" />
+                  </>
+                ),
+                title: "Automation",
+                desc: "Workflow automation that removes manual steps and connects your systems end to end.",
+              },
+              {
+                // Analytics — bar chart with trend line
+                icon: (
+                  <>
+                    <path d="M3 21h18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    <rect x="4.5" y="13" width="3" height="6" rx="0.6" fill="currentColor" fillOpacity="0.55" />
+                    <rect x="10.5" y="9" width="3" height="10" rx="0.6" fill="currentColor" />
+                    <rect x="16.5" y="6" width="3" height="13" rx="0.6" fill="currentColor" fillOpacity="0.55" />
+                    <path d="M3 10l5-4 5 2 7-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                    <circle cx="20" cy="3" r="1.6" fill="currentColor" />
+                  </>
+                ),
+                title: "Analytics",
+                desc: "Real-time data pipelines and dashboards that surface what matters and drive decisions.",
+              },
+              {
+                // Computer vision — scan frame + eye
+                icon: (
+                  <>
+                    <path d="M3 7V4a1 1 0 0 1 1-1h3M21 7V4a1 1 0 0 0-1-1h-3M3 17v3a1 1 0 0 0 1 1h3M21 17v3a1 1 0 0 1-1 1h-3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                    <path d="M5 12c2-3.5 4.5-5 7-5s5 1.5 7 5c-2 3.5-4.5 5-7 5s-5-1.5-7-5z" stroke="currentColor" strokeWidth="1.6" fill="currentColor" fillOpacity="0.18" />
+                    <circle cx="12" cy="12" r="2" fill="currentColor" />
+                  </>
+                ),
+                title: "Computer vision",
+                desc: "Surveillance, quality inspection, and visual recognition systems deployed at the edge.",
+              },
+              {
+                // Cyber defence — shield with checkmark
+                icon: (
+                  <>
+                    <path d="M12 2L20 5v6c0 4.5-3.4 8.5-8 9.8C7.4 19.5 4 15.5 4 11V5z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" fill="currentColor" fillOpacity="0.22" />
+                    <path d="M8 12l3 3 5-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </>
+                ),
+                title: "Cyber defence",
+                desc: "AI-driven threat detection, anomaly monitoring, and automated incident response.",
+              },
+              {
+                // Managed operations — activity pulse in a ring
+                icon: (
+                  <>
+                    <circle cx="12" cy="12" r="9.5" stroke="currentColor" strokeWidth="1.8" fill="currentColor" fillOpacity="0.15" />
+                    <path d="M3.5 12h3l2-4 3.5 8 2-4h6.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  </>
+                ),
+                title: "Managed operations",
+                desc: "Continuous monitoring, optimisation, and support powered by intelligent tooling.",
+              },
             ].map((item, i) => (
               <div className="ai-grid__card" key={i}>
                 <div className="ai-grid__icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">{item.icon}</svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">{item.icon}</svg>
                 </div>
                 <h4 className="ai-grid__title">{item.title}</h4>
                 <p className="ai-grid__desc">{item.desc}</p>
@@ -456,8 +522,7 @@ export default function Elconekt() {
         <div className="container">
           <div className="section__header">
             <div>
-              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ 05 — Why Elconekt ]</span>
-              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>Six reasons<br />leaders choose us.</h2>
+              <h2 className="section__title" data-reveal-text>Six reasons<br />leaders choose us.</h2>
             </div>
             <p className="section__lead reveal">
               We're built for the moments that matter. The launch that can't slip, the breach that can't happen, the system that has to scale. <strong>No middlemen. No lock-in. No surprises.</strong>
@@ -476,7 +541,6 @@ export default function Elconekt() {
               <div className="why-cell" key={cell.num}>
                 <span className="why-cell__watermark">{cell.num}</span>
                 <div className="why-cell__head">
-                  <span className="why-cell__num">Reason {cell.num}</span>
                   <svg className="why-cell__icon" viewBox="0 0 56 56" fill="none">{cell.icon}</svg>
                 </div>
                 <div className="why-cell__body">
@@ -494,8 +558,7 @@ export default function Elconekt() {
         <div className="container">
           <div className="section__header">
             <div>
-              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ 06 — Where we work ]</span>
-              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>Sectors<br />we serve.</h2>
+              <h2 className="section__title" data-reveal-text>Sectors<br />we serve.</h2>
             </div>
             <p className="section__lead reveal">From sovereign infrastructure to scaling SMEs. We operate across industries where the cost of failure is real and the standard for delivery is higher.</p>
           </div>
@@ -529,8 +592,7 @@ export default function Elconekt() {
       <section className="cta-close" id="elc-contact">
         <div className="container">
           <div>
-            <span className="eyebrow reveal" style={{ color: "rgba(255,255,255,0.55)", marginBottom: 40, display: "inline-flex" }}>[ 07 — Start a conversation ]</span>
-            <h2 className="cta-close__title" data-reveal-text style={{ marginTop: 32 }}>
+            <h2 className="cta-close__title" data-reveal-text>
               Let's build<br />something <span className="accent">smarter</span>—<br />and <span className="accent">safer.</span>
             </h2>
           </div>

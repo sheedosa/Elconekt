@@ -25,7 +25,6 @@ export default function FullStackDev() {
               <span>/</span>
               <span>Full Stack Development</span>
             </div>
-            <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ 01 — Full Stack Development ]</span>
             <h1 className="svc-hero__title" data-reveal-text>
               Build modern<br />digital <span className="accent">products.</span>
             </h1>
@@ -51,8 +50,7 @@ export default function FullStackDev() {
         <div className="container">
           <div className="section__header">
             <div>
-              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ What we build ]</span>
-              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
+              <h2 className="section__title" data-reveal-text>
                 Everything your<br />business runs on.
               </h2>
             </div>
@@ -105,8 +103,7 @@ export default function FullStackDev() {
         <div className="container">
           <div className="section__header">
             <div>
-              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ Tech stack ]</span>
-              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
+              <h2 className="section__title" data-reveal-text>
                 Tools we<br />build with.
               </h2>
             </div>
@@ -138,8 +135,7 @@ export default function FullStackDev() {
         <div className="container">
           <div className="section__header">
             <div>
-              <span className="eyebrow reveal" style={{ marginBottom: 24, display: "inline-flex" }}>[ FAQ ]</span>
-              <h2 className="section__title" data-reveal-text style={{ marginTop: 20 }}>
+              <h2 className="section__title" data-reveal-text>
                 Common<br />questions.
               </h2>
             </div>
@@ -171,8 +167,7 @@ export default function FullStackDev() {
       <section className="cta-close" id="elc-contact">
         <div className="container">
           <div>
-            <span className="eyebrow reveal" style={{ color: "rgba(255,255,255,0.55)", marginBottom: 40, display: "inline-flex" }}>[ Start a conversation ]</span>
-            <h2 className="cta-close__title" data-reveal-text style={{ marginTop: 32 }}>
+            <h2 className="cta-close__title" data-reveal-text>
               Ready to build<br />something <span className="accent">great?</span>
             </h2>
           </div>
