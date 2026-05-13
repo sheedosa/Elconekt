@@ -23,7 +23,8 @@ export default function Elconekt() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let W: number, H: number;
+    let W = 0, H = 0;
+    let lastInitW = 0, lastInitH = 0;
     let animId: number;
     const NODE_COUNT = 70;
     const MAX_DIST = 160;
@@ -32,8 +33,14 @@ export default function Elconekt() {
     function resize() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const rect = canvas!.getBoundingClientRect();
-      W = rect.width;
-      H = rect.height;
+      const newW = rect.width;
+      const newH = rect.height;
+      // If dimensions haven't changed, skip — avoids needless work when the
+      // browser fires resize for chrome (address bar / keyboard) collapse
+      // without an actual layout shift.
+      if (newW === W && newH === H) return;
+      W = newW;
+      H = newH;
       canvas!.width = W * dpr;
       canvas!.height = H * dpr;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -52,6 +59,23 @@ export default function Elconekt() {
           accent: Math.random() < 0.18,
         });
       }
+      lastInitW = W;
+      lastInitH = H;
+    }
+
+    // Reflow nodes to a new canvas size without resetting their motion —
+    // each node gets scaled proportionally so they stay in place rather
+    // than reshuffling.
+    function reflowNodes() {
+      if (lastInitW === 0 || lastInitH === 0) return;
+      const sx = W / lastInitW;
+      const sy = H / lastInitH;
+      for (const n of nodes) {
+        n.x *= sx;
+        n.y *= sy;
+      }
+      lastInitW = W;
+      lastInitH = H;
     }
 
     function tick() {
@@ -103,7 +127,15 @@ export default function Elconekt() {
     resize();
     initNodes();
     animId = requestAnimationFrame(tick);
-    const onResize = () => { resize(); initNodes(); };
+
+    // On resize: keep the canvas surface in sync with the layout, but
+    // DON'T reinitialise nodes — that would visibly "jump" the animation
+    // when the mobile address bar collapses. Instead, scale the existing
+    // node positions proportionally so they stay in their current motion.
+    const onResize = () => {
+      resize();
+      reflowNodes();
+    };
     window.addEventListener("resize", onResize);
 
     return () => {
