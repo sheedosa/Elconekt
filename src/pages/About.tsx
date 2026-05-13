@@ -78,17 +78,54 @@ export default function About() {
                 Why<br />we exist.
               </h2>
             </div>
-            <div className="about-prose reveal">
-              <p>Modern organisations face increasingly complex technology challenges.</p>
-              <p className="about-prose__list">
-                <span>Different vendors.</span>
-                <span>Disconnected systems.</span>
-                <span>Growing security risks.</span>
-              </p>
-              <p><strong>Elconekt was built to solve that.</strong></p>
-              <p>We provide one trusted technology partner capable of helping organisations build, transform, and protect their operations through connected, end-to-end delivery.</p>
+            <p className="section__lead reveal">
+              Modern organisations face increasingly complex technology challenges. <strong>Elconekt was built to solve that</strong> &mdash; one trusted partner across software, intelligent systems, and cybersecurity.
+            </p>
+          </div>
+
+          <div className="why-exist-grid reveal-stagger">
+            <div className="why-exist-card">
+              <div className="why-exist-card__icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <rect x="3" y="6" width="6" height="11" rx="1.4" stroke="currentColor" strokeWidth="1.6" />
+                  <rect x="13" y="3" width="6" height="14" rx="1.4" stroke="currentColor" strokeWidth="1.6" />
+                  <path d="M5.5 9.5h1M5.5 12h1M5.5 14.5h1M15.5 6.5h1M15.5 9h1M15.5 11.5h1M15.5 14h1" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                </svg>
+              </div>
+              <h3 className="why-exist-card__title">Different vendors</h3>
+              <p className="why-exist-card__desc">Multiple suppliers create friction, hand-off gaps, and unclear accountability for the systems that run your business.</p>
+            </div>
+
+            <div className="why-exist-card">
+              <div className="why-exist-card__icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <circle cx="5" cy="5" r="2.5" stroke="currentColor" strokeWidth="1.6" />
+                  <circle cx="17" cy="5" r="2.5" stroke="currentColor" strokeWidth="1.6" />
+                  <circle cx="5" cy="17" r="2.5" stroke="currentColor" strokeWidth="1.6" />
+                  <circle cx="17" cy="17" r="2.5" stroke="currentColor" strokeWidth="1.6" />
+                  <path d="M7.5 5h2M14.5 5h-2" stroke="currentColor" strokeWidth="1.4" strokeDasharray="2 2" strokeLinecap="round" />
+                  <path d="M5 7.5v3M17 7.5v3" stroke="currentColor" strokeWidth="1.4" strokeDasharray="2 2" strokeLinecap="round" />
+                </svg>
+              </div>
+              <h3 className="why-exist-card__title">Disconnected systems</h3>
+              <p className="why-exist-card__desc">Data trapped in silos, tools that don&apos;t speak to each other, and integrations that constantly drift out of sync.</p>
+            </div>
+
+            <div className="why-exist-card">
+              <div className="why-exist-card__icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M11 2.5L18 5.5v5.5c0 4-3 7-7 8.5-4-1.5-7-4.5-7-8.5V5.5z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+                  <path d="M11 8v3.5M11 14.5v0.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                </svg>
+              </div>
+              <h3 className="why-exist-card__title">Growing security risks</h3>
+              <p className="why-exist-card__desc">Expanding attack surfaces, tightening regulation, and the rising business cost of every breach or outage.</p>
             </div>
           </div>
+
+          <p className="about-prose__resolve reveal">
+            We provide one trusted technology partner capable of helping organisations <strong>build, transform, and protect</strong> their operations through connected, end-to-end delivery.
+          </p>
         </div>
       </section>
 

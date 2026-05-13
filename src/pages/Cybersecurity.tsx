@@ -112,21 +112,51 @@ export default function Cybersecurity() {
               </h2>
             </div>
             <p className="section__lead reveal">
-              Our cybersecurity practice is founded on over a decade of principal-level engineering experience across enterprise and critical environments — including delivery at:
+              Our cybersecurity practice is founded on over a decade of principal-level engineering experience across enterprise and critical environments &mdash; including delivery at:
             </p>
           </div>
 
-          <div className="svc-stack reveal-stagger">
+          <div className="cred-grid reveal-stagger">
             {[
-              { name: "Cisco", cat: "Network &amp; security" },
-              { name: "KPMG", cat: "Advisory &amp; audit" },
-              { name: "Goldman Sachs", cat: "Investment banking" },
-              { name: "J.P. Morgan", cat: "Investment banking" },
+              {
+                name: "Cisco",
+                initial: "C",
+                cat: "Network & security",
+                tag: "Enterprise networking",
+                tint: "#1BA0D7",
+              },
+              {
+                name: "KPMG",
+                initial: "K",
+                cat: "Advisory & audit",
+                tag: "Big Four advisory",
+                tint: "#00338D",
+              },
+              {
+                name: "Goldman Sachs",
+                initial: "GS",
+                cat: "Investment banking",
+                tag: "Tier-1 capital markets",
+                tint: "#7399C6",
+              },
+              {
+                name: "J.P. Morgan",
+                initial: "JP",
+                cat: "Investment banking",
+                tag: "Global systemically important bank",
+                tint: "#4F5D75",
+              },
             ].map((org, i) => (
-              <div className="svc-stack__item" key={i}>
-                <span className="svc-stack__name">{org.name}</span>
-                <span className="svc-stack__cat" dangerouslySetInnerHTML={{ __html: org.cat }} />
-              </div>
+              <article className="cred" key={i} style={{ ["--tint" as never]: org.tint }}>
+                <div className="cred__mark" aria-hidden="true">
+                  <span>{org.initial}</span>
+                </div>
+                <div className="cred__body">
+                  <h4 className="cred__name">{org.name}</h4>
+                  <p className="cred__tag">{org.tag}</p>
+                  <span className="cred__cat">{org.cat}</span>
+                </div>
+              </article>
             ))}
           </div>
         </div>

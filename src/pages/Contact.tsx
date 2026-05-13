@@ -132,6 +132,53 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      {/* WHAT HAPPENS NEXT */}
+      <section className="section section--surface">
+        <div className="container">
+          <div className="section__header">
+            <div>
+              <h2 className="section__title" data-reveal-text>
+                What<br />happens next.
+              </h2>
+            </div>
+            <p className="section__lead reveal">
+              No automated sales funnels. No 14-day chase emails. Just a direct path from this form to a senior engineer who can actually help.
+            </p>
+          </div>
+
+          <ol className="next-steps reveal-stagger">
+            <li className="next-step">
+              <div className="next-step__num">01</div>
+              <div className="next-step__body">
+                <h3 className="next-step__title">We reply within 24 hours</h3>
+                <p className="next-step__desc">Your enquiry lands directly in front of a principal engineer &mdash; not a junior gatekeeper. Most weekdays you&apos;ll hear back the same day.</p>
+              </div>
+            </li>
+            <li className="next-step">
+              <div className="next-step__num">02</div>
+              <div className="next-step__body">
+                <h3 className="next-step__title">A 30-minute discovery call</h3>
+                <p className="next-step__desc">We listen first. We&apos;ll ask about your context, constraints, and what success looks like &mdash; not pitch you a packaged offering.</p>
+              </div>
+            </li>
+            <li className="next-step">
+              <div className="next-step__num">03</div>
+              <div className="next-step__body">
+                <h3 className="next-step__title">A clear proposal &amp; next steps</h3>
+                <p className="next-step__desc">A short written brief with scope, milestones, team, timeline, and a fixed quote &mdash; usually within five working days of the discovery call.</p>
+              </div>
+            </li>
+            <li className="next-step">
+              <div className="next-step__num">04</div>
+              <div className="next-step__body">
+                <h3 className="next-step__title">Engagement &amp; delivery</h3>
+                <p className="next-step__desc">If you say go, we start. Weekly demos, shared visibility, and accountable senior delivery from kick-off to launch.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
     </>
   );
 }

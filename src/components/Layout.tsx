@@ -18,7 +18,6 @@ export const RightArrowIcon = () => (
 );
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const progressRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -26,13 +25,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
   const isHome = location.pathname === "/";
 
-  // Scroll: nav state + progress bar
+  // Scroll: only the nav backdrop-state toggle remains — the top progress
+  // bar has been retired in favour of a calmer reading experience.
   useEffect(() => {
     const onScroll = () => {
-      const y = window.scrollY;
-      navRef.current?.classList.toggle("scrolled", y > 60);
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      if (progressRef.current) progressRef.current.style.width = ((y / h) * 100) + "%";
+      navRef.current?.classList.toggle("scrolled", window.scrollY > 60);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -68,8 +65,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="elconekt">
-      <div className="progress" ref={progressRef} />
-
       {/* NAV */}
       <nav className="nav" ref={navRef} aria-label="Primary">
         <Link className="nav__brand" to="/">
