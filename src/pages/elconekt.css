@@ -1810,3 +1810,144 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   background: rgba(255, 255, 255, 0.72);
 }
+
+/* ==========================================================
+   Desktop bento — Why Elconekt
+   ----------------------------------------------------------
+   First card becomes a 2-col × 2-row hero tile. The other
+   five reasons fill the remaining 5 cells of a 3×3 grid.
+   Reads like an editorial spread instead of a 3×2 spec sheet.
+   Only applies above the mobile carousel breakpoint (>768px).
+   ========================================================== */
+@media (min-width: 769px) {
+  .elconekt .why-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(240px, auto);
+  }
+  .elconekt .why-grid .why-cell:first-child {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+    padding: clamp(40px, 4vw, 64px) clamp(36px, 3.5vw, 56px);
+    background:
+      radial-gradient(900px 500px at 0% 100%, rgba(30,99,255,0.045), transparent 60%),
+      linear-gradient(155deg, #fafbfd 0%, #ffffff 100%);
+  }
+  .elconekt .why-grid .why-cell:first-child .why-cell__head {
+    margin-bottom: clamp(64px, 8vh, 120px);
+  }
+  .elconekt .why-grid .why-cell:first-child .why-cell__icon {
+    width: 88px;
+    height: 88px;
+  }
+  .elconekt .why-grid .why-cell:first-child .why-cell__title {
+    font-size: clamp(2rem, 3.4vw, 3.2rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    max-width: 14ch;
+    margin-bottom: 18px;
+  }
+  .elconekt .why-grid .why-cell:first-child .why-cell__desc {
+    font-size: 17px;
+    line-height: 1.55;
+    max-width: 38ch;
+  }
+  .elconekt .why-grid .why-cell:first-child .why-cell__watermark {
+    font-size: clamp(220px, 22vw, 380px);
+    right: -24px;
+    top: -40px;
+  }
+}
+
+/* ==========================================================
+   Mobile carousels — horizontal scroll-snap
+   ----------------------------------------------------------
+   Card-heavy sections become single-row swipeable rails on
+   mobile. Each card occupies ~82vw so the next one peeks
+   from the right edge — universal "swipe me" signal without
+   adding dots or arrows. Pure CSS, no JS.
+   ========================================================== */
+@media (max-width: 768px) {
+  .elconekt .principles,
+  .elconekt .ai-grid,
+  .elconekt .why-grid,
+  .elconekt .industries-grid,
+  .elconekt .svc-offerings {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--gutter);
+    -webkit-overflow-scrolling: touch;
+    gap: 14px;
+    /* Edge-to-edge bleed so cards align with content edge on left,
+       and last card has comfortable end-padding on right. */
+    margin: 0 calc(var(--gutter) * -1);
+    padding: 6px var(--gutter) 28px;
+    /* Strip any grid-collapse styling on parent */
+    background: transparent !important;
+    border: none !important;
+    /* Hide scrollbar across browsers */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .elconekt .principles::-webkit-scrollbar,
+  .elconekt .ai-grid::-webkit-scrollbar,
+  .elconekt .why-grid::-webkit-scrollbar,
+  .elconekt .industries-grid::-webkit-scrollbar,
+  .elconekt .svc-offerings::-webkit-scrollbar { display: none; }
+
+  /* Card sizing — each takes ~82% of viewport, capped on tablets */
+  .elconekt .principle,
+  .elconekt .ai-grid__card,
+  .elconekt .why-cell,
+  .elconekt .industry,
+  .elconekt .svc-offering {
+    flex: 0 0 min(82vw, 360px);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--bg);
+  }
+
+  /* Per-section card adjustments so they read as standalone tiles */
+  .elconekt .why-cell {
+    min-height: 280px;
+    padding: 28px 26px;
+  }
+  .elconekt .why-cell:first-child {
+    /* Reset desktop bento on mobile — back to standard tile */
+    grid-column: auto;
+    grid-row: auto;
+    padding: 28px 26px;
+    background: var(--bg);
+  }
+  .elconekt .why-cell:first-child .why-cell__icon,
+  .elconekt .why-cell:first-child .why-cell__title,
+  .elconekt .why-cell:first-child .why-cell__desc,
+  .elconekt .why-cell:first-child .why-cell__watermark {
+    /* Reset hero-card overrides */
+    font-size: revert;
+    width: revert;
+    height: revert;
+    max-width: revert;
+    margin-bottom: revert;
+    right: revert;
+    top: revert;
+  }
+  .elconekt .why-cell:first-child .why-cell__watermark {
+    font-size: 160px;
+    right: -8px;
+    top: -24px;
+  }
+
+  .elconekt .industry { min-height: 240px; padding: 24px 22px; }
+  .elconekt .principle { padding: 28px 24px; min-height: 180px; }
+  .elconekt .svc-offering { padding: 28px 24px; align-items: flex-start; }
+  .elconekt .ai-grid__card { padding: 28px 24px; }
+
+  /* Section lead/header gets a touch tighter to compensate
+     for the carousel's own bottom padding. */
+  .elconekt .section__header { margin-bottom: clamp(36px, 6vh, 64px); }
+}
