@@ -6,6 +6,8 @@ import FullStackDev from "./pages/FullStackDev";
 import AIIntelligentSystems from "./pages/AIIntelligentSystems";
 import Cybersecurity from "./pages/Cybersecurity";
 import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import SmoothScroll from "./motion/SmoothScroll";
 import Cursor from "./motion/Cursor";
 import "./pages/elconekt.css";
@@ -23,6 +25,8 @@ export default function App() {
             <Route path="/services/ai-intelligent-systems" element={<AIIntelligentSystems />} />
             <Route path="/services/cybersecurity" element={<Cybersecurity />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
           </Routes>
         </Layout>
       </SmoothScroll>

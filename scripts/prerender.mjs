@@ -65,6 +65,18 @@ const routes = [
     description:
       "Start a conversation with Elconekt. Whether you're planning a project, exploring AI, or strengthening security — we'd be happy to help.",
   },
+  {
+    path: "/privacy",
+    title: "Privacy Policy" + SUFFIX,
+    description:
+      "How Elconekt collects, uses, and protects your personal data, and the rights you have under UK GDPR.",
+  },
+  {
+    path: "/terms",
+    title: "Terms of Use" + SUFFIX,
+    description:
+      "The terms governing your use of the Elconekt website, including intellectual property, disclaimers, and governing law.",
+  },
 ];
 
 /**

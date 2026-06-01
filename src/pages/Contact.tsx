@@ -7,6 +7,20 @@ import { useTextReveal } from "../motion/useTextReveal";
 import HeroNodeBackground from "../motion/HeroNodeBackground";
 import { usePageMeta } from "../motion/usePageMeta";
 
+/**
+ * Form delivery endpoint.
+ * ----------------------------------------------------------------
+ * Drop a Formspree (or Netlify/Basin/etc.) endpoint here to enable
+ * real, server-side delivery with spam protection and a record of
+ * every enquiry, e.g.:
+ *   const CONTACT_ENDPOINT = "https://formspree.io/f/abcdwxyz";
+ * While this is empty, the form gracefully falls back to opening the
+ * visitor's mail client pre-filled — so it works today either way.
+ */
+const CONTACT_ENDPOINT = "";
+
+type SubmitState = "idle" | "submitting" | "success" | "error";
+
 export default function Contact() {
   useReveal();
   useMagnetic();
@@ -24,11 +38,9 @@ export default function Contact() {
     interest: "",
     message: "",
   });
+  const [status, setStatus] = useState<SubmitState>("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Mailto fallback — works without a backend.  Easy to swap for a real
-    // form endpoint (Formspree, Netlify Forms, etc.) once provisioned.
+  const mailtoFallback = () => {
     const subject = encodeURIComponent(`Enquiry — ${form.interest || "General"}`);
     const body = encodeURIComponent(
       [
@@ -42,6 +54,32 @@ export default function Contact() {
       ].join("\n"),
     );
     window.location.href = `mailto:info@elconekt.com?subject=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // No backend configured yet → open the visitor's mail client pre-filled.
+    if (!CONTACT_ENDPOINT) {
+      mailtoFallback();
+      return;
+    }
+
+    setStatus("submitting");
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error(`Bad status ${res.status}`);
+      setStatus("success");
+      setForm({ name: "", company: "", email: "", phone: "", interest: "", message: "" });
+    } catch {
+      // If the network call fails, don't lose the enquiry — fall back to mail.
+      setStatus("error");
+      mailtoFallback();
+    }
   };
 
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
@@ -108,10 +146,26 @@ export default function Contact() {
                 <span>Message</span>
                 <textarea rows={6} required value={form.message} onChange={set("message")} placeholder="Tell us a bit about your project, timeline, and where you'd like our help." />
               </label>
-              <button className="btn btn--primary contact__submit" type="submit" data-magnetic="0.3">
-                Send Enquiry
+              <button
+                className="btn btn--primary contact__submit"
+                type="submit"
+                data-magnetic="0.3"
+                disabled={status === "submitting"}
+              >
+                {status === "submitting" ? "Sending…" : "Send Enquiry"}
                 <ArrowIcon size={14} />
               </button>
+
+              {status === "success" && (
+                <p className="contact__status contact__status--ok" role="status">
+                  Thanks &mdash; your enquiry is on its way. We&apos;ll reply within 24 hours.
+                </p>
+              )}
+              {status === "error" && (
+                <p className="contact__status contact__status--err" role="status">
+                  Something went wrong sending the form, so we&apos;ve opened your email app instead. You can also reach us at info@elconekt.com.
+                </p>
+              )}
             </form>
 
             <aside className="contact__aside reveal">
