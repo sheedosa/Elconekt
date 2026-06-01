@@ -1,73 +1,63 @@
-@import "tailwindcss";
+/* ============================================================
+   Global base styles
+   ------------------------------------------------------------
+   Plain CSS — no framework dependency.  The site's full design
+   system lives in src/pages/elconekt.css (scoped under .elconekt).
+   This file only sets the document-level defaults that sit
+   *outside* that wrapper (html / body / #root) plus the global
+   heading + selection + scrollbar treatment.
+   ============================================================ */
 
-@theme {
-  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-display: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  
-  --color-black: #000000;
-  --color-white: #FFFFFF;
-  --color-gray-500: #666666;
-  --color-gray-900: #1A1A1A;
-  --color-gray-800: #141414;
-  --color-gray-400: #A1A1A1;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@layer base {
-  body {
-    @apply bg-black text-white selection:bg-white selection:text-black;
-    font-variant-ligatures: none;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply uppercase tracking-tighter font-bold;
-  }
-
-  h1, h2, h3 {
-    @apply uppercase tracking-tighter font-bold;
-  }
-
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #000;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #1A1A1A;
-  }
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
 }
 
-@layer utilities {
-  .film-grain {
-    background-image: url("/noise.png");
-    background-repeat: repeat;
-    opacity: 0.15;
-    mix-blend-mode: overlay;
-  }
-  
-  .frame-border {
-    border: 1px solid #1A1A1A;
-  }
-  
-  .text-micro {
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
+body {
+  /* Light surface so overscroll-bounce and any gap reads on-brand
+     rather than the old leftover black. */
+  background: #ffffff;
+  color: #0a0a0a;
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-variant-ligatures: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  .text-tagline {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #666;
-  }
+::selection {
+  background: #1e63ff;
+  color: #ffffff;
+}
 
-  @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  .animate-scroll {
-    animation: scroll 60s linear infinite;
-  }
+/* Headings are uppercase + bold + tight by default across the site.
+   Per-heading font-family, size, colour and exact tracking are set
+   in elconekt.css; this just establishes the shared casing/weight. */
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+/* Custom scrollbar — subtle, matches the light theme. */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #c8d2e0;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #aab6c8;
 }
