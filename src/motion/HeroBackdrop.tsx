@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { supportsHeavyMotion } from "./env";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 // Lazy-load the 3D scene so mobile/reduced-motion bundles never download Three.
 const Hero3D = lazy(() => import("./Hero3D"));
@@ -30,9 +31,13 @@ export default function HeroBackdrop({ fallback }: Props) {
 
   if (!use3D) return <>{fallback}</>;
 
+  // ErrorBoundary catches WebGL/Three.js init or render failures and falls
+  // back to the 2D canvas; Suspense handles the lazy-chunk load.
   return (
-    <Suspense fallback={fallback}>
-      <Hero3D />
-    </Suspense>
+    <ErrorBoundary fallback={fallback}>
+      <Suspense fallback={fallback}>
+        <Hero3D />
+      </Suspense>
+    </ErrorBoundary>
   );
 }
