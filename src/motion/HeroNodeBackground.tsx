@@ -13,6 +13,7 @@ import HeroBackdrop from "./HeroBackdrop";
  */
 export default function HeroNodeBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -22,7 +23,8 @@ export default function HeroNodeBackground() {
 
     let W = 0, H = 0;
     let lastInitW = 0, lastInitH = 0;
-    let animId: number;
+    let animId = 0;
+    let running = false;
     const NODE_COUNT = 70;
     const MAX_DIST = 160;
     let nodes: {
@@ -73,7 +75,14 @@ export default function HeroNodeBackground() {
     }
 
     function tick() {
-      ctx!.clearRect(0, 0, W, H);
+      // Skip drawing when the canvas is detached / zero-sized (e.g. desktop
+      // where the WebGL hero renders instead of this 2D fallback), but keep
+      // the loop alive cheaply so it resumes if the canvas reappears.
+      if (!ctx || W === 0 || H === 0) {
+        if (running) animId = requestAnimationFrame(tick);
+        return;
+      }
+      ctx.clearRect(0, 0, W, H);
       for (const n of nodes) {
         n.x += n.vx;
         n.y += n.vy;
@@ -118,22 +127,46 @@ export default function HeroNodeBackground() {
       animId = requestAnimationFrame(tick);
     }
 
+    const start = () => {
+      if (running) return;
+      running = true;
+      animId = requestAnimationFrame(tick);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(animId);
+    };
+
     resize();
     initNodes();
-    animId = requestAnimationFrame(tick);
 
     const onResize = () => { resize(); reflowNodes(); };
     window.addEventListener("resize", onResize);
 
+    // Only animate while the hero is on screen — pauses the 70-node O(n²)
+    // loop the moment the hero scrolls out of view, saving CPU/battery on
+    // every page. Falls back to always-on if IntersectionObserver is absent.
+    let io: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined" && bgRef.current) {
+      io = new IntersectionObserver(
+        ([entry]) => { entry.isIntersecting ? start() : stop(); },
+        { threshold: 0 },
+      );
+      io.observe(bgRef.current);
+    } else {
+      start();
+    }
+
     return () => {
-      cancelAnimationFrame(animId);
+      stop();
+      io?.disconnect();
       window.removeEventListener("resize", onResize);
     };
   }, []);
 
   return (
     <>
-      <div className="hero__bg">
+      <div className="hero__bg" ref={bgRef}>
         <HeroBackdrop fallback={<canvas className="hero__canvas" ref={canvasRef} />} />
       </div>
       <div className="hero__grad" />
