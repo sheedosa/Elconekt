@@ -19,6 +19,7 @@ export const RightArrowIcon = () => (
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const navRef = useRef<HTMLElement>(null);
+  const dropdownWrapRef = useRef<HTMLLIElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const location = useLocation();
@@ -43,12 +44,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Close services dropdown on outside click
+  // Close services dropdown on outside interaction. Uses pointerdown +
+  // a ref-based containment check so clicks on the trigger or inside the
+  // dropdown never trigger a close (no reliance on stopPropagation), and
+  // Escape closes it for keyboard users.
   useEffect(() => {
     if (!servicesOpen) return;
-    const close = () => setServicesOpen(false);
-    document.addEventListener("click", close);
-    return () => document.removeEventListener("click", close);
+    const onPointerDown = (e: PointerEvent) => {
+      if (!dropdownWrapRef.current?.contains(e.target as Node)) setServicesOpen(false);
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setServicesOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
   }, [servicesOpen]);
 
   const scrollTo = (id: string) => {
@@ -65,6 +78,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="elconekt">
+      <a className="skip-link" href="#main">Skip to main content</a>
+
       {/* NAV */}
       <nav className="nav" ref={navRef} aria-label="Primary">
         <Link
@@ -73,18 +88,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           aria-label="Elconekt — back to home"
           onClick={() => { setMenuOpen(false); setServicesOpen(false); }}
         >
-          <img src="/elconekt-logo.png" alt="Elconekt" className="nav__logo" />
+          <picture>
+            <source srcSet="/elconekt-logo.avif" type="image/avif" />
+            <source srcSet="/elconekt-logo.webp" type="image/webp" />
+            <img src="/elconekt-logo.png" alt="Elconekt" className="nav__logo" width="660" height="242" />
+          </picture>
         </Link>
         <ul className={`nav__menu${menuOpen ? " is-open" : ""}`}>
           <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
           <li><Link to="/about" onClick={() => setMenuOpen(false)}>About</Link></li>
-          <li className="nav__dropdown-wrap">
+          <li className="nav__dropdown-wrap" ref={dropdownWrapRef}>
             <button
               className="nav__dropdown-trigger"
-              onClick={(e) => { e.stopPropagation(); setServicesOpen(!servicesOpen); }}
+              aria-expanded={servicesOpen}
+              aria-haspopup="true"
+              onClick={() => setServicesOpen(!servicesOpen)}
             >
               Services
-              <svg className={`nav__chevron${servicesOpen ? " is-open" : ""}`} width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <svg className={`nav__chevron${servicesOpen ? " is-open" : ""}`} width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
                 <path d="M2.5 4L5 6.5L7.5 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
@@ -117,7 +138,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </nav>
       {menuOpen && <div className="nav__overlay" onClick={() => setMenuOpen(false)} />}
 
-      {children}
+      <main id="main">{children}</main>
 
       {/* FOOTER */}
       <footer className="footer">
@@ -125,7 +146,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="footer__top">
             <div>
               <div className="footer__brand">
-                <img src="/elconekt-logo.png" alt="Elconekt" className="footer__logo" />
+                <picture>
+                  <source srcSet="/elconekt-logo.avif" type="image/avif" />
+                  <source srcSet="/elconekt-logo.webp" type="image/webp" />
+                  <img src="/elconekt-logo.png" alt="Elconekt" className="footer__logo" width="660" height="242" />
+                </picture>
               </div>
               <p className="footer__tag">An AI-enabled intelligent systems integrator and technology consultancy. Engineering smarter, safer systems.</p>
             </div>

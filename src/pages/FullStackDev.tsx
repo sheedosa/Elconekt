@@ -155,7 +155,7 @@ export default function FullStackDev() {
               { q: "Do you support after launch?", a: "Yes. We offer ongoing support and maintenance packages that cover monitoring, bug fixes, performance optimisation, and feature updates. Most clients stay with us long after launch because the relationship works." },
             ].map((faq, i) => (
               <div className={`svc-faq__item${openFaq === i ? " is-open" : ""}`} key={i}>
-                <button className="svc-faq__q" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                <button className="svc-faq__q" aria-expanded={openFaq === i} onClick={() => setOpenFaq(openFaq === i ? null : i)}>
                   <span>{faq.q}</span>
                   <svg className="svc-faq__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

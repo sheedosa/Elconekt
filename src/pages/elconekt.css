@@ -1576,46 +1576,6 @@ html.motion-ready .elconekt .reveal-stagger > * {
   color: var(--muted);
 }
 
-/* Service page — process */
-.elconekt .svc-process {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  overflow: hidden;
-  margin-top: 16px;
-}
-.elconekt .svc-process__step {
-  background: var(--bg);
-  padding: 36px 28px;
-  position: relative;
-}
-.elconekt .svc-process__num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  color: var(--blue);
-  font-weight: 500;
-  display: block;
-  margin-bottom: 18px;
-}
-.elconekt .svc-process__title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  margin-bottom: 12px;
-  line-height: 1.15;
-}
-.elconekt .svc-process__desc {
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--muted);
-}
-
 /* Service page — tech stack */
 .elconekt .svc-stack {
   display: grid;
@@ -1787,7 +1747,6 @@ html.motion-ready .elconekt .reveal-stagger > * {
   }
   /* Service page mobile */
   .elconekt .svc-offerings { grid-template-columns: 1fr; }
-  .elconekt .svc-process { grid-template-columns: repeat(2, 1fr); }
   .elconekt .svc-stack { grid-template-columns: repeat(2, 1fr); }
   .elconekt .section__header { grid-template-columns: 1fr; gap: 32px; margin-bottom: clamp(48px, 8vh, 80px); align-items: start; }
   .elconekt .section__lead { max-width: 100%; }
@@ -1810,7 +1769,6 @@ html.motion-ready .elconekt .reveal-stagger > * {
   .elconekt .ai-grid { grid-template-columns: 1fr; }
   .elconekt .ai-grid__card { padding: 28px 24px; }
 
-  .elconekt .svc-process { grid-template-columns: 1fr; }
   .elconekt .svc-stack { grid-template-columns: 1fr; }
 }
 
@@ -2051,7 +2009,7 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
      navy.  --card-mono is a touch lower for the few mono / eyebrow
      uses that still benefit from a hint of hierarchy. */
   --card-muted:     rgba(255, 255, 255, 0.92);
-  --card-mono:      rgba(255, 255, 255, 0.78);
+  --card-mono:      rgba(255, 255, 255, 0.85);
   --card-accent:    #82a8ff;
   --card-divider:   rgba(255, 255, 255, 0.08);
 }
@@ -2620,8 +2578,9 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
 .elconekt .contact__field select:focus,
 .elconekt .contact__field textarea:focus {
   outline: none;
-  border-color: var(--ink);
-  box-shadow: 0 0 0 4px rgba(30, 99, 255, 0.12);
+  border-color: var(--blue);
+  /* High-contrast focus ring (replaces the previously faint indicator). */
+  box-shadow: 0 0 0 3px rgba(30, 99, 255, 0.35);
 }
 .elconekt .contact__field select {
   appearance: none;
@@ -3071,4 +3030,122 @@ html.motion-ready .elconekt [data-reveal-text] .tr-word__inner {
 .elconekt .contact__submit:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* ==========================================================
+   Accessibility — keyboard focus, skip link, reduced motion
+   ========================================================== */
+
+/* Visible focus ring for keyboard users across all interactive elements.
+   :focus-visible only shows for keyboard (not mouse), so it never adds
+   visual noise for pointer users. */
+.elconekt a:focus-visible,
+.elconekt button:focus-visible,
+.elconekt [data-magnetic]:focus-visible,
+.elconekt .nav__brand:focus-visible,
+.elconekt .nav__menu a:focus-visible,
+.elconekt .nav__dropdown a:focus-visible,
+.elconekt .nav__dropdown-trigger:focus-visible,
+.elconekt .nav__burger:focus-visible,
+.elconekt .footer__col a:focus-visible,
+.elconekt .footer__legal a:focus-visible,
+.elconekt .footer__socials a:focus-visible,
+.elconekt .svc-faq__q:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* On dark surfaces, a white ring reads better than blue. */
+.elconekt .cta-close a:focus-visible,
+.elconekt .cta-close button:focus-visible,
+.elconekt .hero__ctas a:focus-visible,
+.elconekt .svc-hero__ctas a:focus-visible {
+  outline-color: #fff;
+}
+/* Forms already get a box-shadow ring; give keyboard users an outline too. */
+.elconekt .contact__field input:focus-visible,
+.elconekt .contact__field select:focus-visible,
+.elconekt .contact__field textarea:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* Skip-to-content link — hidden until focused. */
+.elconekt .skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: 300;
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 0 0 10px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: transform 0.2s var(--ease-out);
+}
+.elconekt .skip-link:focus {
+  transform: translate(-50%, 0);
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* Footer social icons — meet the 44x44 touch target minimum. */
+.elconekt .footer__socials a {
+  width: 44px;
+  height: 44px;
+}
+
+/* Reduced-motion: the hero word-reveal animation had no fallback. */
+@media (prefers-reduced-motion: reduce) {
+  .elconekt .hero__title .word span {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================
+   Error boundary + 404 screens
+   ========================================================== */
+.elconekt .error-screen,
+.elconekt .svc-hero--404 {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+}
+.elconekt .error-screen__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding-top: clamp(110px, 14vh, 160px);
+  padding-bottom: clamp(60px, 8vh, 110px);
+}
+.elconekt .error-screen__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: var(--fs-section-title);
+  font-weight: 500;
+  letter-spacing: -0.042em;
+  line-height: 0.94;
+  color: var(--ink);
+  margin: 16px 0 0;
+}
+.elconekt .error-screen__title .accent { color: var(--blue); }
+.elconekt .error-screen__sub {
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 52ch;
+  margin: 24px 0 0;
+}
+.elconekt .error-screen__sub a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+.elconekt .error-screen__ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 36px;
 }

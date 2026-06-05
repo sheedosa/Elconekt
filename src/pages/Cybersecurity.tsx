@@ -185,7 +185,7 @@ export default function Cybersecurity() {
               { q: "What's the difference between an assessment and a penetration test?", a: "An assessment reviews controls, configuration, and policy against a framework — it tells you whether you're set up to be secure. A penetration test actively attempts to exploit your systems — it tells you what an attacker would actually achieve. We deliver both and the right balance depends on your maturity." },
             ].map((faq, i) => (
               <div className={`svc-faq__item${openFaq === i ? " is-open" : ""}`} key={i}>
-                <button className="svc-faq__q" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                <button className="svc-faq__q" aria-expanded={openFaq === i} onClick={() => setOpenFaq(openFaq === i ? null : i)}>
                   <span>{faq.q}</span>
                   <svg className="svc-faq__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

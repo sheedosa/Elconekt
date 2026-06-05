@@ -173,7 +173,7 @@ export default function AIIntelligentSystems() {
               { q: "How do you handle data security and compliance?", a: "Every engagement starts with a data flow review. Where possible we keep models and inference within your environment. When external models are appropriate, we lock down data residency, retention, and audit trails up front." },
             ].map((faq, i) => (
               <div className={`svc-faq__item${openFaq === i ? " is-open" : ""}`} key={i}>
-                <button className="svc-faq__q" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                <button className="svc-faq__q" aria-expanded={openFaq === i} onClick={() => setOpenFaq(openFaq === i ? null : i)}>
                   <span>{faq.q}</span>
                   <svg className="svc-faq__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
